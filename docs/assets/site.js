@@ -21,4 +21,5 @@
     buttons.forEach((item) => { const active = item === button; item.classList.toggle('active', active); item.setAttribute('aria-pressed', String(active)); });
     update();
   }));
+  update();
 })();
