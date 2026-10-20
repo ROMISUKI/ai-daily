@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>每天梳理过去24小时的AI研究、模型、开发工具与技术演示。保留来源，区分事实、宣传与未核实信息。</description><language>zh-CN</language><item><title>2026-10-20 · 9个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-20/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-20/</guid><pubDate>Tue, 20 Oct 2026 04:48:18 GMT</pubDate><description>本窗口的模型发布主线集中在代理能力、编码、视觉推理与生成吞吐，而非单纯扩大参数规模。
+部署侧同步推进：百万token上下文、API降价、第三方工具接入与1-bit本地量化，模型竞争正延伸到可获得性和单位任务成本。
+证据质量分化明显：Meta、MiniMax、Notion、Google和NVIDIA为一手发布，DeepSeek关键数字来自第三方评测，STEPX来自第三方体验；性能与安全结论仍需独立复现。</description></item></channel></rss>

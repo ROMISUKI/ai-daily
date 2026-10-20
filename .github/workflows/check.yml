@@ -1,0 +1,20 @@
+name: Validate public website
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Run unit tests
+        run: node --test scripts/site.test.mjs
+      - name: Validate published files and relative links
+        run: node scripts/validate.mjs

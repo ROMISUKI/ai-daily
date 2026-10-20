@@ -1,0 +1,13 @@
+{
+  "name": "ai-daily-public-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/preview.mjs",
+    "test": "node --test scripts/site.test.mjs",
+    "validate": "node scripts/validate.mjs"
+  }
+}
