@@ -6,6 +6,20 @@
   },
   "generatedAt": "2026-10-20T04:48:18.744Z",
   "candidateCount": 21,
+  "status": "complete",
+  "limitations": [
+    "X检索组 X热门AI技术内容 达到单次上限；仅覆盖已返回的候选。",
+    "字幕 BV1hDnJ6aEe6未完成（SUBTITLE_UNAVAILABLE）；未将失败当成没有新内容。",
+    "一手链接 @AIatMeta未完成（LINK_OUTSIDE_ALLOWLIST）；未将失败当成没有新内容。",
+    "本地短视频转写 x:2112245968750145561未完成（NO_USABLE_SPEECH）；未将失败当成没有新内容。",
+    "一手链接 @huggingface未完成（LINK_OUTSIDE_ALLOWLIST）；未将失败当成没有新内容。",
+    "一手链接 @NVIDIAAI未完成（LINK_OUTSIDE_ALLOWLIST）；未将失败当成没有新内容。",
+    "本地短视频转写 x:2112222911218291051未完成（CONTENT_TOO_LARGE）；未将失败当成没有新内容。"
+  ],
+  "coverage": {
+    "attempted": 24,
+    "succeeded": 18
+  },
   "takeaways": [
     "本窗口的模型发布主线集中在代理能力、编码、视觉推理与生成吞吐，而非单纯扩大参数规模。",
     "部署侧同步推进：百万token上下文、API降价、第三方工具接入与1-bit本地量化，模型竞争正延伸到可获得性和单位任务成本。",
@@ -13,11 +27,17 @@
   ],
   "items": [
     {
+      "section": "权威前沿",
       "title": "Meta披露Muse基础模型与Prometheus训练基础设施",
       "category": "模型与研究",
       "summary": "Meta官方称，Muse系列（含Muse Wonder）在俄亥俄州纽奥尔巴尼的Prometheus“吉瓦级”超算上训练；该集群横跨数十万GPU。官方给出的工程指标为预训练goodput 85%+、强化学习90%+，Muse Wonder训练中断的平均间隔约4.7万GPU小时，重点是让单个掉队主机不致拖垮全局作业。",
       "whyItMatters": "超大规模训练的瓶颈不只在算力，还在调度、故障隔离和有效吞吐；公开这类运行指标，有助于评估大模型训练基础设施的工程成熟度。",
       "caveat": "数据均来自Meta自述，附视频与图片未核验；goodput口径、统计周期及模型细节未在原帖展开。",
+      "howItWorks": "",
+      "evidenceBasis": "",
+      "nextStep": "",
+      "costAndRisks": "",
+      "projects": [],
       "sources": [
         {
           "author": "@AIatMeta",
@@ -29,11 +49,17 @@
       ]
     },
     {
+      "section": "权威前沿",
       "title": "Mercury 3发布：扩散式LLM主推千token/s级生成",
       "category": "模型与研究",
       "summary": "Mercury 3正式发布。作者Stefano Ermon称其为“迄今最智能的扩散式LLM”，Inception称其相对GPT-6 Luna、Claude Haiku 5.5在多项基准上占优，并以1000+ token/s运行。接入方还称其上下文达100万token、模型规模超过Mercury 1的40倍、标准基准智能约3倍，现可经Inception API、Baseten和OpenRouter调用。",
       "whyItMatters": "扩散式生成若能把千级token/s与长上下文同时稳定下来，可改变交互延迟和高吞吐服务的成本结构；多家API同步上线也便于复现比较。",
       "caveat": "性能、模型规模及相对排名均来自发布方或接入方陈述，未见独立评测；与自回归模型的比较口径也未说明。",
+      "howItWorks": "",
+      "evidenceBasis": "",
+      "nextStep": "",
+      "costAndRisks": "",
+      "projects": [],
       "sources": [
         {
           "author": "@StefanoErmon",
@@ -52,11 +78,17 @@
       ]
     },
     {
+      "section": "权威前沿",
       "title": "DeepSeek V4.1 Flash 1017更新，重点增强代理与知识任务",
       "category": "模型与研究",
       "summary": "Artificial Analysis称DeepSeek已发布V4.1 Flash 1017：智能指数得分45，较前版高6分；GDPval-AA v2.1 Elo由1600升至1746，AA-Omniscience综合分由-5升至+5。其汇总称模型重点提升代理、知识与科学推理，并列出100万token上下文、552B总参数/16B激活和MIT许可；OpenCode Go与Free已同步该版本。",
       "whyItMatters": "版本更新在代理任务、知识与科学推理基准上提升，并能通过开发工具直接使用；长上下文也有利于代码库和复杂工作流。",
       "caveat": "核心数据来自第三方评测与接入方，不是DeepSeek原始发布帖；各基准可比性、复现实验和完整权重状态未获独立核验。",
+      "howItWorks": "",
+      "evidenceBasis": "",
+      "nextStep": "",
+      "costAndRisks": "",
+      "projects": [],
       "sources": [
         {
           "author": "@ArtificialAnlys",
@@ -75,11 +107,17 @@
       ]
     },
     {
+      "section": "权威前沿",
       "title": "Unsloth发布DeepSeek V4.1 Flash 1017的1-bit本地化方案",
       "category": "开发工具与智能体",
       "summary": "Unsloth称已为DeepSeek V4.1 Flash 1017制作1-bit量化版本，把文件体积从508GB压到250GB，同时保留约88.2%的准确率，因而可在至少128GB内存设备上本地运行；项目同时给出GGUF与使用指南入口。其核心是以更激进的位宽换取单机可承载性，而非改变模型训练架构。",
       "whyItMatters": "若结果可复现，1-bit部署可显著降低大模型的内存门槛，为离线推理、隐私敏感应用和开发者试验提供更现实的本地路径。",
       "caveat": "体积、准确率与硬件要求均来自Unsloth自述；未核验量化方法、任务集、推理速度及128GB设备上的实际表现。",
+      "howItWorks": "",
+      "evidenceBasis": "",
+      "nextStep": "",
+      "costAndRisks": "",
+      "projects": [],
       "sources": [
         {
           "author": "@UnslothAI",
@@ -91,11 +129,17 @@
       ]
     },
     {
+      "section": "权威前沿",
       "title": "MiniMax M3.1 Flash发布，API降价并承诺发布权重",
       "category": "模型与研究",
       "summary": "MiniMax官方发布M3.1 Flash，称其在Cowork/Automation-Bench、ALE、DeepSWE与BabyVision上分别达到62%、30%、74%和91%，具备代理、编码与视觉推理能力，速度为M3的3倍、成本为其1/3。统一API价为每百万输入/输出token 0.15/0.60美元，缓存读取0.015美元；官方称模型权重将于10月23日提供。",
       "whyItMatters": "低价高速API可降低代理应用的调用成本，权重发布计划则扩大本地部署与二次研究空间；实际影响取决于后续权重交付和实测质量。",
       "caveat": "基准、速度与成本比较均为MiniMax自报；窗口内权重尚未到承诺日期，开放范围、许可证和复现结果均未确认。",
+      "howItWorks": "",
+      "evidenceBasis": "",
+      "nextStep": "",
+      "costAndRisks": "",
+      "projects": [],
       "sources": [
         {
           "author": "@MiniMax_AI",
@@ -107,11 +151,17 @@
       ]
     },
     {
+      "section": "权威前沿",
       "title": "Gemini 4 Argon展示多智能体驱动的3D内容生成链路",
       "category": "开发工具与智能体",
       "summary": "Google展示以Gemini 4 Argon编排子智能体、Blender MCP与Nano Banana的工作流：团队从真实桌面照片出发，把日常物件改造成可玩的3D赛道；另一官方示例称，在Mac版Gemini应用与Google Antigravity中，从零构建可玩的3D巫师棋，并协调多智能体Blender流程完成建模、设计和实时动画。",
       "whyItMatters": "该示例把视觉理解、任务编排、MCP工具调用与3D资产生成串成端到端流程，显示编码智能体正从代码生成扩展到跨工具创作。",
       "caveat": "两则均为Google官方演示，附视频未逐帧核验；没有公开任务成功率、耗时、失败率或完整可复现工程细节。",
+      "howItWorks": "",
+      "evidenceBasis": "",
+      "nextStep": "",
+      "costAndRisks": "",
+      "projects": [],
       "sources": [
         {
           "author": "@Google",
@@ -130,11 +180,17 @@
       ]
     },
     {
+      "section": "权威前沿",
       "title": "Notion AI升级代理、BYOK与MCP，并引入新积分制",
       "category": "应用与产业",
       "summary": "Notion官方宣布Notion AI获得一批更新：更强大的Notion Agents、官方称成本降低90%的Auto、允许自带模型密钥的BYOK、改进版Notion MCP，以及即将推出的AI Command Center；同时调整积分体系。更新把文档协作入口从单一问答扩展到可配置模型、代理与外部工具的组合。",
       "whyItMatters": "BYOK和MCP可提升企业模型选择与数据流可控性；代理能力升级也有望把Notion从知识库编辑界面推向任务执行层。",
       "caveat": "信息仅来自官方短帖及未核验的附视频，未给出Auto比较基线、代理成功率、BYOK支持模型和积分规则细节。",
+      "howItWorks": "",
+      "evidenceBasis": "",
+      "nextStep": "",
+      "costAndRisks": "",
+      "projects": [],
       "sources": [
         {
           "author": "@NotionHQ",
@@ -146,11 +202,17 @@
       ]
     },
     {
+      "section": "权威前沿",
       "title": "STEPX Neo以MCP把智能体接入飞行器、轮椅与双足机器人",
       "category": "机器人与硬件",
       "summary": "阶跃狂想计划视频展示STEPX Neo手机与个人智能体Amoo的硬件接入：飞行滑板以双机分工采集电压、电流、转速和姿态并作决策提示；脑机接口轮椅用脑电与眨眼肌电触发交互；双足机器人则把ROS系统封装为MCP工具，由Amoo解析意图、调用接口并反馈状态。视频还称全流程由用户掌控。",
       "whyItMatters": "把手机从请求入口变成机器人控制与传感节点，展示了MCP连接智能体和实体设备的可复用路径，对低成本原型尤其有价值。",
       "caveat": "为第三方体验视频，AI字幕未经人工校对且画面未核验；安全、实时性、失败恢复和量产能力均无独立数据。",
+      "howItWorks": "",
+      "evidenceBasis": "",
+      "nextStep": "",
+      "costAndRisks": "",
+      "projects": [],
       "sources": [
         {
           "author": "同济子豪兄",
@@ -162,11 +224,17 @@
       ]
     },
     {
+      "section": "权威前沿",
       "title": "NVIDIA宣布拟投资四家德国AI与机器人公司",
       "category": "应用与产业",
       "summary": "NVIDIA在柏林GTC相关活动中宣布拟投资Agile Robots、Aveliosmed、MireloAI与Reflex Aerospace，覆盖机器人、医疗、创意工具和航天。官方同时称黄仁勋与德国总理Friedrich Merz讨论将德国工程能力与NVIDIA AI结合，推进制造业和汽车领域应用。该动作把模型与算力供应商进一步延伸到产业投资。",
       "whyItMatters": "投资覆盖工业机器人到医疗与航天，显示AI竞争正从通用模型扩展到垂直企业、实体硬件和制造供应链整合。",
       "caveat": "原帖未披露投资金额、轮次、是否完成及产品交付计划；活动内容与投资关系仍以NVIDIA官方叙述为准。",
+      "howItWorks": "",
+      "evidenceBasis": "",
+      "nextStep": "",
+      "costAndRisks": "",
+      "projects": [],
       "sources": [
         {
           "author": "@nvidia",

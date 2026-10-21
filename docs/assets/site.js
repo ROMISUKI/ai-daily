@@ -12,6 +12,10 @@
       topic.hidden = !matches;
       if (matches) visible++;
     });
+    document.querySelectorAll('[data-stream]').forEach((section) => {
+      const rows = [...section.querySelectorAll('[data-topic]')];
+      section.hidden = rows.length ? rows.every((topic) => topic.hidden) : Boolean(query || category !== 'all');
+    });
     document.querySelector('#empty').hidden = visible !== 0;
     document.querySelector('#filter-result').textContent = `显示 ${visible} 个主题`;
   }

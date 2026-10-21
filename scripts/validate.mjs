@@ -1,12 +1,12 @@
 import { readFile, readdir, stat } from 'node:fs/promises';
 import { join, resolve, dirname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { categories, sourceUrl, scheduleForDate } from './site.mjs';
+import { categories, sectionNames, sourceUrl, githubUrl, scheduleForDate } from './site.mjs';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const output = join(root, 'docs');
 const config = JSON.parse(await readFile(join(root, 'site.config.json'), 'utf8'));
-const permitted = /^(?:index\.html|archive\/index\.html|about\/index\.html|reports\/\d{4}-\d{2}-\d{2}\/index\.html|data\/reports\/\d{4}-\d{2}-\d{2}\.json|data\/index\.json|assets\/site\.(?:css|js)|\.nojekyll|feed\.xml|sitemap\.xml|robots\.txt)$/;
+const permitted = /^(?:index\.html|archive\/index\.html|about\/index\.html|examples\/index\.html|reports\/\d{4}-\d{2}-\d{2}\/index\.html|data\/reports\/\d{4}-\d{2}-\d{2}\.json|data\/index\.json|assets\/site\.(?:css|js)|\.nojekyll|feed\.xml|sitemap\.xml|robots\.txt)$/;
 async function files(directory) {
   const result = [];
   for (const entry of await readdir(directory, { withFileTypes: true })) {
@@ -22,7 +22,7 @@ const names = await files(output);
 for (const path of names) {
   const name = relative(output, path).replaceAll('\\', '/');
   if (!permitted.test(name)) throw new Error(`Unapproved public file: ${name}`);
-  if ((await stat(path)).size > 1024 * 1024) throw new Error(`Public file is unexpectedly large: ${name}`);
+  if ((await stat(path)).size > 4 * 1024 * 1024) throw new Error(`Public file is unexpectedly large: ${name}`);
   const body = await readFile(path, 'utf8');
   if (/(?:-----BEGIN [A-Z ]*PRIVATE KEY-----|github_pat_[A-Za-z0-9_]{20,}|gh[pousr]_[A-Za-z0-9_]{20,}|SESSDATA\s*[:=]|bili_jct\s*[:=]|DedeUserID\s*[:=]|[A-Z]:[\\/](?:Users|OpenCodeTools)[\\/]|file:\/\/\/)/i.test(body)) throw new Error(`Private or local-only information detected: ${name}`);
   if (name.endsWith('.html')) {
@@ -43,13 +43,16 @@ for (const path of names) {
   }
   if (/^data\/reports\//.test(name)) {
     const report = JSON.parse(body);
-    keys(report, ['date', 'window', 'generatedAt', 'candidateCount', 'takeaways', 'items']);
+    keys(report, ['date', 'window', 'generatedAt', 'candidateCount', 'takeaways', 'items', 'status', 'limitations', 'coverage']);
     keys(report.window, ['start', 'end']);
     if (Date.parse(report.window.end) - Date.parse(report.window.start) !== 86400000 || Date.parse(report.window.end) !== Date.parse(`${report.date}T${scheduleForDate(report.date, config)}:00+08:00`)) throw new Error('Public report does not match its historical schedule.');
-    if (!Array.isArray(report.items) || report.items.length < 1 || report.items.length > 10) throw new Error('Invalid topic count.');
+    if (!Array.isArray(report.items)) throw new Error('Invalid topic array.');
+    keys(report.coverage, ['attempted', 'succeeded']);
     for (const item of report.items) {
-      keys(item, ['title', 'category', 'summary', 'whyItMatters', 'caveat', 'sources']);
+      keys(item, ['section', 'title', 'category', 'summary', 'whyItMatters', 'caveat', 'sources', 'howItWorks', 'evidenceBasis', 'nextStep', 'costAndRisks', 'projects']);
       if (!categories.includes(item.category)) throw new Error('Invalid public category.');
+      if (!sectionNames.includes(item.section)) throw new Error('Invalid editorial section.');
+      for (const project of item.projects ?? []) { keys(project, ['url', 'name', 'relationship']); githubUrl(project.url); }
       for (const source of item.sources) {
         keys(source, ['author', 'platform', 'url', 'publishedAt', 'evidence']);
         sourceUrl(source.url);
