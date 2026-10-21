@@ -17,7 +17,7 @@ let skipped = 0;
 for (const name of names) {
   const input = JSON.parse(await readFile(join(source, name), 'utf8'));
   if (input.status !== 'complete') { skipped++; continue; }
-  reports.push(publicReport(input));
+  reports.push(publicReport(input, config));
 }
 reports.sort((a, b) => b.date.localeCompare(a.date));
 if (!reports.length) throw new Error('No completed report is eligible for public publication.');

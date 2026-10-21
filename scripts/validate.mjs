@@ -1,10 +1,11 @@
 import { readFile, readdir, stat } from 'node:fs/promises';
 import { join, resolve, dirname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { categories, sourceUrl } from './site.mjs';
+import { categories, sourceUrl, scheduleForDate } from './site.mjs';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const output = join(root, 'docs');
+const config = JSON.parse(await readFile(join(root, 'site.config.json'), 'utf8'));
 const permitted = /^(?:index\.html|archive\/index\.html|about\/index\.html|reports\/\d{4}-\d{2}-\d{2}\/index\.html|data\/reports\/\d{4}-\d{2}-\d{2}\.json|data\/index\.json|assets\/site\.(?:css|js)|\.nojekyll|feed\.xml|sitemap\.xml|robots\.txt)$/;
 async function files(directory) {
   const result = [];
@@ -44,6 +45,7 @@ for (const path of names) {
     const report = JSON.parse(body);
     keys(report, ['date', 'window', 'generatedAt', 'candidateCount', 'takeaways', 'items']);
     keys(report.window, ['start', 'end']);
+    if (Date.parse(report.window.end) - Date.parse(report.window.start) !== 86400000 || Date.parse(report.window.end) !== Date.parse(`${report.date}T${scheduleForDate(report.date, config)}:00+08:00`)) throw new Error('Public report does not match its historical schedule.');
     if (!Array.isArray(report.items) || report.items.length < 1 || report.items.length > 10) throw new Error('Invalid topic count.');
     for (const item of report.items) {
       keys(item, ['title', 'category', 'summary', 'whyItMatters', 'caveat', 'sources']);

@@ -1,5 +1,10 @@
 {
   "title": "AI 科技日报",
+  "schedule": "10:00",
+  "scheduleHistory": [
+    { "from": "1970-01-01", "time": "12:00" },
+    { "from": "2026-10-22", "time": "10:00" }
+  ],
   "description": "每天梳理过去24小时的AI研究、模型、开发工具与技术演示。保留来源，区分事实、宣传与未核实信息。",
   "baseUrl": "https://romisuki.github.io/ai-daily/",
   "repositoryUrl": "https://github.com/ROMISUKI/ai-daily"
