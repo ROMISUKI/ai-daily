@@ -1,3 +1,18 @@
+// Keep navigation available on archive/about pages, independently of report filters.
+(() => {
+  const button = document.querySelector('[data-back-to-top]');
+  if (!button) return;
+  const update = () => { button.hidden = window.scrollY <= 320; };
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('pageshow', update);
+  button.addEventListener('click', () => {
+    window.scrollTo({ top: 0, left: 0,
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+    document.querySelector('.brand')?.focus({ preventScroll: true });
+  });
+  update();
+})();
+
 (() => {
   const search = document.querySelector('#search');
   const topics = [...document.querySelectorAll('[data-topic]')];

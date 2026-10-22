@@ -29,9 +29,28 @@ export function inspectCodexPage(html) {
   const excerpt = value => {
     if (typeof value !== 'string' || value.length > 280 || /https?:\/\//.test(value)) throw new Error('Expected a short public announcement excerpt.');
   };
+  const source = value => {
+    keys(value, ['type', 'author', 'url']);
+    if (!['x_post', 'observed'].includes(value.type) || typeof value.author !== 'string'
+      || value.author.length > 80) throw new Error('Invalid public Codex source.');
+    if (value.url) {
+      const url = new URL(value.url);
+      if (url.protocol !== 'https:' || !['x.com', 'www.x.com', 'twitter.com', 'www.twitter.com'].includes(url.hostname)
+        || url.username || url.password || url.port || url.search || url.hash
+        || !/^\/[A-Za-z0-9_]+\/status\/\d+\/?$/.test(url.pathname)) throw new Error('Unapproved Codex original-post link.');
+    }
+  };
   if (data.status.scheduled_reset) {
-    keys(data.status.scheduled_reset, ['scheduled_for', 'text', 'reset_type']);
-    excerpt(data.status.scheduled_reset.text);
+    const scheduled = data.status.scheduled_reset;
+    keys(scheduled, ['id', 'announced_at', 'scheduled_for', 'text', 'reset_type', 'source']);
+    excerpt(scheduled.text);
+    if (!['regular', 'banked'].includes(scheduled.reset_type)
+      || (scheduled.scheduled_for !== null && !Number.isFinite(Date.parse(scheduled.scheduled_for)))
+      || (scheduled.announced_at != null && !Number.isFinite(Date.parse(scheduled.announced_at)))
+      || (scheduled.id != null && (typeof scheduled.id !== 'string' || scheduled.id.length > 200))) {
+      throw new Error('Invalid public Codex announcement.');
+    }
+    if (scheduled.source !== undefined) source(scheduled.source);
   }
   if (data.status.active_watch) {
     keys(data.status.active_watch, ['text', 'forecast_window', 'expires_at']);
@@ -42,15 +61,7 @@ export function inspectCodexPage(html) {
     if (typeof record.id !== 'string' || !['regular', 'banked'].includes(record.reset_type)
       || !Number.isFinite(Date.parse(record.announced_at))) throw new Error('Invalid public Codex record.');
     excerpt(record.text);
-    keys(record.source, ['type', 'author', 'url']);
-    if (!['x_post', 'observed'].includes(record.source.type) || typeof record.source.author !== 'string'
-      || record.source.author.length > 80) throw new Error('Invalid public Codex source.');
-    if (record.source.url) {
-      const url = new URL(record.source.url);
-      if (url.protocol !== 'https:' || !['x.com', 'www.x.com', 'twitter.com', 'www.twitter.com'].includes(url.hostname)
-        || url.username || url.password || url.port || url.search || url.hash
-        || !/^\/[A-Za-z0-9_]+\/status\/\d+\/?$/.test(url.pathname)) throw new Error('Unapproved Codex original-post link.');
-    }
+    source(record.source);
   }
   return { fetchedAt: data.fetchedAt, records: data.records.length, publicProjection: true };
 }

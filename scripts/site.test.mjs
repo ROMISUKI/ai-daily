@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import { publicReport, issuePage, sourceUrl, feedXml, aboutPage, archivePage } from './site.mjs';
 import { selectHighlights } from './streams.mjs';
 import { inspectCodexPage } from './codex-page.mjs';
+import { readFile } from 'node:fs/promises';
+import { runInNewContext } from 'node:vm';
 
 function sample() {
   return { status: 'complete', date: '2026-10-20', generatedAt: '2026-10-20T04:48:00Z', window: { start: '2026-10-19T04:00:00Z', end: '2026-10-20T04:00:00Z' }, privateSentinel: 'DO_NOT_PUBLISH_INTERNAL_RECORDS', modelLabel: 'PRIVATE_MODEL_ROUTE', candidates: [{ id: 'x:123', author: '@example', platform: 'X', publishedAt: '2026-10-19T12:00:00Z', url: 'https://x.com/i/status/123', text: 'DO_NOT_PUBLISH_FULL_ORIGINAL', _media: ['DO_NOT_PUBLISH_MEDIA_URL'], evidence: { label: '仅原帖，未核验视频', text: 'DO_NOT_PUBLISH_RAW_TRANSCRIPT' } }], digest: { takeaways: ['需要核对原始来源。'], items: [{ title: '模型发布', category: '模型与研究', summary: '公开编辑摘要。', whyItMatters: '技术变化及意义。', caveat: '不是独立评测。', sourceIds: ['x:123'] }] } };
@@ -163,6 +165,39 @@ test('Codex entry stays in the top-right navigation with correct relative links 
   assert.ok(!issuePage(report, config, true).includes('data-codex-entry'));
 });
 
+test('every shared page has one accessible back-to-top button outside its main content', () => {
+  const report = publicReport(sample());
+  for (const html of [issuePage(report, config, true), issuePage(report, config), archivePage([report], config), aboutPage(config)]) {
+    assert.equal((html.match(/ data-back-to-top/g) ?? []).length, 1);
+    assert.match(html, /<button[^>]+type="button"[^>]+data-back-to-top[^>]+aria-label="回到页面顶部"[^>]+hidden>/);
+    assert.ok(html.indexOf('data-back-to-top') > html.indexOf('</main>'));
+  }
+});
+
+test('back-to-top works without report filters, restores focus, and honors reduced motion', async () => {
+  const script = await readFile(new URL('../web/site.js', import.meta.url), 'utf8');
+  const windowEvents = new Map(), buttonEvents = new Map(), scrolls = [], focus = [];
+  const button = { hidden: false, addEventListener: (name, handler) => buttonEvents.set(name, handler) };
+  const brand = { focus: options => focus.push(options.preventScroll) };
+  let reduced = false;
+  const window = { scrollY: 0, addEventListener: (name, handler, options) => {
+    if (name === 'scroll') assert.equal(options.passive, true);
+    windowEvents.set(name, handler);
+  }, matchMedia: () => ({ matches: reduced }), scrollTo: options => scrolls.push(options) };
+  const document = { querySelector: selector => selector === '[data-back-to-top]' ? button : selector === '.brand' ? brand : null, querySelectorAll: () => [] };
+  runInNewContext(script, { document, window });
+  assert.equal(button.hidden, true);
+  window.scrollY = 321; windowEvents.get('scroll')();
+  assert.equal(button.hidden, false);
+  buttonEvents.get('click')();
+  assert.equal(scrolls[0].top, 0); assert.equal(scrolls[0].left, 0);
+  assert.equal(scrolls[0].behavior, 'smooth'); assert.equal(focus[0], true);
+  reduced = true; buttonEvents.get('click')();
+  assert.equal(scrolls[1].behavior, 'instant');
+  window.scrollY = 0; windowEvents.get('pageshow')();
+  assert.equal(button.hidden, true);
+});
+
 function companion(snapshot) {
   return `<!doctype html><meta name="codex-reset-export" content="public-v1"><meta name="viewport" content="width=device-width"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src https://codex-resets.com"><div id="calendar"></div><div id="entries"></div><script id="snapshot" type="application/json">${JSON.stringify(snapshot)}</script>`;
 }
@@ -181,4 +216,20 @@ test('companion publication accepts only the projected public schema and bounded
     assert.throws(() => inspectCodexPage(companion(value)));
   }
   assert.throws(() => inspectCodexPage(companion(companionSnapshot()) + '<script src="https://evil.invalid/script.js"></script>'));
+});
+
+test('scheduled announcements expose only audited metadata and safe original-post links', () => {
+  const value = companionSnapshot();
+  value.status.scheduled_reset = { id: '123', announced_at: '2026-10-22T06:55:54.000Z',
+    scheduled_for: '2026-10-22T17:00:00.000Z', text: 'Lands tomorrow before 10am PST.', reset_type: 'regular',
+    source: { type: 'x_post', author: 'thsottiaux', url: 'https://x.com/thsottiaux/status/123' } };
+  assert.equal(inspectCodexPage(companion(value)).records, 1);
+  const unknownTime = structuredClone(value); unknownTime.status.scheduled_reset.scheduled_for = null;
+  assert.doesNotThrow(() => inspectCodexPage(companion(unknownTime)));
+  for (const change of [scheduled => { scheduled.source.url = 'https://evil.invalid/'; },
+    scheduled => { scheduled.source.raw = 'private'; }, scheduled => { scheduled.rawResponse = 'private'; },
+    scheduled => { scheduled.announced_at = 'invalid'; }, scheduled => { scheduled.scheduled_for = 'invalid'; }]) {
+    const changed = structuredClone(value); change(changed.status.scheduled_reset);
+    assert.throws(() => inspectCodexPage(companion(changed)));
+  }
 });
