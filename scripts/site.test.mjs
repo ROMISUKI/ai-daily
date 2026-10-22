@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { publicReport, issuePage, sourceUrl, feedXml, aboutPage, examplesPage } from './site.mjs';
+import { publicReport, issuePage, sourceUrl, feedXml, aboutPage, archivePage } from './site.mjs';
+import { selectHighlights } from './streams.mjs';
 
 function sample() {
   return { status: 'complete', date: '2026-10-20', generatedAt: '2026-10-20T04:48:00Z', window: { start: '2026-10-19T04:00:00Z', end: '2026-10-20T04:00:00Z' }, privateSentinel: 'DO_NOT_PUBLISH_INTERNAL_RECORDS', modelLabel: 'PRIVATE_MODEL_ROUTE', candidates: [{ id: 'x:123', author: '@example', platform: 'X', publishedAt: '2026-10-19T12:00:00Z', url: 'https://x.com/i/status/123', text: 'DO_NOT_PUBLISH_FULL_ORIGINAL', _media: ['DO_NOT_PUBLISH_MEDIA_URL'], evidence: { label: '仅原帖，未核验视频', text: 'DO_NOT_PUBLISH_RAW_TRANSCRIPT' } }], digest: { takeaways: ['需要核对原始来源。'], items: [{ title: '模型发布', category: '模型与研究', summary: '公开编辑摘要。', whyItMatters: '技术变化及意义。', caveat: '不是独立评测。', sourceIds: ['x:123'] }] } };
@@ -84,7 +85,7 @@ test('three-section layout supports more than ten items and preserves verified p
   const html = issuePage(report, config, true);
   for (const id of ['frontier', 'cases', 'opportunities']) assert.ok(html.includes(`id="${id}"`));
   assert.ok(html.includes('不设整份日报的成稿条数上限'));
-  assert.ok(html.includes('examples/'));
+  assert.ok(!html.includes('examples/'));
   const project = { url: 'https://github.com/owner/project', name: 'owner/project', relationship: '来源所附仓库', verified: true, notes: 'DO_NOT_PUBLISH_RAW_README' };
   input.candidates[6].projects = [project];
   input.digest.items[6].projectUrls = [project.url];
@@ -105,4 +106,47 @@ test('the active five-am configuration accepts legacy noon data without modifyin
   const updated = { ...config, schedule: '05:00', scheduleHistory: [{ from: '1970-01-01', time: '12:00' }, { from: '2026-10-22', time: '05:00' }] };
   assert.equal(publicReport(sample(), updated).window.end, '2026-10-20T04:00:00.000Z');
   assert.ok(issuePage(publicReport(sample(), updated), updated, true).includes('每天北京时间05:00'));
+});
+test('all public pages use the dark scheme and never expose the retired reference index', () => {
+  const report = publicReport(sample());
+  for (const html of [issuePage(report, config, true), issuePage(report, config), archivePage([report], config), aboutPage(config)]) {
+    assert.ok(html.includes('name="color-scheme" content="dark"'));
+    assert.ok(!html.includes('examples/'));
+    assert.ok(!html.includes('兴趣案例索引'));
+    assert.ok(!html.includes('你指定'));
+    assert.ok(!/^[\t ]+$/m.test(html));
+  }
+});
+test('reading highlights are bounded, deterministic, evidence-led and never mutate editorial data', () => {
+  const items = [
+    { section: '权威前沿', title: '只有简介', sources: [{ evidence: '仅标题/简介' }] },
+    { section: '权威前沿', title: '来源与实现信息较完整', howItWorks: '实现链路'.repeat(12), sources: [{ evidence: '已读取原帖正文；已读取所附允许域名页面' }] },
+    { section: '案例与玩法', title: '案例', sources: [{ evidence: '完整字幕轨' }] },
+    { section: '商机观察', title: '机会', sources: [{ evidence: '已读取原帖正文' }] },
+  ];
+  const before = JSON.stringify(items);
+  const selected = selectHighlights(items);
+  assert.equal(selected.length, 3);
+  assert.equal(selected[0].item.title, '来源与实现信息较完整');
+  assert.equal(selected[0].id, 'story-2');
+  assert.deepEqual(selectHighlights(items), selected);
+  assert.equal(JSON.stringify(items), before);
+  assert.deepEqual(selectHighlights([]), []);
+});
+test('highlights have textual badges, unique targets and explicit selection boundaries', () => {
+  const report = publicReport(sample());
+  const html = issuePage(report, config, true);
+  assert.equal((html.match(/ data-highlight/g) ?? []).length, 1);
+  assert.ok(html.includes('分区先读'));
+  assert.ok(html.includes('href="#story-1"'));
+  assert.ok(html.includes('id="story-1"'));
+  assert.ok(html.includes('不是事实认证'));
+  assert.ok(html.includes('data-clear-filters'));
+});
+test('implementation and action get primary emphasis while caveats remain visible', () => {
+  const input = sample();
+  Object.assign(input.digest.items[0], { howItWorks: '实际链路', nextStep: '验证步骤', evidenceBasis: '证据边界', costAndRisks: '风险' });
+  const html = issuePage(publicReport(input), config, true);
+  for (const value of ['analysis-primary', 'analysis-action', 'analysis-secondary', '边界与疑点']) assert.ok(html.includes(value));
+  assert.ok(!html.includes('analysis-grid'));
 });

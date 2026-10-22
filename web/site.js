@@ -20,10 +20,15 @@
     document.querySelector('#filter-result').textContent = `显示 ${visible} 个主题`;
   }
   search.addEventListener('input', update);
-  buttons.forEach((button) => button.addEventListener('click', () => {
-    category = button.dataset.filter;
-    buttons.forEach((item) => { const active = item === button; item.classList.toggle('active', active); item.setAttribute('aria-pressed', String(active)); });
+  function setCategory(value) {
+    category = value;
+    buttons.forEach((item) => { const active = item.dataset.filter === value; item.classList.toggle('active', active); item.setAttribute('aria-pressed', String(active)); });
     update();
+  }
+  buttons.forEach((button) => button.addEventListener('click', () => setCategory(button.dataset.filter)));
+  document.querySelectorAll('[data-clear-filters]').forEach((link) => link.addEventListener('click', () => {
+    search.value = '';
+    setCategory('all');
   }));
   update();
 })();

@@ -6,7 +6,8 @@ import { categories, sectionNames, sourceUrl, githubUrl, scheduleForDate } from 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const output = join(root, 'docs');
 const config = JSON.parse(await readFile(join(root, 'site.config.json'), 'utf8'));
-const permitted = /^(?:index\.html|archive\/index\.html|about\/index\.html|examples\/index\.html|reports\/\d{4}-\d{2}-\d{2}\/index\.html|data\/reports\/\d{4}-\d{2}-\d{2}\.json|data\/index\.json|assets\/site\.(?:css|js)|\.nojekyll|feed\.xml|sitemap\.xml|robots\.txt)$/;
+const permitted = /^(?:index\.html|archive\/index\.html|about\/index\.html|reports\/\d{4}-\d{2}-\d{2}\/index\.html|data\/reports\/\d{4}-\d{2}-\d{2}\.json|data\/index\.json|assets\/site\.(?:css|js)|\.nojekyll|feed\.xml|sitemap\.xml|robots\.txt)$/;
+await stat(join(root, 'reference-cases.json')).then(() => { throw new Error('Private reference material must not be kept in the public repository.'); }, (error) => { if (error.code !== 'ENOENT') throw error; });
 async function files(directory) {
   const result = [];
   for (const entry of await readdir(directory, { withFileTypes: true })) {
@@ -24,6 +25,7 @@ for (const path of names) {
   if (!permitted.test(name)) throw new Error(`Unapproved public file: ${name}`);
   if ((await stat(path)).size > 4 * 1024 * 1024) throw new Error(`Public file is unexpectedly large: ${name}`);
   const body = await readFile(path, 'utf8');
+  if (/href="[^"]*examples\/|REFERENCE CASEBOOK|兴趣案例索引/.test(body)) throw new Error(`Retired private reference content detected: ${name}`);
   if (/(?:-----BEGIN [A-Z ]*PRIVATE KEY-----|github_pat_[A-Za-z0-9_]{20,}|gh[pousr]_[A-Za-z0-9_]{20,}|SESSDATA\s*[:=]|bili_jct\s*[:=]|DedeUserID\s*[:=]|[A-Z]:[\\/](?:Users|OpenCodeTools)[\\/]|file:\/\/\/)/i.test(body)) throw new Error(`Private or local-only information detected: ${name}`);
   if (name.endsWith('.html')) {
     if (!body.includes("default-src 'none'") || !body.includes('viewport')) throw new Error('HTML security/mobile metadata is missing.');

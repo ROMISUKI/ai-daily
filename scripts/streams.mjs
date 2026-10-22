@@ -1,26 +1,74 @@
 export const editorialSections = [
-  { id: 'frontier', name: '权威前沿', english: 'FRONTIER', description: '先看一手来源，再看技术变化。研究、模型、工程与产业进展。' },
-  { id: 'cases', name: '案例与玩法', english: 'BUILD & PLAY', description: '有趣只是开始。拆解效果背后的数据、模型、工具链和复现难点。' },
-  { id: 'opportunities', name: '商机观察', english: 'OPPORTUNITIES', description: 'AI与非AI都看。先识别真实需求，再用小成本实验验证，不承诺收益。' },
+  { id: 'frontier', name: '权威前沿', english: 'FRONTIER', description: '一手来源里的模型、研究与工程进展。' },
+  { id: 'cases', name: '案例与玩法', english: 'BUILD & PLAY', description: '从有趣效果，拆到工具链、实现和复现边界。' },
+  { id: 'opportunities', name: '商机观察', english: 'OPPORTUNITIES', description: '从真实需求出发，用小成本实验验证机会。' },
 ];
 
-function article(item, index, section, helpers) {
+function readingScore(item) {
+  const evidence = (item.sources ?? []).map((source) => source.evidence).join(' ');
+  const coverage = /完整字幕轨|完整返回字幕轨|已读取所附允许域名页面/.test(evidence) ? 3 : /已读取原帖正文/.test(evidence) ? 1 : 0;
+  const detail = ['howItWorks', 'evidenceBasis', 'nextStep', 'costAndRisks'].filter((field) => item[field]?.trim().length >= 30).length;
+  return coverage + detail + Math.min(item.projects?.length ?? 0, 1) * 2;
+}
+
+// A reading aid based on the supplied editorial material, not a truth score,
+// popularity ranking or a second model call. Ties retain the existing order.
+export function selectHighlights(items) {
+  return editorialSections.flatMap((section) => {
+    const choices = items.map((item, index) => ({ item, index, section }))
+      .filter(({ item }) => (item.section ?? '权威前沿') === section.name);
+    choices.sort((a, b) => readingScore(b.item) - readingScore(a.item) || a.index - b.index);
+    if (!choices.length) return [];
+    const selected = choices[0];
+    selected.reason = selected.item.projects?.length ? '含公开项目入口与分析线索' : selected.item.howItWorks ? '优先展开实现或需求依据' : '从本分区的来源与摘要读起';
+    selected.id = `story-${selected.index + 1}`;
+    return [selected];
+  });
+}
+
+function article(item, index, section, highlighted, helpers) {
   const { escape, localTime } = helpers;
-  const fields = [['howItWorks', section.id === 'opportunities' ? '需求与机会依据' : '实现链路'], ['evidenceBasis', '已知与推测'], ['nextStep', section.id === 'opportunities' ? '低成本验证' : '最小复现思路'], ['costAndRisks', '成本与风险']].filter(([field]) => item[field]);
-  return `<article class="topic stream-topic" data-topic data-category="${escape(item.category)}" data-section="${escape(section.name)}"><div class="topic-index">${String(index + 1).padStart(2, '0')}</div><div class="topic-body"><span class="eyebrow">${escape(item.category)}</span><h3>${escape(item.title)}</h3><p class="summary">${escape(item.summary)}</p><div class="meaning"><b>为什么值得看</b><p>${escape(item.whyItMatters)}</p></div>${fields.length ? `<div class="analysis-grid">${fields.map(([field, label]) => `<div class="analysis-box"><b>${label}</b><p>${escape(item[field])}</p></div>`).join('')}</div>` : ''}<div class="caveat"><b>边界与疑点</b><p>${escape(item.caveat)}</p></div>${item.projects?.length ? `<div class="project-links"><b>相关 GitHub 项目</b>${item.projects.map((project) => `<a href="${escape(project.url)}" target="_blank" rel="noopener noreferrer">${escape(project.name)} ↗</a><small>${escape(project.relationship)}</small>`).join('')}<small>已核验公开仓库页面；未执行程序，不等于代码审计或效果复现。</small></div>` : section.id === 'cases' && fields.length ? '<p class="project-unavailable">没有可核验的关联仓库时，不补造GitHub链接。</p>' : ''}<details class="evidence"><summary>原始来源与证据范围 <span>${item.sources.length} 条</span></summary><ul>${item.sources.map((source) => `<li><a href="${escape(source.url)}" target="_blank" rel="noopener noreferrer">${escape(source.platform)} · ${escape(source.author)} ↗</a><time datetime="${source.publishedAt}">${escape(localTime(source.publishedAt))}</time><p>${escape(source.evidence)}</p></li>`).join('')}</ul></details></div></article>`;
+  const mainLabel = section.id === 'opportunities' ? '需求与机会依据' : '实现链路';
+  const actionLabel = section.id === 'opportunities' ? '低成本验证' : '最小复现思路';
+  const secondary = [['evidenceBasis', '已知与推测'], ['costAndRisks', '成本与风险']].filter(([field]) => item[field]);
+  return `<article id="story-${index + 1}" class="topic stream-topic${highlighted ? ' topic-featured' : ''}" data-topic data-category="${escape(item.category)}" data-section="${escape(section.name)}"${highlighted ? ' data-highlight' : ''}>
+    <div class="topic-index" aria-hidden="true">${String(index + 1).padStart(2, '0')}</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">${escape(item.category)}</span>${highlighted ? '<span class="priority-badge">分区先读</span>' : ''}</div>
+      <h3>${escape(item.title)}</h3>
+      <p class="summary">${escape(item.summary)}</p>
+      <div class="meaning"><b>为什么值得看</b><p>${escape(item.whyItMatters)}</p></div>
+      ${item.howItWorks ? `<section class="analysis-primary"><h4>${mainLabel}</h4><p>${escape(item.howItWorks)}</p></section>` : ''}
+      ${item.nextStep ? `<section class="analysis-action"><h4>${actionLabel}</h4><p>${escape(item.nextStep)}</p></section>` : ''}
+      ${secondary.length ? `<div class="analysis-secondary">${secondary.map(([field, label]) => `<section><h4>${label}</h4><p>${escape(item[field])}</p></section>`).join('')}</div>` : ''}
+      <aside class="caveat"><b>边界与疑点</b><p>${escape(item.caveat)}</p></aside>
+      ${item.projects?.length ? `<div class="project-links"><b>相关 GitHub 项目</b>${item.projects.map((project) => `<a href="${escape(project.url)}" target="_blank" rel="noopener noreferrer">${escape(project.name)} ↗</a><small>${escape(project.relationship)}</small>`).join('')}<small>已核验公开仓库页面；未执行代码，不等于安全审计或效果复现。</small></div>` : ''}
+      <details class="evidence"><summary>原始来源与证据范围 <span>${item.sources.length} 条</span></summary><ul>${item.sources.map((source) => `<li><a href="${escape(source.url)}" target="_blank" rel="noopener noreferrer">${escape(source.platform)} · ${escape(source.author)} ↗</a><time datetime="${source.publishedAt}">${escape(localTime(source.publishedAt))}</time><p>${escape(source.evidence)}</p></li>`).join('')}</ul></details>
+    </div>
+  </article>`;
 }
 
 export function renderIssue(report, config, prefix, latest, helpers) {
   const { escape, localTime, scheduleDescription, categories } = helpers;
+  const highlights = selectHighlights(report.items);
+  const highlighted = new Set(highlights.map(({ item }) => item));
   const counts = new Map(editorialSections.map((section) => [section.name, report.items.filter((item) => (item.section ?? '权威前沿') === section.name).length]));
+  const navigation = editorialSections.map((section, index) => `<a class="stream-card card-${section.id}" href="#${section.id}" data-clear-filters><span class="section-dot" aria-hidden="true"></span><span class="stream-label"><small>0${index + 1}</small>${section.name}</span><b>${counts.get(section.name)}</b></a>`).join('');
   const groups = editorialSections.map((section, index) => {
     const items = report.items.filter((item) => (item.section ?? '权威前沿') === section.name);
-    return `<section class="stream-section stream-${section.id}" id="${section.id}" data-stream><header class="section-heading"><span class="section-number">0${index + 1}</span><div><span class="eyebrow">${section.english}</span><h2>${section.name}<small>${items.length} 条</small></h2><p>${section.description}</p></div></header><div class="topic-list">${items.map((item, itemIndex) => article(item, itemIndex, section, helpers)).join('')}</div>${items.length ? '' : `<div class="section-empty">本期没有这一分区的已核验新条目。不会把旧案例、收入宣传或推测凑成当天新闻。${section.id === 'cases' ? `<a href="${prefix}examples/">查看你指定的案例与拆解 →</a>` : ''}</div>`}</section>`;
+    return `<section class="stream-section stream-${section.id}" id="${section.id}" data-stream><header class="section-heading"><span class="section-number">0${index + 1}</span><div><span class="eyebrow">${section.english}</span><h2>${section.name}<small>${items.length} 条</small></h2><p>${section.description}</p></div></header><div class="topic-list">${items.map((item) => article(item, report.items.indexOf(item), section, highlighted.has(item), helpers)).join('')}</div>${items.length ? '' : '<div class="section-empty">本期暂无这一分区的合格新条目，不用旧闻或未经核验的宣传凑数。</div>'}</section>`;
   }).join('');
   const filters = categories.filter((category) => report.items.some((item) => item.category === category));
-  return `<section class="issue-hero issue-hero-v2" id="today"><div class="hero-top"><span class="edition">${latest ? '最新一期' : '历史日报'} / ${report.date}</span><a class="text-link" href="${prefix}archive/">按日期回看 →</a></div><span class="hero-kicker">RESEARCH · BUILD · OPPORTUNITY</span><h1>看见前沿，拆开玩法，<br><em>发现值得验证的机会。</em></h1><p class="intro">权威AI进展、有趣实现与真实需求，分开读，也连起来想。来源可追溯，推测有边界。</p><div class="issue-stats"><span><strong>${report.items.length}</strong>条内容</span><span><strong>${report.candidateCount}</strong>候选线索</span><span class="window">统计：${escape(localTime(report.window.start))} — ${escape(localTime(report.window.end))}<small>北京时间 · 公开来源发布时间严格限定于过去24小时</small></span></div></section>${report.status === 'partial' ? '<div class="coverage-alert"><b>本期存在来源或编辑批次缺项</b><p>以下只展示已通过结构与引用校验的编辑结果；未完成部分不当作已分析。具体限制见文末。</p></div>' : ''}<div class="stream-overview">${editorialSections.map((section, index) => `<a class="stream-card card-${section.id}" href="#${section.id}"><span>0${index + 1} / ${section.english}</span><h2>${section.name}<b>${counts.get(section.name)}</b></h2><p>${section.description}</p></a>`).join('')}</div><section class="takeaways"><div><span class="eyebrow">THE BIG PICTURE</span><h2>先抓住本期信号</h2></div><ul>${report.takeaways.length ? report.takeaways.map((value) => `<li>${escape(value)}</li>`).join('') : '<li>本期尚无可归纳的新结论；请核对来源与覆盖范围。</li>'}</ul></section><section class="filter-panel" aria-label="筛选日报"><label class="search"><span>检索本期</span><input type="search" id="search" placeholder="模型、插件、MIDI、客户需求…" autocomplete="off"></label><div class="filters"><button type="button" class="active" data-filter="all" aria-pressed="true">全部 ${report.items.length}</button>${filters.map((category) => `<button type="button" data-filter="${escape(category)}" aria-pressed="false">${escape(category)}</button>`).join('')}</div><p id="filter-result" class="sr-only" aria-live="polite"></p></section><div class="daily-layout"><aside class="issue-jump"><b>三条信息线</b>${editorialSections.map((section) => `<a href="#${section.id}">${section.name}<span>${counts.get(section.name)}</span></a>`).join('')}<a class="examples-link" href="${prefix}examples/">兴趣案例索引 ↗<small>旧样例单列，不冒充今日新闻</small></a></aside><div class="stream-content">${groups}<p id="empty" class="empty" hidden>本期没有匹配内容。换个关键词试试。</p></div></div><section class="reading-note"><h2>阅读边界与本期覆盖</h2><p>案例拆解须区分来源披露与合理推测；字幕、原帖和GitHub页面不等于逐帧观看、代码执行或效果复现。商机是待验证的需求信号，不是投资建议或收益保证。没有项目地址就留空，不用相似项目冒充作者源码。</p><p>${escape(scheduleDescription(config))}。不设整份日报的成稿条数上限，但采集、字幕和编辑受单次运行时间与来源可访问范围限制，不能穷举全网。本页生成于${escape(localTime(report.generatedAt))}，日期代表真实一期，不保证整点完成。</p>${report.coverage?.attempted ? `<p>本期采集与证据任务完成 ${report.coverage.succeeded}/${report.coverage.attempted} 项。</p>` : ''}${report.limitations?.length ? `<details><summary>查看 ${report.limitations.length} 项覆盖限制</summary><ul>${report.limitations.map((value) => `<li>${escape(value)}</li>`).join('')}</ul></details>` : ''}</section>`;
-}
-
-export function renderReferenceCases(cases, { escape, sourceUrl, githubUrl }) {
-  return `<section class="page-heading"><span class="eyebrow">REFERENCE CASEBOOK / NOT TODAY'S NEWS</span><h1>不止看见效果，<br>更想弄懂怎么做到。</h1><p>这些是你指定的兴趣样例，不计入任何一期的24小时新闻数量。只记录已取得证据，明确保留未知、推测和异常；没有安装或执行这些项目。</p></section><section class="reference-list">${cases.map((item, index) => `<article class="reference-card"><span class="eyebrow">样例 ${String(index + 1).padStart(2, '0')} · ${escape(item.publishedAt.slice(0,10))}</span><h2>${escape(item.title)}</h2><p>${escape(item.summary)}</p><div class="analysis-grid">${[['howItWorks','实现链路'],['evidenceBasis','证据覆盖'],['nextStep','最小验证思路'],['costAndRisks','成本与风险']].map(([field,label])=>`<div class="analysis-box"><b>${label}</b><p>${escape(item[field])}</p></div>`).join('')}</div><div class="caveat"><b>不可混淆</b><p>${escape(item.caveat)}</p></div><p><a href="${escape(sourceUrl(item.url))}" target="_blank" rel="noopener noreferrer">B站 · ${escape(item.author)} · 原视频 ↗</a></p>${item.projects.length ? item.projects.map((project) => `<div class="project-links"><a href="${escape(githubUrl(project.url))}" target="_blank" rel="noopener noreferrer">GitHub · ${escape(project.name)} ↗</a><small>${escape(project.relationship)}；只读核验，未执行代码。</small></div>`).join('') : '<p class="project-unavailable">未取得可核验的作者项目地址，不编造或拿同类工具顶替。</p>'}</article>`).join('')}</section>`;
+  return `<section class="issue-hero" id="today">
+      <div class="hero-top"><span class="edition">${latest ? '最新一期' : '历史日报'} / ${report.date}</span><a class="text-link" href="${prefix}archive/">按日期回看 ↗</a></div>
+      <div class="hero-heading"><div><span class="hero-kicker">RESEARCH / BUILD / OPPORTUNITY</span><h1>看见前沿，拆开玩法。<br><em>把信号变成可验证的想法。</em></h1><p class="intro">前沿有据，玩法有解，机会有边界。先读重点，再展开每一条实现与来源。</p></div><div class="edition-mark" aria-hidden="true">DAILY<br><span>SIGNAL</span><i>↗</i></div></div>
+      <div class="issue-stats"><span><strong>${report.items.length}</strong>条内容</span><span><strong>${report.candidateCount}</strong>候选线索</span><span class="window">${escape(localTime(report.window.start))} — ${escape(localTime(report.window.end))}<small>北京时间 · 严格24小时窗口</small></span></div>
+    </section>
+    ${report.status === 'partial' ? '<div class="coverage-alert"><b>本期存在来源或编辑批次缺项</b><p>只展示通过结构与引用校验的编辑结果；未完成部分不当作已分析，限制详见文末。</p></div>' : ''}
+    <nav class="stream-overview" aria-label="日报分区">${navigation}</nav>
+    ${highlights.length ? `<section class="spotlights" aria-labelledby="spotlight-heading"><div class="block-heading"><div><span class="eyebrow">START HERE</span><h2 id="spotlight-heading">本期先读<span>少一点寻找，多一点重点</span></h2></div><span class="reading-label">${highlights.length} 条阅读入口</span></div><div class="spotlight-grid">${highlights.map(({ item, index, section, reason, id }, order) => `<a class="spotlight-card spotlight-${section.id}${order === 0 ? ' spotlight-lead' : ''}" href="#${id}" data-spotlight-link data-clear-filters><div class="spotlight-meta"><span>${section.name}</span><span class="spotlight-number">${String(index + 1).padStart(2, '0')} ↗</span></div><h3>${escape(item.title)}</h3><p>${escape(item.whyItMatters)}</p><small>${escape(reason)}</small><span class="spotlight-action">展开这条内容 <span aria-hidden="true">→</span></span></a>`).join('')}</div><p class="selection-note">按现有来源覆盖与分析完整度辅助选择，不是事实认证、全局重要性排名或投资评级。</p></section>` : ''}
+    <section class="takeaways"><div><span class="eyebrow">THE BIG PICTURE</span><h2>抓住本期信号</h2></div><div><ul>${report.takeaways.length ? report.takeaways.slice(0, 3).map((value) => `<li>${escape(value)}</li>`).join('') : '<li>本期尚无可归纳的新结论，请核对来源与覆盖范围。</li>'}</ul>${report.takeaways.length > 3 ? `<details class="more-takeaways"><summary>展开其余 ${report.takeaways.length - 3} 条观察</summary><ul>${report.takeaways.slice(3).map((value) => `<li>${escape(value)}</li>`).join('')}</ul></details>` : ''}</div></section>
+    <section class="filter-panel" aria-label="筛选日报"><label class="search"><span>检索本期</span><input type="search" id="search" placeholder="模型、插件、MIDI、客户需求…" autocomplete="off"></label><div class="filters"><button type="button" class="active" data-filter="all" aria-pressed="true">全部 ${report.items.length}</button>${filters.map((category) => `<button type="button" data-filter="${escape(category)}" aria-pressed="false">${escape(category)}</button>`).join('')}</div><p id="filter-result" class="sr-only" aria-live="polite"></p></section>
+    <div class="daily-layout"><aside class="issue-jump"><b>展开阅读</b>${editorialSections.map((section) => `<a href="#${section.id}" data-clear-filters>${section.name}<span>${counts.get(section.name)}</span></a>`).join('')}<p>高光条目带有<br><span class="priority-badge">分区先读</span><br>可先读，再展开其余内容。</p></aside><div class="stream-content">${groups}<p id="empty" class="empty" hidden>本期没有匹配内容，换个关键词试试。</p></div></div>
+    <section class="reading-note"><h2>阅读边界与本期覆盖</h2><p>案例区分来源披露与合理推测。字幕、原帖和GitHub页面不等于逐帧观看、代码执行或效果复现；商机是待验证的需求信号，不是收益保证。没有项目地址就留空，不拿相似项目冒充作者源码。</p><p>${escape(scheduleDescription(config))}。不设整份日报的成稿条数上限，但采集、字幕和编辑受运行时间与来源可访问范围限制。本页生成于${escape(localTime(report.generatedAt))}，日期代表真实一期，不保证整点完成。</p>${report.coverage?.attempted ? `<p>本期采集与证据任务完成 ${report.coverage.succeeded}/${report.coverage.attempted} 项。</p>` : ''}${report.limitations?.length ? `<details><summary>查看 ${report.limitations.length} 项覆盖限制</summary><ul>${report.limitations.map((value) => `<li>${escape(value)}</li>`).join('')}</ul></details>` : ''}</section>`;
 }

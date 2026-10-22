@@ -14,3 +14,5 @@ local-reports/
 Thumbs.db
 .cache/
 qa/
+/reference-cases.json
+/private-reference/
