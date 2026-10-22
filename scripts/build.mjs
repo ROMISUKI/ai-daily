@@ -3,6 +3,7 @@ import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
 import { publicReport, issuePage, archivePage, aboutPage, feedXml } from './site.mjs';
+import { inspectCodexPage } from './codex-page.mjs';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const args = process.argv.slice(2);
@@ -11,6 +12,13 @@ if (index < 0 || !args[index + 1]) throw new Error('Usage: node scripts/build.mj
 const source = resolve(args[index + 1]);
 const output = join(root, 'docs');
 const config = JSON.parse(await readFile(join(root, 'site.config.json'), 'utf8'));
+const codexPosition = args.indexOf('--codex-page');
+const codexPath = codexPosition >= 0 ? resolve(args[codexPosition + 1] ?? '') : join(output, 'codex', 'index.html');
+// A first build needs the explicit public export. Later builds may retain the last audited export.
+const codexHTML = config.codexMonitor ? await readFile(codexPath, 'utf8').catch(() => {
+  throw new Error('Supply --codex-page <public-export.html> for the enabled companion page.');
+}) : null;
+const codex = codexHTML ? inspectCodexPage(codexHTML) : null;
 const names = (await readdir(source)).filter((name) => /^\d{4}-\d{2}-\d{2}\.json$/.test(name));
 const reports = [];
 let skipped = 0;
@@ -41,8 +49,9 @@ for (const report of reports) {
 await atomic(join(output, 'index.html'), issuePage(reports[0], config, true));
 await atomic(join(output, 'archive', 'index.html'), archivePage(reports, config));
 await atomic(join(output, 'about', 'index.html'), aboutPage(config));
+if (codexHTML) await atomic(join(output, 'codex', 'index.html'), codexHTML);
 await atomic(join(output, 'feed.xml'), feedXml(reports, config));
 await atomic(join(output, 'data', 'index.json'), JSON.stringify({ latest: reports[0].date, issues: reports.map((report) => ({ date: report.date, topics: report.items.length, generatedAt: report.generatedAt, path: `reports/${report.date}/` })) }, null, 2) + '\n');
 await atomic(join(output, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${new URL('sitemap.xml', config.baseUrl).href}\n`);
-await atomic(join(output, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['', 'archive/', 'about/', ...reports.map((report) => `reports/${report.date}/`)].map((path) => `<url><loc>${new URL(path, config.baseUrl).href}</loc></url>`).join('')}</urlset>\n`);
-console.log(JSON.stringify({ reports: reports.length, latest: reports[0].date, topics: reports[0].items.length, incompleteSkipped: skipped, privateDataPublished: false }));
+await atomic(join(output, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['', 'archive/', 'about/', ...(config.codexMonitor ? ['codex/'] : []), ...reports.map((report) => `reports/${report.date}/`)].map((path) => `<url><loc>${new URL(path, config.baseUrl).href}</loc></url>`).join('')}</urlset>\n`);
+console.log(JSON.stringify({ reports: reports.length, latest: reports[0].date, topics: reports[0].items.length, incompleteSkipped: skipped, privateDataPublished: false, codex }));

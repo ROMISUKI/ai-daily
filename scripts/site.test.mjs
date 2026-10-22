@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { publicReport, issuePage, sourceUrl, feedXml, aboutPage, archivePage } from './site.mjs';
 import { selectHighlights } from './streams.mjs';
+import { inspectCodexPage } from './codex-page.mjs';
 
 function sample() {
   return { status: 'complete', date: '2026-10-20', generatedAt: '2026-10-20T04:48:00Z', window: { start: '2026-10-19T04:00:00Z', end: '2026-10-20T04:00:00Z' }, privateSentinel: 'DO_NOT_PUBLISH_INTERNAL_RECORDS', modelLabel: 'PRIVATE_MODEL_ROUTE', candidates: [{ id: 'x:123', author: '@example', platform: 'X', publishedAt: '2026-10-19T12:00:00Z', url: 'https://x.com/i/status/123', text: 'DO_NOT_PUBLISH_FULL_ORIGINAL', _media: ['DO_NOT_PUBLISH_MEDIA_URL'], evidence: { label: '仅原帖，未核验视频', text: 'DO_NOT_PUBLISH_RAW_TRANSCRIPT' } }], digest: { takeaways: ['需要核对原始来源。'], items: [{ title: '模型发布', category: '模型与研究', summary: '公开编辑摘要。', whyItMatters: '技术变化及意义。', caveat: '不是独立评测。', sourceIds: ['x:123'] }] } };
@@ -149,4 +150,35 @@ test('implementation and action get primary emphasis while caveats remain visibl
   const html = issuePage(publicReport(input), config, true);
   for (const value of ['analysis-primary', 'analysis-action', 'analysis-secondary', '边界与疑点']) assert.ok(html.includes(value));
   assert.ok(!html.includes('analysis-grid'));
+});
+
+test('Codex entry stays in the top-right navigation with correct relative links on every page', () => {
+  const enabled = { ...config, codexMonitor: true }, report = publicReport(sample());
+  for (const [html, prefix] of [[issuePage(report, enabled, true), './'], [issuePage(report, enabled), '../../'],
+    [archivePage([report], enabled), '../'], [aboutPage(enabled), '../']]) {
+    assert.ok(html.includes(`data-codex-entry href="${prefix}codex/"`));
+    const header = html.match(/<header class="site-header">([\s\S]*?)<\/header>/)[1];
+    assert.ok(header.includes('data-codex-entry'));
+  }
+  assert.ok(!issuePage(report, config, true).includes('data-codex-entry'));
+});
+
+function companion(snapshot) {
+  return `<!doctype html><meta name="codex-reset-export" content="public-v1"><meta name="viewport" content="width=device-width"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src https://codex-resets.com"><div id="calendar"></div><div id="entries"></div><script id="snapshot" type="application/json">${JSON.stringify(snapshot)}</script>`;
+}
+const companionSnapshot = () => ({ schemaVersion: 1, fetchedAt: '2026-10-22T04:00:00.000Z',
+  coverage: { complete: true, rejected: 0 }, status: { scheduled_reset: null, active_watch: null }, records: [{
+    id: '123', reset_type: 'regular', announced_at: '2026-10-20T06:00:00.000Z', text: '公开公告节选',
+    source: { type: 'x_post', author: 'example', url: 'https://x.com/example/status/123' },
+  }] });
+
+test('companion publication accepts only the projected public schema and bounded excerpts', () => {
+  assert.equal(inspectCodexPage(companion(companionSnapshot())).records, 1);
+  for (const change of [value => { value.rawResponse = 'private'; }, value => { value.records[0].text = 'x'.repeat(281); },
+    value => { value.records[0].source.url = 'https://evil.invalid/upload'; },
+    value => { value.records[0].source.cookie = 'private'; }]) {
+    const value = companionSnapshot(); change(value);
+    assert.throws(() => inspectCodexPage(companion(value)));
+  }
+  assert.throws(() => inspectCodexPage(companion(companionSnapshot()) + '<script src="https://evil.invalid/script.js"></script>'));
 });

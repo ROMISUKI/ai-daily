@@ -2,11 +2,12 @@ import { readFile, readdir, stat } from 'node:fs/promises';
 import { join, resolve, dirname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { categories, sectionNames, sourceUrl, githubUrl, scheduleForDate } from './site.mjs';
+import { inspectCodexPage } from './codex-page.mjs';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const output = join(root, 'docs');
 const config = JSON.parse(await readFile(join(root, 'site.config.json'), 'utf8'));
-const permitted = /^(?:index\.html|archive\/index\.html|about\/index\.html|reports\/\d{4}-\d{2}-\d{2}\/index\.html|data\/reports\/\d{4}-\d{2}-\d{2}\.json|data\/index\.json|assets\/site\.(?:css|js)|\.nojekyll|feed\.xml|sitemap\.xml|robots\.txt)$/;
+const permitted = /^(?:index\.html|archive\/index\.html|about\/index\.html|codex\/index\.html|reports\/\d{4}-\d{2}-\d{2}\/index\.html|data\/reports\/\d{4}-\d{2}-\d{2}\.json|data\/index\.json|assets\/site\.(?:css|js)|\.nojekyll|feed\.xml|sitemap\.xml|robots\.txt)$/;
 await stat(join(root, 'reference-cases.json')).then(() => { throw new Error('Private reference material must not be kept in the public repository.'); }, (error) => { if (error.code !== 'ENOENT') throw error; });
 async function files(directory) {
   const result = [];
@@ -30,7 +31,10 @@ for (const path of names) {
   if (name.endsWith('.html')) {
     if (!body.includes("default-src 'none'") || !body.includes('viewport')) throw new Error('HTML security/mobile metadata is missing.');
     if (/<(?:iframe|object|embed|audio|video)\b/i.test(body) || /\son(?:click|load|error)\s*=/i.test(body)) throw new Error('Unapproved active content.');
-    for (const match of body.matchAll(/(?:href|src)="([^"]+)"/g)) {
+    if (name === 'codex/index.html') inspectCodexPage(body);
+    // Inline module templates are code, not static DOM links. Inspect them via the companion-page audit.
+    const markup = body.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
+    for (const match of markup.matchAll(/(?:href|src)="([^"]+)"/g)) {
       const link = match[1].replaceAll('&amp;', '&');
       if (/^(?:https?:|#)/.test(link)) continue;
       const target = new URL(link, 'https://local.invalid/' + name).pathname;
