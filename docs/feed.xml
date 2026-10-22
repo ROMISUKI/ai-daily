@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-10-22 · 58个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-22/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-22/</guid><pubDate>Wed, 21 Oct 2026 22:33:47 GMT</pubDate><description>本批较重要的证据来自OpenAI与Microsoft Research的一手发布：AI分别进入互联网安全漏洞发现和生物医学机制假设生成，但官方结论仍需补丁、实验或第三方研究验证。
+<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-10-23 · 26个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-23/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-23/</guid><pubDate>Thu, 22 Oct 2026 21:50:25 GMT</pubDate><description>本批可确认的官方更新是 Gemini 3.8 Flash TTS 将文本音色设计与声音复刻接入 AI Studio 和 Gemini API，重点在多语言与 API 化。
+零阶优化 speedrun 声称大幅缩短无反向传播的 Transformer 预训练时间，但证据仅限原帖，应作为未复现的研究线索看待；其余候选未达到收录门槛。
+本地编码代理的竞争点正从功能数量转向上下文开销、首字延迟、失败修复和可回滚性，小模型与本地硬件场景尤其明显。
+DSH六插件案例说明，编程智能体可通过记忆、情绪、主动触发和消息桥接扩展成持续运行的代理；但证据主要来自作者自测，且依赖预览期框架与第三方协议。
+数据中心供电与去中心化推理的讨论都指向同一商业检验：需求增长必须转化为回款并覆盖供给成本，否则可能只是补贴或账面收入。
+官方前沿发布仍以方向性描述为主，交互可视化语言等新能力需要论文、接口和独立复现才能判断实际影响。
+本批严格可保留3项：OpenAI官方对V7 Go上下文图谱的自述、量子位转述的AI数学上界进展，以及一条明确标注为TAS的格斗游戏演示；其余X帖因缺来源、推广属性或泛化判断未纳入。
+本批可确认的AI进展主要是企业级智能体部署和供应链视觉+账本演示；两者均依赖官方或主办方自述，缺少独立效果验证。金融财报、通识课程和泛泛的AI-native公司观点不满足三分区的事件或商机证据要求，未纳入。
+本批可成稿的实质事件集中在两起智能体应用：AI编程助手经ADB改造电视系统，以及多智能体在《我的世界》中完成长时协作任务。</description></item><item><title>2026-10-22 · 58个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-22/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-22/</guid><pubDate>Wed, 21 Oct 2026 22:33:47 GMT</pubDate><description>本批较重要的证据来自OpenAI与Microsoft Research的一手发布：AI分别进入互联网安全漏洞发现和生物医学机制假设生成，但官方结论仍需补丁、实验或第三方研究验证。
 PDD Kit把形式化规格与证明检查嵌入代理写代码流程，其关键价值是缩小开发者意图、生成代码与测试覆盖之间的缺口。
 Hermes案例呈现任务规划、场景构建、仿真训练到实体执行的完整代理链路，但现有证据只是演示转述，不能证明仿真到现实效果。
 商业端可观察到连接器密集型主动代理的需求信号；候补名单和早期用户自述仍不足以证明留存、付费或部署成熟度。
