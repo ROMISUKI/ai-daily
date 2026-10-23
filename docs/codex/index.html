@@ -32,8 +32,12 @@
 .announcement-timezone-note{background:#2b241d;border:1px solid #685038;border-radius:6px;padding:10px 12px;font-size:11px;line-height:1.9;color:#f1d2a8;overflow-wrap:anywhere}
 .announcement-source{display:flex;flex-wrap:wrap;align-items:center;gap:5px 12px;font-size:10px;color:var(--muted);line-height:1.8}.announcement-source a{color:var(--mint)}
 .announcement-caveat,.announcement-history p{font-size:11px;color:var(--muted);line-height:1.9;overflow-wrap:anywhere}
+.completion-caveat{margin:20px 0 0;padding-top:13px;border-top:1px solid var(--line);color:var(--muted);font-size:11px;line-height:1.9}
+.calendar button.observed:not(.regular):not(.banked),.observed-swatch{background:repeating-linear-gradient(135deg,#293b52 0 3px,#91a5bf 3px 4px)}.calendar button.announced{box-shadow:inset 0 0 0 1px var(--amber)}.announced-swatch{background:transparent;border:1px solid var(--amber)}
 .announcement-history{margin-top:18px;padding-top:12px;border-top:1px solid #5b4b37;font-size:11px;color:#d8c1a4}.announcement-history summary{cursor:pointer}
 .estimate-range .announcement-unknown{font-size:22px;overflow-wrap:anywhere}
+.primary-signals{padding:26px;margin-bottom:24px}.primary-coverage{font-size:11px;line-height:1.9;color:var(--muted);overflow-wrap:anywhere}.signal-list{list-style:none;margin:18px 0;padding:0;display:grid;gap:14px}.signal{border:1px solid var(--line);border-radius:8px;padding:16px;background:var(--bg)}.signal-meta,.signal-links{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;font-size:11px}.signal-meta strong{color:var(--amber);font-weight:600}.signal-completed .signal-meta strong{color:var(--mint)}.signal-adjustment .signal-meta strong{color:var(--violet)}.signal-meta time,.signal-links span{color:var(--muted)}.signal blockquote{margin:12px 0;font-size:13px;line-height:1.9;color:var(--ink);overflow-wrap:anywhere}.signal-links{justify-content:flex-start}.signal-links a{color:var(--cyan,var(--mint));text-decoration:underline;text-underline-offset:3px}
+@media(max-width:640px){.primary-signals{padding:20px 16px}.primary-signals .section-header{align-items:flex-start;flex-direction:column;gap:10px}.primary-signals h2{font-size:20px}.signal{padding:14px}.signal-meta,.signal-links{font-size:10px}}
 @media(max-width:760px){.back-to-top{right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px))}}
 
 /* Palette-only bridge to ai-daily/web/site.css. No dimensions, spacing, fonts or layout rules. */
@@ -119,8 +123,8 @@ body { background: radial-gradient(ellipse 70% 480px at 75% 0, #11243a 0%, trans
         <span class="brand-name">CODEX<span>RESET OBSERVATORY</span></span>
       </a>
       <div class="top-actions">
-        <span class="private-label"><span class="mini-dot"></span> 公开数据 · 每日更新</span>
-        <button id="refresh" class="refresh" type="button"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M20 9a8 8 0 1 0 .3 5M20 3v6h-6" stroke="currentColor" stroke-width="1.7"/></svg><span>手动同步</span></button>
+        <span class="private-label"><span class="mini-dot"></span> 公开原帖 · 每小时核查</span>
+        <button id="refresh" class="refresh" type="button" title="重新载入最近一次已发布的X原帖快照，不查询个人额度"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M20 9a8 8 0 1 0 .3 5M20 3v6h-6" stroke="currentColor" stroke-width="1.7"/></svg><span>刷新网页</span></button>
       </div>
     </header>
 
@@ -130,7 +134,7 @@ body { background: radial-gradient(ellipse 70% 480px at 75% 0, #11243a 0%, trans
         <div class="heading-meta"><p id="today" class="mono"></p><label class="zone-label" for="timezone"><span>显示时区</span><select id="timezone"><option value="Asia/Shanghai">北京时间 UTC+8</option><option value="local">本机时区</option><option value="UTC">协调世界时 UTC</option></select></label></div>
       </section>
 
-      <div class="connection-bar"><span id="sync-status" role="status" aria-live="polite"><i class="status-dot"></i>正在读取本地数据</span><span id="sync-note">每日 05:00 更新 · 北京时间</span></div>
+      <div class="connection-bar"><span id="sync-status" role="status" aria-live="polite"><i class="status-dot"></i>正在读取本地数据</span><span id="sync-note">每小时核查X · 变化才发布</span></div>
       <div id="data-notice" class="data-notice" role="status" hidden></div>
 
       <div class="hero-grid">
@@ -141,6 +145,7 @@ body { background: radial-gradient(ellipse 70% 480px at 75% 0, #11243a 0%, trans
           <div class="clock" aria-hidden="true"><span><b id="clock-d">--</b><small>DAYS</small></span><i>:</i><span><b id="clock-h">--</b><small>HOURS</small></span><i>:</i><span><b id="clock-m">--</b><small>MINS</small></span><i>:</i><span><b id="clock-s">--</b><small>SECS</small></span><span class="clock-live"></span></div>
           <div class="last-event"><span class="event-dot"></span><div><p class="last-caption">最近一次常规重置公告</p><p id="last-date" class="mono">等待数据</p></div><a id="last-source" class="text-link" target="_blank" rel="noopener noreferrer" hidden>原帖 <span aria-hidden="true">↗</span></a></div>
           <blockquote id="last-quote">正在读取公开记录…</blockquote>
+          <p class="completion-caveat">计时依据完成公告，不代表这期间没有实际重置。已到账但未发完成帖、今日预告及第三方观测需分别看待；本页不检查个人到账。</p>
         </section>
 
         <aside class="estimate panel" aria-labelledby="estimate-heading">
@@ -167,6 +172,13 @@ body { background: radial-gradient(ellipse 70% 480px at 75% 0, #11243a 0%, trans
       </div>
 
       <div id="alerts" class="alerts" hidden></div>
+      <section id="primary-signals" class="primary-signals panel" aria-labelledby="primary-title" hidden>
+        <header class="section-header"><div><p class="eyebrow">AUTHOR POSTS &amp; FOLLOW-UPS</p><h2 id="primary-title">Tibo 本人公告与后续回复</h2></div><a class="text-link" href="https://x.com/thsottiaux" target="_blank" rel="noopener noreferrer">查看本人 X ↗</a></header>
+        <p id="primary-coverage" class="primary-coverage"></p>
+        <ol id="signals" class="signal-list"></ol>
+        <button id="more-signals" class="more-button" type="button" hidden>更多相关原帖 ↓</button>
+      </section>
+      <div id="observations-note" class="data-notice" hidden></div>
 
       <section class="metrics" aria-label="历史概览">
         <div><span class="metric-label">收录重置公告 <span class="metric-code">01</span></span><p id="stat-total">—</p><span id="stat-coverage" class="metric-sub">公开历史记录</span></div>
@@ -178,7 +190,7 @@ body { background: radial-gradient(ellipse 70% 480px at 75% 0, #11243a 0%, trans
       <section class="calendar-section panel" aria-labelledby="calendar-title">
         <header class="section-header"><div><p class="eyebrow">ACTIVITY MAP</p><h2 id="calendar-title">重置日历<span class="section-id">01</span></h2></div><span id="calendar-summary" class="section-aside">近 6 个月</span></header>
         <div class="calendar-layout"><div class="calendar-weekdays" aria-hidden="true"><span>一</span><span>三</span><span>五</span><span>日</span></div><div class="calendar-content"><div id="calendar-months" class="calendar-months" aria-hidden="true"></div><div id="calendar" class="calendar" aria-label="近六个月的重置记录，方向键切换日期，回车查看详情"></div></div></div>
-        <div class="chart-footer"><p id="calendar-readout" class="readout" aria-live="polite">点选日期查看当天记录</p><div class="legend"><span><i class="regular-swatch"></i>常规</span><span><i class="banked-swatch"></i>重置卡</span><span><i class="estimate-swatch"></i>估算</span><span><i class="today-swatch"></i>今天</span></div></div>
+        <div class="chart-footer"><p id="calendar-readout" class="readout" aria-live="polite">点选日期查看当天记录</p><div class="legend"><span><i class="regular-swatch"></i>历史常规</span><span><i class="banked-swatch"></i>重置卡</span><span><i class="announced-swatch"></i>本人预告</span><span><i class="observed-swatch"></i>第三方观测</span><span><i class="estimate-swatch"></i>估算</span><span><i class="today-swatch"></i>今天</span></div></div>
       </section>
 
       <section class="rhythm-section panel" aria-labelledby="rhythm-title">
@@ -195,7 +207,12 @@ body { background: radial-gradient(ellipse 70% 480px at 75% 0, #11243a 0%, trans
         <div class="more-wrap"><button id="more" class="more-button" type="button" hidden>加载更多 <span aria-hidden="true">↓</span></button><p id="list-end" class="list-end" hidden>已显示全部记录</p></div>
       </section>
 
-      <section class="method-section" aria-labelledby="method-title"><details><summary id="method-title"><span><span class="method-symbol" aria-hidden="true">i</span> 如何读懂这张观测台</span><span class="details-plus" aria-hidden="true">+</span></summary><div class="method-grid"><div><h3>记录 ≠ 个人额度</h3><p>这里展示数据源收录的重置公告，不连接你的 OpenAI 账号，不读取或修改个人额度。具体适用套餐、实际生效和额度，请以官方公告与账户页面为准。</p></div><div><h3>估算 ≠ 官方承诺</h3><p>从最近 12 个常规重置间隔中取中位数，以 25%～75% 分位数形成参考窗口。这是历史节奏，不是可信度或重置概率。记录不足时不作估算。</p></div><div><h3>分类与覆盖范围</h3><p>常规重置、重置卡及站点观测分类均沿用第三方数据源，未逐帖重新核验，也不保证收录所有历史事件。历史平均数仅由已收录常规记录计算。</p></div><div><h3>每天更新一次</h3><p>本机任务每天北京时间 05:00 更新快照，开机登录后可补跑。网页默认不查询数据源，05:30 仅重载本地页面；也可手动同步。临时断网至少等 5 分钟重试，最多额外 3 次，失败保留旧数据。</p></div></div></details></section>
+      <section class="method-section" aria-labelledby="method-title"><details><summary id="method-title"><span><span class="method-symbol" aria-hidden="true">i</span> 如何认定重置</span><span class="details-plus" aria-hidden="true">+</span></summary><div class="method-grid">
+        <div><h3>本人原帖优先</h3><p>直接读取 @thsottiaux 的近期主帖与本人回复，补充回复优先于主帖的含糊短句。明确说明“已完成、已传播、额度已重置”才算本人完成声明；只有“重置日”“will / landing / tomorrow”只算预告。短句“Done”必须关联已核实的重置会话。</p></div>
+        <div><h3>原帖 ≠ 个人到账</h3><p>本人完成声明不等于你的账户已经到账。重置卡、局部补偿、全局额度重置分开记录；本页不连接个人账号。未来时间到点、第三方观测或概率，都不会自动变成本人完成确认。</p></div>
+        <div><h3>历史与观测单独标记</h3><p>旧历史档案仍保留第三方分类，未逐条重新核验。第三方observed记录可能仅依据预告时间，单独展示，不用于常规完成计时及间隔统计。历史四分位窗口不是官方排期或概率。</p></div>
+        <div><h3>每小时核查，有变化才发布</h3><p>本机开机登录时每小时检查X，有内容或状态变化才更新公开快照，不为每次无变化检查提交Git。网页只显示已发布快照；刷新按钮重载网页，不调用个人账号或绕过CORS抓X。临时断网至少等5分钟，最多额外3次；失败保留旧证据并标明读取限制。日报仍每天05:00。</p></div>
+      </div></details></section>
     </main>
 
     <footer class="footer"><div class="footer-brand">CODEX <span>/</span> RESET OBSERVATORY<p>独立观测 · 无追踪脚本 · 不读取个人账户</p></div><div class="footer-source"><p>数据来源 <a href="https://codex-resets.com/" target="_blank" rel="noopener noreferrer">Codex Resets ↗</a></p><p>非官方，与 OpenAI 及数据源均无隶属关系</p></div></footer>
@@ -203,8 +220,108 @@ body { background: radial-gradient(ellipse 70% 480px at 75% 0, #11243a 0%, trans
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <button class="back-to-top" type="button" data-back-to-top aria-label="回到页面顶部" title="回到顶部" hidden><svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 4h14M12 20V8m-6 6 6-6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>置顶</span></button>
   <noscript><p class="noscript">此页面需要 JavaScript 来读取记录和绘制图表。不会登录账号或调用 AI 模型。</p></noscript>
-  <script id="snapshot" type="application/json">{"schemaVersion":1,"fetchedAt":"2026-10-22T21:00:02.681Z","coverage":{"complete":true,"rejected":0},"status":{"scheduled_reset":{"id":"2113162413008884099","announced_at":"2026-10-22T06:55:54.000Z","scheduled_for":"2026-10-22T17:00:00.000Z","text":"Lands tomorrow before 10am PST.","reset_type":"regular","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2113162413008884099"}},"active_watch":null},"records":[{"id":"2112432076767289678","reset_type":"regular","announced_at":"2026-10-20T06:33:48.000Z","text":"Day 15/ Nevermind, we're still cooking... and reset. Enjoy.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2112432076767289678"}},{"id":"2111566005684289735","reset_type":"regular","announced_at":"2026-10-17T21:12:21.000Z","text":"Done","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2111566005684289735"}},{"id":"2110618732666257557","reset_type":"regular","announced_at":"2026-10-15T06:28:13.000Z","text":"Done and dusted","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2110618732666257557"}},{"id":"2109873287853707513","reset_type":"regular","announced_at":"2026-10-13T05:06:06.000Z","text":"What would you like with your side of reset? It's done.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2109873287853707513"}},{"id":"2109132167112782291","reset_type":"regular","announced_at":"2026-10-11T04:01:09.000Z","text":"Put the reset in the bag. All propagated.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2109132167112782291"}},{"id":"2108040921044639779","reset_type":"banked","announced_at":"2026-10-08T03:44:55.000Z","text":"Confirmed landed across all accounts. How are we doing so far?","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2108040921044639779"}},{"id":"2107676072871600470","reset_type":"regular","announced_at":"2026-10-07T03:35:09.000Z","text":"We shipped four things that were deemed good to great and some math proofs, but the vote is clear and the community demands a reset. I did calibrate it and it *seems* that the game is rigged in reset's favor, but such are the rules at the m…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2107676072871600470"}},{"id":"2106131810921136451","reset_type":"regular","announced_at":"2026-10-02T21:18:48.000Z","text":"Reset all propagated. Enjoy.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2106131810921136451"}},{"id":"observed-20260929T190000Z","reset_type":"banked","announced_at":"2026-09-29T19:00:00.000Z","text":"@theo Shhhhhh","source":{"type":"observed","author":"","url":"https://x.com/thsottiaux/status/2105120226027450685"}},{"id":"2103911959544610829","reset_type":"regular","announced_at":"2026-09-26T18:17:54.000Z","text":"Resets all propagated. That will be all. Have a fantastic weekend.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2103911959544610829"}},{"id":"2102463847714247142","reset_type":"banked","announced_at":"2026-09-22T18:23:37.000Z","text":"GPT-6 Sol and Luna are out. Not only are they a very significant improvement across the board, but also in writing and general \"you know when you try it\" quality. We are also permanently reducing the API price by 50% making both of them via…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2102463847714247142"}},{"id":"2098685367058612394","reset_type":"regular","announced_at":"2026-09-12T08:09:17.000Z","text":"Reset all propagated. Sweet dreams.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2098685367058612394"}},{"id":"observed-2097043464538264003","reset_type":"regular","announced_at":"2026-09-08T01:56:57.501Z","text":"All reset for everyone. Enjoy the week with Astra.","source":{"type":"observed","author":"","url":"https://x.com/thsottiaux/status/2097174560412246215"}},{"id":"2096035437299237298","reset_type":"banked","announced_at":"2026-09-05T00:39:25.000Z","text":"Because we are beyond happy to have Astra rolled out today ahead of schedule and you have been super patient with us (not really, but it’s ok!)… we will do the full banked reset today too for all Plus, Pro and Business users. Lands end of d…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2096035437299237298"}},{"id":"2095651088502591861","reset_type":"banked","announced_at":"2026-09-03T23:12:09.000Z","text":"We will give one banked reset for every day you don't have access to Astra on your paid ChatGPT plan, starting today. Team is moving mountains to give access as fast as we can. First one will land in ~ 3 hours. There is still time to create…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2095651088502591861"}},{"id":"2094251180121854309","reset_type":"regular","announced_at":"2026-08-31T02:29:25.000Z","text":"What I wanted to say yesterday is that we hit 25M active users and to celebrate we have now reset usage for all paid subscriptions for ChatGPT Work and Codex. See you see for more news from The Reset Company.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2094251180121854309"}},{"id":"2093801758665715784","reset_type":"regular","announced_at":"2026-08-29T20:43:34.000Z","text":"We are reseting usage for all paid users of Codex and ChatGPT Work. Please continue reading for an update on Codex usage limits. The team has been working around the clock, going through thousands of reports and shipping fixes. Depending on…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2093801758665715784"}},{"id":"2093014447833116908","reset_type":"regular","announced_at":"2026-08-27T16:35:05.000Z","text":"Never slept better and feeling reseted. Brand new me and brand new usage for all ChatGPT Work and Codex users. Regaining my youth one button press at a time. Happy Thursday","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2093014447833116908"}},{"id":"observed-20260825T143200Z","reset_type":"regular","announced_at":"2026-08-25T14:30:00.000Z","text":"@dtzy_88 Ah yeah, forgot to say","source":{"type":"observed","author":"","url":"https://x.com/thsottiaux/status/2092311059197808936"}},{"id":"2091688655828246890","reset_type":"regular","announced_at":"2026-08-24T00:46:51.000Z","text":"Good Sunday. Reset has been propagated to accounts and we landed some fixes to usage for things mentioned yesterday as issues we found. You should feel a positive difference. More to come tomorrow and will keep communicating.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2091688655828246890"}},{"id":"2090766694897619318","reset_type":"banked","announced_at":"2026-08-21T11:43:19.000Z","text":"It's me again. I come bearing great news. First of all, we have hit 20M active users for Codex some time this week. Second of all, this is cause for celebration and during the day we will credit every Codex and ChatGPT Work user with a BANK…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2090766694897619318"}},{"id":"2087706104814023111","reset_type":"regular","announced_at":"2026-08-13T01:01:37.000Z","text":"Old news actually from a bunch of days ago, but crossed that 15M. Enjoy a nice reset everyone. Landing in the next hour or so, go /fast.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2087706104814023111"}},{"id":"2086972802457063486","reset_type":"regular","announced_at":"2026-08-11T00:27:44.000Z","text":"Hi. It is done.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2086972802457063486"}},{"id":"2086188036493344823","reset_type":"regular","announced_at":"2026-08-08T20:29:22.000Z","text":"That's right, GPT-5.6 Sol is awesome and can be used pretty much anywhere, including in the CC harness. To celebrate this, together with the fact that I'm not going anywhere... I have reset usage limits for all paid users of ChatGPT Work an…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2086188036493344823"}},{"id":"2083395449814229287","reset_type":"regular","announced_at":"2026-08-01T03:32:37.000Z","text":"To celebrate a week of efficiency and let you run 100'000 Luna threads this weekend... that's right... wait for it... I have reset usage limits for Codex and ChatGPT Work. Enjoy.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2083395449814229287"}},{"id":"2082317452755751098","reset_type":"regular","announced_at":"2026-07-29T04:09:02.000Z","text":"Hello people of Sol! I've reset usage limits for all ChatGPT Work and Codex users. Together with that, a quick update on GPT-5.6 Sol usage limits. Over the past few weeks, many of you have told us that Sol was using your Codex limits faster…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2082317452755751098"}},{"id":"2081940052154933696","reset_type":"regular","announced_at":"2026-07-28T03:09:23.000Z","text":"Back at the laptop. The usage limits have been reset for all paid users of Codex and ChatGPT Work. Weeeeeeeee. It's a good day!","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2081940052154933696"}},{"id":"2081096447718723984","reset_type":"regular","announced_at":"2026-07-25T19:17:12.000Z","text":"We have reset usage limits for all Codex and ChatGPT Work users. Last night around 2am to 4am we suffered an almost global outage. All well and recovered, but you know what comes next. We learn. We reset. Enjoy.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2081096447718723984"}},{"id":"2079609157934886975","reset_type":"regular","announced_at":"2026-07-21T16:47:15.000Z","text":"10M! New day, new usage reset for paid users of Codex and ChatGPT Work. Lands in the next hour. Enjoy.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2079609157934886975"}},{"id":"2078320950488297917","reset_type":"regular","announced_at":"2026-07-18T03:28:22.000Z","text":"Oops... I did it again. Enjoy reset usage limits for all paid users for Codex and ChatGPT Work. Super grateful for an incredible team who is iterating at lightspeed and keeping the infra up as we scale faster than ever. Enjoy the weekend!","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2078320950488297917"}},{"id":"2077607697487188198","reset_type":"regular","announced_at":"2026-07-16T04:14:09.000Z","text":"Another reset for our Codex and ChatGPT Work users. Actually hit 9M active users way earlier today, but then got distracted by the approximately millions of things the team is doing to keep the systems up and reliable. Should have that swee…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2077607697487188198"}},{"id":"2077114635308986427","reset_type":"regular","announced_at":"2026-07-14T19:34:54.000Z","text":"Hello. We have reached 8M active users across Codex and ChatGPT Work. We are once again resetting the usage limits for all. And we continue to not have the 5h rate limit as well, allowing everyone to explore the boundaries of GPT-5.6 Sol an…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2077114635308986427"}},{"id":"2076735790567338203","reset_type":"regular","announced_at":"2026-07-13T18:29:31.000Z","text":"Thank you to the 7M active users who are now using Codex and ChatGPT Work. We have added a banked reset to everyone's account to celebrate the milestone. You can apply the reset in the desktop app or on web and it will replenish the weekly …（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2076735790567338203"}},{"id":"2076418567143408112","reset_type":"regular","announced_at":"2026-07-12T21:28:59.000Z","text":"Added a banked reset to 500k users of ChatGPT Work and Codex. What’s been happening: - Just released the ability to use a banked reset from web and mobile. Before today you could only do it in the desktop app - Had an issue where less than …（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2076418567143408112"}},{"id":"2075820987833274448","reset_type":"regular","announced_at":"2026-07-11T05:54:25.000Z","text":"Introducing... another usage limit reset for all our ChatGPT Work and Codex users. Should land over next 30 minutes. Hope you have an awesome weekend. Thank you for pushing our systems to the absolute limit, we have never seen traffic incre…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2075820987833274448"}},{"id":"2075641131002700120","reset_type":"regular","announced_at":"2026-07-10T17:59:43.000Z","text":"Hello beautiful people! We have reset usage limits across Codex and ChatGPT Work. And another one will come later in the day. Rejoice. Now that I have your attention, a quick update on ChatGPT Work, Codex and all the updates we shared yeste…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2075641131002700120"}},{"id":"2075330198887940337","reset_type":"regular","announced_at":"2026-07-09T21:24:11.000Z","text":"Enjoy a full reset of your usage limits for ChatGPT Work and Codex. Propagating in the next hour. @_rajanagarwal just joined to work on model research and push on coding capabilities. You can thank him for pressing the button today.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2075330198887940337"}},{"id":"2071740419030053227","reset_type":"regular","announced_at":"2026-06-29T23:39:41.000Z","text":"Codex usage limits will be fully reset again in the next hour and we will credit one additional reset into your bank for your own usage over the next 24 hours. We investigated reports that Codex usage was being consumed faster than expected…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2071740419030053227"}},{"id":"2071381664853319742","reset_type":"regular","announced_at":"2026-06-28T23:54:07.000Z","text":"As we are still investigating, I have reset everyone's Codex usage limits. This is a hard reset given some users had stacked up to three banked resets already that they can apply on their own schedule. Funnily enough, this week at OpenAI is…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2071381664853319742"}},{"id":"2070653282440405046","reset_type":"regular","announced_at":"2026-06-26T23:39:48.000Z","text":"We are giving all Codex users a usage reset on the house. Should be showing in your accounts in the next few hours. We have applied some mitigations, but our investigation hasn't shown users being impacted at large. We are continuing to mon…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2070653282440405046"}},{"id":"2067399435009622521","reset_type":"regular","announced_at":"2026-06-18T00:10:10.000Z","text":"Dearest gentle codexer. We did a sneaky double reset. Not only do you get a full reset on us. But you are also getting one into the reset bank to use at your own leisure. Enjoy","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2067399435009622521"}},{"id":"2062329981548802523","reset_type":"regular","announced_at":"2026-06-04T00:25:58.000Z","text":"Hi. Over the last 24 hours we had three separate small incidents that affected Codex reliability. Those are three too many and we are taking active steps for them to not reproduce. I have reset usage limits for Codex across all paid plans. …（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2062329981548802523"}},{"id":"2061106703446450392","reset_type":"regular","announced_at":"2026-05-31T15:25:06.000Z","text":"The Codex usage limits have been reset for all paid ChatGPT subscriptions. You should be back to 100% weekly and 100% hourly limits. Let the tokens do incredible things today and have fun.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2061106703446450392"}},{"id":"2058280452851638313","reset_type":"regular","announced_at":"2026-05-23T20:14:35.000Z","text":"Some of you noticed limits drained faster in Codex, we root caused it to an optimization that we rolled back that had an impact on cache hit rates when compacting across long running sessions. We fixed this and have now reset usage limits f…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2058280452851638313"}},{"id":"2055707616605835333","reset_type":"regular","announced_at":"2026-05-16T17:51:03.000Z","text":"Codex usage limits have now been reset across all paid plans. Enjoy the weekend!","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2055707616605835333"}},{"id":"2048997818673537399","reset_type":"regular","announced_at":"2026-04-28T05:28:43.000Z","text":"Don't just reset Codex rate limits for fun, it costs money. Don't just reset Codex rate limits for fun, it costs money. ... but the vibes are good ... I have reset Codex rate limits for ALL paid plans to celebrate a good week and allow ever…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2048997818673537399"}},{"id":"2046367145588916687","reset_type":"regular","announced_at":"2026-04-20T23:15:21.000Z","text":"Codex incident is mitigated, seeing recovery. Lasted about 10 mins, Codex itself helped with the remediation, but ultimately the insight came from a human this time. Apologies for the disruption and rate limit reset incoming.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2046367145588916687"}},{"id":"2044943514832871564","reset_type":"regular","announced_at":"2026-04-17T00:58:21.000Z","text":"Hi! To celebrate its 1-year anniversary, I have allowed Codex to reset its own rate limits across all plans. Enjoy all the new features.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2044943514832871564"}},{"id":"2042299371602264319","reset_type":"regular","announced_at":"2026-04-09T17:51:28.000Z","text":"We did it, say hi to the $100 plan! It should be the sweet spot for a ton of you. It comes with a ton of codex usage. And yes we are resetting the limits again too as I mentioned yesterday. Let’s keep building!","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2042299371602264319"}},{"id":"2041655710346572085","reset_type":"regular","announced_at":"2026-04-07T23:13:48.000Z","text":"Three million people are now using Codex weekly - up from two million a little under a month ago. Incredible to see the growth. Thank you to all of you and to the ecosystem we’re part of. To celebrate, we’re resetting rate limits so you can…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2041655710346572085"}},{"id":"2039248564967424483","reset_type":"regular","announced_at":"2026-04-01T07:48:39.000Z","text":"Our Codex dashboards are showing increased rate of users hitting rate limits and since we don't fully understand why I have made the cautious decision of resetting the usage limits for all plans. Enjoy. I also wanted to celebrate us finding…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2039248564967424483"}},{"id":"2037346989244096581","reset_type":"regular","announced_at":"2026-03-27T01:52:28.000Z","text":"Hello. We have reset Codex usage limits across all plans to let everyone experiment with the magnificent plugins we just launched, and because it had been a while! You can just build unlimited things with Codex. Have fun!","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2037346989244096581"}},{"id":"2031605592352313567","reset_type":"regular","announced_at":"2026-03-11T05:38:13.000Z","text":"OK, Codex is back and stable and we should be good for a while. Reset button pressed, should see it in a bit","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2031605592352313567"}},{"id":"2031216405266481489","reset_type":"regular","announced_at":"2026-03-10T03:51:43.000Z","text":"This codex issue is now fully resolved and stable for the last couple of hours. You have come to expect it, but yes, that means we will be reseting rate limits in a bit. Enjoy.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2031216405266481489"}},{"id":"2030474136024400173","reset_type":"regular","announced_at":"2026-03-08T02:42:13.000Z","text":"We don’t have evidence of a widespread issue with codex usage being drained faster than it should but there are enough reports and we have reset rate limits for plus \u0026amp; pro subscriptions while we work towards wrapping up our investigatio…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2030474136024400173"}},{"id":"2029308599835738218","reset_type":"regular","announced_at":"2026-03-04T21:30:47.000Z","text":"We caught an issue that was causing the 2X promotional increase in limits to not be applied to an estimated 9% of plus and pro users for Codex. We have now fixed this issue and are reseting the rate limit for all plus and pro users to compe…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2029308599835738218"}},{"id":"2028649088594436225","reset_type":"regular","announced_at":"2026-03-03T01:50:07.000Z","text":"Codex is back up. We introduced an issue that caused requests to be blocked and rejected as high cyber risk. This was fixed in ~8 mins and we are now back online and fully operational. Team will reset rate limits, that’s been a while. Enjoy…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2028649088594436225"}},{"id":"2004100061933064395","reset_type":"regular","announced_at":"2025-12-25T08:01:03.000Z","text":"For Codex users, to thank you all for the fun we've had over the last months, our first gift is that we have **reset rate limits and are lifting the usage limits to 2X the usual limits until the 1st of Jan**. Wish you all a merry holiday an…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2004100061933064395"}},{"id":"2002137269134819610","reset_type":"regular","announced_at":"2025-12-19T22:01:37.000Z","text":"We rewrote the underlying system to track and bill usage in Codex and we have reset usage limits in the process. Backfilling is time consuming and it’s more fun to give free usage. Enjoy!","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2002137269134819610"}},{"id":"2001114683047317723","reset_type":"regular","announced_at":"2025-12-17T02:18:14.000Z","text":"Didn’t need to do this in a while, but you know the drill. We have reset everyone’s usage limits, enjoy more Codex and apologies for the disruption.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2001114683047317723"}},{"id":"1995988609896513743","reset_type":"regular","announced_at":"2025-12-02T22:49:02.000Z","text":"We have reset the usage limits for everyone in Codex, which helps us mitigate the issue the fastest and the team will continue to work on the underlying cause. This should propagate to all users over the next 10 mins, enjoy and apologies fo…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/1995988609896513743"}},{"id":"1992370994028388670","reset_type":"regular","announced_at":"2025-11-22T23:13:56.000Z","text":"We have reset rate limits for all Codex users to compensate for the unusual high latencies in or near the US in the previous hours. Grateful for the team working hard behind the scenes to keep Codex running 24/7. I do recommend trying out G…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/1992370994028388670"}},{"id":"1986166501435711936","reset_type":"regular","announced_at":"2025-11-05T20:19:29.000Z","text":"Codex outage resolved. We suffered a minor outage for last 45 minutes which turned into a global outage for last 30 minutes, this is now resolved and we have reset the rate limits. Please let me know if you still see issues.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/1986166501435711936"}},{"id":"1968163721034994139","reset_type":"regular","announced_at":"2025-09-17T04:02:52.000Z","text":"We have reset everyone's limits for gpt-5-codex to allow you all to benefit more from it today and as a way to make up for the slowdowns earlier while we were provisioning additional GPUs. We'll continue to add capacity throughout the week …（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/1968163721034994139"}}]}</script>
+  <script id="snapshot" type="application/json">{"schemaVersion":1,"fetchedAt":"2026-10-23T08:20:03.206Z","coverage":{"complete":true,"rejected":0},"status":{"scheduled_reset":{"id":"2113492502355562875","announced_at":"2026-10-23T04:47:34.010Z","scheduled_for":"2026-10-23T17:00:00.000Z","text":"Landing tomorrow before 10am PST together with a small ship.","reset_type":"regular","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2113492502355562875"},"time_basis":"x_author"},"active_watch":null},"records":[{"id":"observed-2113162413008884099","reset_type":"regular","announced_at":"2026-10-22T17:00:00.000Z","text":"Codex usage limits have been reset. Check your limits.","source":{"type":"observed","author":"","url":"https://x.com/thsottiaux/status/2113162413008884099"}},{"id":"2112432076767289678","reset_type":"regular","announced_at":"2026-10-20T06:33:48.000Z","text":"Day 15/ Nevermind, we're still cooking... and reset. Enjoy.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2112432076767289678"}},{"id":"2111566005684289735","reset_type":"regular","announced_at":"2026-10-17T21:12:21.000Z","text":"Done","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2111566005684289735"}},{"id":"2110618732666257557","reset_type":"regular","announced_at":"2026-10-15T06:28:13.000Z","text":"Done and dusted","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2110618732666257557"}},{"id":"2109873287853707513","reset_type":"regular","announced_at":"2026-10-13T05:06:06.000Z","text":"What would you like with your side of reset? It's done.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2109873287853707513"}},{"id":"2109132167112782291","reset_type":"regular","announced_at":"2026-10-11T04:01:09.000Z","text":"Put the reset in the bag. All propagated.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2109132167112782291"}},{"id":"2108040921044639779","reset_type":"banked","announced_at":"2026-10-08T03:44:55.000Z","text":"Confirmed landed across all accounts. How are we doing so far?","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2108040921044639779"}},{"id":"2107676072871600470","reset_type":"regular","announced_at":"2026-10-07T03:35:09.000Z","text":"We shipped four things that were deemed good to great and some math proofs, but the vote is clear and the community demands a reset. I did calibrate it and it *seems* that the game is rigged in reset's favor, but such are the rules at the m…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2107676072871600470"}},{"id":"2106131810921136451","reset_type":"regular","announced_at":"2026-10-02T21:18:48.000Z","text":"Reset all propagated. Enjoy.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2106131810921136451"}},{"id":"observed-20260929T190000Z","reset_type":"banked","announced_at":"2026-09-29T19:00:00.000Z","text":"@theo Shhhhhh","source":{"type":"observed","author":"","url":"https://x.com/thsottiaux/status/2105120226027450685"}},{"id":"2103911959544610829","reset_type":"regular","announced_at":"2026-09-26T18:17:54.000Z","text":"Resets all propagated. That will be all. Have a fantastic weekend.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2103911959544610829"}},{"id":"2102463847714247142","reset_type":"banked","announced_at":"2026-09-22T18:23:37.000Z","text":"GPT-6 Sol and Luna are out. Not only are they a very significant improvement across the board, but also in writing and general \"you know when you try it\" quality. We are also permanently reducing the API price by 50% making both of them via…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2102463847714247142"}},{"id":"2098685367058612394","reset_type":"regular","announced_at":"2026-09-12T08:09:17.000Z","text":"Reset all propagated. Sweet dreams.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2098685367058612394"}},{"id":"observed-2097043464538264003","reset_type":"regular","announced_at":"2026-09-08T01:56:57.501Z","text":"All reset for everyone. Enjoy the week with Astra.","source":{"type":"observed","author":"","url":"https://x.com/thsottiaux/status/2097174560412246215"}},{"id":"2096035437299237298","reset_type":"banked","announced_at":"2026-09-05T00:39:25.000Z","text":"Because we are beyond happy to have Astra rolled out today ahead of schedule and you have been super patient with us (not really, but it’s ok!)… we will do the full banked reset today too for all Plus, Pro and Business users. Lands end of d…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2096035437299237298"}},{"id":"2095651088502591861","reset_type":"banked","announced_at":"2026-09-03T23:12:09.000Z","text":"We will give one banked reset for every day you don't have access to Astra on your paid ChatGPT plan, starting today. Team is moving mountains to give access as fast as we can. First one will land in ~ 3 hours. There is still time to create…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2095651088502591861"}},{"id":"2094251180121854309","reset_type":"regular","announced_at":"2026-08-31T02:29:25.000Z","text":"What I wanted to say yesterday is that we hit 25M active users and to celebrate we have now reset usage for all paid subscriptions for ChatGPT Work and Codex. See you see for more news from The Reset Company.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2094251180121854309"}},{"id":"2093801758665715784","reset_type":"regular","announced_at":"2026-08-29T20:43:34.000Z","text":"We are reseting usage for all paid users of Codex and ChatGPT Work. Please continue reading for an update on Codex usage limits. The team has been working around the clock, going through thousands of reports and shipping fixes. Depending on…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2093801758665715784"}},{"id":"2093014447833116908","reset_type":"regular","announced_at":"2026-08-27T16:35:05.000Z","text":"Never slept better and feeling reseted. Brand new me and brand new usage for all ChatGPT Work and Codex users. Regaining my youth one button press at a time. Happy Thursday","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2093014447833116908"}},{"id":"observed-20260825T143200Z","reset_type":"regular","announced_at":"2026-08-25T14:30:00.000Z","text":"@dtzy_88 Ah yeah, forgot to say","source":{"type":"observed","author":"","url":"https://x.com/thsottiaux/status/2092311059197808936"}},{"id":"2091688655828246890","reset_type":"regular","announced_at":"2026-08-24T00:46:51.000Z","text":"Good Sunday. Reset has been propagated to accounts and we landed some fixes to usage for things mentioned yesterday as issues we found. You should feel a positive difference. More to come tomorrow and will keep communicating.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2091688655828246890"}},{"id":"2090766694897619318","reset_type":"banked","announced_at":"2026-08-21T11:43:19.000Z","text":"It's me again. I come bearing great news. First of all, we have hit 20M active users for Codex some time this week. Second of all, this is cause for celebration and during the day we will credit every Codex and ChatGPT Work user with a BANK…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2090766694897619318"}},{"id":"2087706104814023111","reset_type":"regular","announced_at":"2026-08-13T01:01:37.000Z","text":"Old news actually from a bunch of days ago, but crossed that 15M. Enjoy a nice reset everyone. Landing in the next hour or so, go /fast.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2087706104814023111"}},{"id":"2086972802457063486","reset_type":"regular","announced_at":"2026-08-11T00:27:44.000Z","text":"Hi. It is done.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2086972802457063486"}},{"id":"2086188036493344823","reset_type":"regular","announced_at":"2026-08-08T20:29:22.000Z","text":"That's right, GPT-5.6 Sol is awesome and can be used pretty much anywhere, including in the CC harness. To celebrate this, together with the fact that I'm not going anywhere... I have reset usage limits for all paid users of ChatGPT Work an…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2086188036493344823"}},{"id":"2083395449814229287","reset_type":"regular","announced_at":"2026-08-01T03:32:37.000Z","text":"To celebrate a week of efficiency and let you run 100'000 Luna threads this weekend... that's right... wait for it... I have reset usage limits for Codex and ChatGPT Work. Enjoy.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2083395449814229287"}},{"id":"2082317452755751098","reset_type":"regular","announced_at":"2026-07-29T04:09:02.000Z","text":"Hello people of Sol! I've reset usage limits for all ChatGPT Work and Codex users. Together with that, a quick update on GPT-5.6 Sol usage limits. Over the past few weeks, many of you have told us that Sol was using your Codex limits faster…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2082317452755751098"}},{"id":"2081940052154933696","reset_type":"regular","announced_at":"2026-07-28T03:09:23.000Z","text":"Back at the laptop. The usage limits have been reset for all paid users of Codex and ChatGPT Work. Weeeeeeeee. It's a good day!","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2081940052154933696"}},{"id":"2081096447718723984","reset_type":"regular","announced_at":"2026-07-25T19:17:12.000Z","text":"We have reset usage limits for all Codex and ChatGPT Work users. Last night around 2am to 4am we suffered an almost global outage. All well and recovered, but you know what comes next. We learn. We reset. Enjoy.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2081096447718723984"}},{"id":"2079609157934886975","reset_type":"regular","announced_at":"2026-07-21T16:47:15.000Z","text":"10M! New day, new usage reset for paid users of Codex and ChatGPT Work. Lands in the next hour. Enjoy.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2079609157934886975"}},{"id":"2078320950488297917","reset_type":"regular","announced_at":"2026-07-18T03:28:22.000Z","text":"Oops... I did it again. Enjoy reset usage limits for all paid users for Codex and ChatGPT Work. Super grateful for an incredible team who is iterating at lightspeed and keeping the infra up as we scale faster than ever. Enjoy the weekend!","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2078320950488297917"}},{"id":"2077607697487188198","reset_type":"regular","announced_at":"2026-07-16T04:14:09.000Z","text":"Another reset for our Codex and ChatGPT Work users. Actually hit 9M active users way earlier today, but then got distracted by the approximately millions of things the team is doing to keep the systems up and reliable. Should have that swee…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2077607697487188198"}},{"id":"2077114635308986427","reset_type":"regular","announced_at":"2026-07-14T19:34:54.000Z","text":"Hello. We have reached 8M active users across Codex and ChatGPT Work. We are once again resetting the usage limits for all. And we continue to not have the 5h rate limit as well, allowing everyone to explore the boundaries of GPT-5.6 Sol an…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2077114635308986427"}},{"id":"2076735790567338203","reset_type":"regular","announced_at":"2026-07-13T18:29:31.000Z","text":"Thank you to the 7M active users who are now using Codex and ChatGPT Work. We have added a banked reset to everyone's account to celebrate the milestone. You can apply the reset in the desktop app or on web and it will replenish the weekly …（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2076735790567338203"}},{"id":"2076418567143408112","reset_type":"regular","announced_at":"2026-07-12T21:28:59.000Z","text":"Added a banked reset to 500k users of ChatGPT Work and Codex. What’s been happening: - Just released the ability to use a banked reset from web and mobile. Before today you could only do it in the desktop app - Had an issue where less than …（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2076418567143408112"}},{"id":"2075820987833274448","reset_type":"regular","announced_at":"2026-07-11T05:54:25.000Z","text":"Introducing... another usage limit reset for all our ChatGPT Work and Codex users. Should land over next 30 minutes. Hope you have an awesome weekend. Thank you for pushing our systems to the absolute limit, we have never seen traffic incre…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2075820987833274448"}},{"id":"2075641131002700120","reset_type":"regular","announced_at":"2026-07-10T17:59:43.000Z","text":"Hello beautiful people! We have reset usage limits across Codex and ChatGPT Work. And another one will come later in the day. Rejoice. Now that I have your attention, a quick update on ChatGPT Work, Codex and all the updates we shared yeste…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2075641131002700120"}},{"id":"2075330198887940337","reset_type":"regular","announced_at":"2026-07-09T21:24:11.000Z","text":"Enjoy a full reset of your usage limits for ChatGPT Work and Codex. Propagating in the next hour. @_rajanagarwal just joined to work on model research and push on coding capabilities. You can thank him for pressing the button today.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2075330198887940337"}},{"id":"2071740419030053227","reset_type":"regular","announced_at":"2026-06-29T23:39:41.000Z","text":"Codex usage limits will be fully reset again in the next hour and we will credit one additional reset into your bank for your own usage over the next 24 hours. We investigated reports that Codex usage was being consumed faster than expected…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2071740419030053227"}},{"id":"2071381664853319742","reset_type":"regular","announced_at":"2026-06-28T23:54:07.000Z","text":"As we are still investigating, I have reset everyone's Codex usage limits. This is a hard reset given some users had stacked up to three banked resets already that they can apply on their own schedule. Funnily enough, this week at OpenAI is…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2071381664853319742"}},{"id":"2070653282440405046","reset_type":"regular","announced_at":"2026-06-26T23:39:48.000Z","text":"We are giving all Codex users a usage reset on the house. Should be showing in your accounts in the next few hours. We have applied some mitigations, but our investigation hasn't shown users being impacted at large. We are continuing to mon…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2070653282440405046"}},{"id":"2067399435009622521","reset_type":"regular","announced_at":"2026-06-18T00:10:10.000Z","text":"Dearest gentle codexer. We did a sneaky double reset. Not only do you get a full reset on us. But you are also getting one into the reset bank to use at your own leisure. Enjoy","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2067399435009622521"}},{"id":"2062329981548802523","reset_type":"regular","announced_at":"2026-06-04T00:25:58.000Z","text":"Hi. Over the last 24 hours we had three separate small incidents that affected Codex reliability. Those are three too many and we are taking active steps for them to not reproduce. I have reset usage limits for Codex across all paid plans. …（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2062329981548802523"}},{"id":"2061106703446450392","reset_type":"regular","announced_at":"2026-05-31T15:25:06.000Z","text":"The Codex usage limits have been reset for all paid ChatGPT subscriptions. You should be back to 100% weekly and 100% hourly limits. Let the tokens do incredible things today and have fun.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2061106703446450392"}},{"id":"2058280452851638313","reset_type":"regular","announced_at":"2026-05-23T20:14:35.000Z","text":"Some of you noticed limits drained faster in Codex, we root caused it to an optimization that we rolled back that had an impact on cache hit rates when compacting across long running sessions. We fixed this and have now reset usage limits f…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2058280452851638313"}},{"id":"2055707616605835333","reset_type":"regular","announced_at":"2026-05-16T17:51:03.000Z","text":"Codex usage limits have now been reset across all paid plans. Enjoy the weekend!","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2055707616605835333"}},{"id":"2048997818673537399","reset_type":"regular","announced_at":"2026-04-28T05:28:43.000Z","text":"Don't just reset Codex rate limits for fun, it costs money. Don't just reset Codex rate limits for fun, it costs money. ... but the vibes are good ... I have reset Codex rate limits for ALL paid plans to celebrate a good week and allow ever…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2048997818673537399"}},{"id":"2046367145588916687","reset_type":"regular","announced_at":"2026-04-20T23:15:21.000Z","text":"Codex incident is mitigated, seeing recovery. Lasted about 10 mins, Codex itself helped with the remediation, but ultimately the insight came from a human this time. Apologies for the disruption and rate limit reset incoming.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2046367145588916687"}},{"id":"2044943514832871564","reset_type":"regular","announced_at":"2026-04-17T00:58:21.000Z","text":"Hi! To celebrate its 1-year anniversary, I have allowed Codex to reset its own rate limits across all plans. Enjoy all the new features.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2044943514832871564"}},{"id":"2042299371602264319","reset_type":"regular","announced_at":"2026-04-09T17:51:28.000Z","text":"We did it, say hi to the $100 plan! It should be the sweet spot for a ton of you. It comes with a ton of codex usage. And yes we are resetting the limits again too as I mentioned yesterday. Let’s keep building!","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2042299371602264319"}},{"id":"2041655710346572085","reset_type":"regular","announced_at":"2026-04-07T23:13:48.000Z","text":"Three million people are now using Codex weekly - up from two million a little under a month ago. Incredible to see the growth. Thank you to all of you and to the ecosystem we’re part of. To celebrate, we’re resetting rate limits so you can…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2041655710346572085"}},{"id":"2039248564967424483","reset_type":"regular","announced_at":"2026-04-01T07:48:39.000Z","text":"Our Codex dashboards are showing increased rate of users hitting rate limits and since we don't fully understand why I have made the cautious decision of resetting the usage limits for all plans. Enjoy. I also wanted to celebrate us finding…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2039248564967424483"}},{"id":"2037346989244096581","reset_type":"regular","announced_at":"2026-03-27T01:52:28.000Z","text":"Hello. We have reset Codex usage limits across all plans to let everyone experiment with the magnificent plugins we just launched, and because it had been a while! You can just build unlimited things with Codex. Have fun!","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2037346989244096581"}},{"id":"2031605592352313567","reset_type":"regular","announced_at":"2026-03-11T05:38:13.000Z","text":"OK, Codex is back and stable and we should be good for a while. Reset button pressed, should see it in a bit","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2031605592352313567"}},{"id":"2031216405266481489","reset_type":"regular","announced_at":"2026-03-10T03:51:43.000Z","text":"This codex issue is now fully resolved and stable for the last couple of hours. You have come to expect it, but yes, that means we will be reseting rate limits in a bit. Enjoy.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2031216405266481489"}},{"id":"2030474136024400173","reset_type":"regular","announced_at":"2026-03-08T02:42:13.000Z","text":"We don’t have evidence of a widespread issue with codex usage being drained faster than it should but there are enough reports and we have reset rate limits for plus \u0026amp; pro subscriptions while we work towards wrapping up our investigatio…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2030474136024400173"}},{"id":"2029308599835738218","reset_type":"regular","announced_at":"2026-03-04T21:30:47.000Z","text":"We caught an issue that was causing the 2X promotional increase in limits to not be applied to an estimated 9% of plus and pro users for Codex. We have now fixed this issue and are reseting the rate limit for all plus and pro users to compe…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2029308599835738218"}},{"id":"2028649088594436225","reset_type":"regular","announced_at":"2026-03-03T01:50:07.000Z","text":"Codex is back up. We introduced an issue that caused requests to be blocked and rejected as high cyber risk. This was fixed in ~8 mins and we are now back online and fully operational. Team will reset rate limits, that’s been a while. Enjoy…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2028649088594436225"}},{"id":"2004100061933064395","reset_type":"regular","announced_at":"2025-12-25T08:01:03.000Z","text":"For Codex users, to thank you all for the fun we've had over the last months, our first gift is that we have **reset rate limits and are lifting the usage limits to 2X the usual limits until the 1st of Jan**. Wish you all a merry holiday an…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2004100061933064395"}},{"id":"2002137269134819610","reset_type":"regular","announced_at":"2025-12-19T22:01:37.000Z","text":"We rewrote the underlying system to track and bill usage in Codex and we have reset usage limits in the process. Backfilling is time consuming and it’s more fun to give free usage. Enjoy!","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2002137269134819610"}},{"id":"2001114683047317723","reset_type":"regular","announced_at":"2025-12-17T02:18:14.000Z","text":"Didn’t need to do this in a while, but you know the drill. We have reset everyone’s usage limits, enjoy more Codex and apologies for the disruption.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2001114683047317723"}},{"id":"1995988609896513743","reset_type":"regular","announced_at":"2025-12-02T22:49:02.000Z","text":"We have reset the usage limits for everyone in Codex, which helps us mitigate the issue the fastest and the team will continue to work on the underlying cause. This should propagate to all users over the next 10 mins, enjoy and apologies fo…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/1995988609896513743"}},{"id":"1992370994028388670","reset_type":"regular","announced_at":"2025-11-22T23:13:56.000Z","text":"We have reset rate limits for all Codex users to compensate for the unusual high latencies in or near the US in the previous hours. Grateful for the team working hard behind the scenes to keep Codex running 24/7. I do recommend trying out G…（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/1992370994028388670"}},{"id":"1986166501435711936","reset_type":"regular","announced_at":"2025-11-05T20:19:29.000Z","text":"Codex outage resolved. We suffered a minor outage for last 45 minutes which turned into a global outage for last 30 minutes, this is now resolved and we have reset the rate limits. Please let me know if you still see issues.","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/1986166501435711936"}},{"id":"1968163721034994139","reset_type":"regular","announced_at":"2025-09-17T04:02:52.000Z","text":"We have reset everyone's limits for gpt-5-codex to allow you all to benefit more from it today and as a way to make up for the slowdowns earlier while we were provisioning additional GPUs. We'll continue to add capacity throughout the week …（节选，完整公告见原帖）","source":{"type":"x_post","author":"thsottiaux","url":"https://x.com/thsottiaux/status/1968163721034994139"}}],"sourceCheck":{"source":"x_author","checkedAt":"2026-10-23T08:20:03.206Z","status":"ok","pagesRead":7,"postsRead":40,"coverage":"X本人近期40条主帖/回复及最多6条相关会话；不保证全部账号历史","limitation":"","historyStatus":"ok"},"signals":[{"id":"2113492502355562875","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2113492502355562875","publishedAt":"2026-10-23T04:47:34.010Z","text":"Landing tomorrow before 10am PST together with a small ship.","contextId":"2113492187770175603","truncated":false,"kind":"scheduled","reason":"future_wording","resetType":"regular","excerpt":true},{"id":"2113492187770175603","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2113492187770175603","publishedAt":"2026-10-23T04:46:19.007Z","text":"Day 18/ Decisions API is GA, OpenResponses joined the Linux Foundation, we shipped some performance improvements and Uber is going all-in on codex \u0026 work. But yes… that’s a reset!","contextId":null,"truncated":false,"kind":"announced","reason":"announcement_not_completion","resetType":"regular","excerpt":true},{"id":"2113162413008884099","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2113162413008884099","publishedAt":"2026-10-22T06:55:54.577Z","text":"Lands tomorrow before 10am PST.","contextId":"2113162277688070445","truncated":false,"kind":"scheduled","reason":"future_wording","resetType":"regular","excerpt":true},{"id":"2113162277688070445","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2113162277688070445","publishedAt":"2026-10-22T06:55:22.314Z","text":"Day 17/ Bet you thought we forgot, but no, it’s reset day today. Also good time to remind you to get Daybreak Blue access, it only takes 15 mins and you don’t want to have to do it in the middle of an incident.","contextId":null,"truncated":false,"kind":"announced","reason":"announcement_not_completion","resetType":"regular","excerpt":true},{"id":"2112592264686149749","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2112592264686149749","publishedAt":"2026-10-20T17:10:20.624Z","text":"There were reports of usage draining faster than anticipated for some users over the weekend. We've identified approximately 40,000 accounts that had an inconsistency on which usage limits where the actual usage that was applied did not cor…（节选，完整公告见原帖）","contextId":null,"truncated":false,"kind":"adjustment","reason":"limited_compensation","resetType":"regular","excerpt":true},{"id":"2112432076767289678","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2112432076767289678","publishedAt":"2026-10-20T06:33:48.848Z","text":"Day 15/ Nevermind, we're still cooking... and reset. Enjoy.","contextId":null,"truncated":false,"kind":"completed","reason":"explicit_completion","resetType":"regular","excerpt":true},{"id":"2112034063934742720","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2112034063934742720","publishedAt":"2026-10-19T04:12:15.194Z","text":"Our team worked with OpenCode to have their users who are also OpenAI API customers back in business and any credits refunded which would have been drawn in the attack. Also, you can request Daybreak Blue access to use our cyber permissive …（节选，完整公告见原帖）","contextId":null,"truncated":false,"kind":"adjustment","reason":"limited_compensation","resetType":"regular","excerpt":true},{"id":"2111918768733753664","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2111918768733753664","publishedAt":"2026-10-18T20:34:06.676Z","text":"People have escaped the TL and are asking me for resets on the street now. I’ll make little cards to hand out","contextId":null,"truncated":false,"kind":"uncertain","reason":"needs_context","resetType":"regular","excerpt":true},{"id":"2111566005684289735","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2111566005684289735","publishedAt":"2026-10-17T21:12:21.411Z","text":"Done","contextId":null,"truncated":false,"kind":"uncertain","reason":"needs_context","resetType":"regular","excerpt":true},{"id":"2111492673890824348","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2111492673890824348","publishedAt":"2026-10-17T16:20:57.749Z","text":"Day 13/ Le limit reset","contextId":null,"truncated":false,"kind":"announced","reason":"announcement_not_completion","resetType":"regular","excerpt":true},{"id":"2110618732666257557","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2110618732666257557","publishedAt":"2026-10-15T06:28:13.924Z","text":"Done and dusted","contextId":null,"truncated":false,"kind":"uncertain","reason":"needs_context","resetType":"regular","excerpt":true},{"id":"2110595484180214059","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2110595484180214059","publishedAt":"2026-10-15T04:55:51.053Z","text":"The reports of my reset button being lost are greatly exaggerated Day 10/ Reset","contextId":null,"truncated":false,"kind":"announced","reason":"announcement_not_completion","resetType":"regular","excerpt":true},{"id":"2109873287853707513","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2109873287853707513","publishedAt":"2026-10-13T05:06:06.031Z","text":"What would you like with your side of reset? It's done.","contextId":null,"truncated":false,"kind":"announced","reason":"announcement_not_completion","resetType":"regular","excerpt":true},{"id":"2109812360596865224","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2109812360596865224","publishedAt":"2026-10-13T01:03:59.841Z","text":"Global reset landing by EOD PST time. Enjoy","contextId":null,"truncated":false,"kind":"scheduled","reason":"future_wording","resetType":"regular","excerpt":true},{"id":"2109812216212099456","author":"thsottiaux","url":"https://x.com/thsottiaux/status/2109812216212099456","publishedAt":"2026-10-13T01:03:25.417Z","text":"Day 8/ Reset","contextId":null,"truncated":false,"kind":"announced","reason":"announcement_not_completion","resetType":"regular","excerpt":true}]}</script>
   <script type="module">
+// Deterministic, conservative rules. No model, account state or elapsed-time inference.
+const SIGNAL_HOUR = 3600000;
+const SIGNAL_DAY = 24 * SIGNAL_HOUR;
+function xPostTime(id) {
+  try { return Number((BigInt(id) >> 22n) + 1288834974657n); } catch { return NaN; }
+}
+function signalDateKey(stamp, zone) {
+  const parts = new Intl.DateTimeFormat('en-CA', { timeZone: zone, year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(stamp);
+  return ['year','month','day'].map(type => parts.find(part => part.type === type).value).join('-');
+}
+function pacificWallTime(year, month, day, hour, minute) {
+  const wall = Date.UTC(year, month - 1, day, hour, minute);
+  let guess = wall + 8 * SIGNAL_HOUR;
+  for (let i = 0; i < 3; i++) {
+    const parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Los_Angeles', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(guess);
+    const value = type => Number(parts.find(part => part.type === type).value);
+    guess += wall - Date.UTC(value('year'), value('month') - 1, value('day'), value('hour'), value('minute'));
+  }
+  return guess;
+}
+function announcedDeadline(post) {
+  const value = post.text;
+  const match = value.match(/\b(today|tomorrow)\s+(?:before|by|at)\s+(\d{1,2})(?::([0-5]\d))?\s*(am|pm)\s+(PST|PDT|PT|UTC)\b/i);
+  if (match && +match[2] >= 1 && +match[2] <= 12) {
+    const zone = match[5].toUpperCase();
+    const [y,m,d] = signalDateKey(Date.parse(post.publishedAt), zone === 'UTC' ? 'UTC' : 'America/Los_Angeles').split('-').map(Number);
+    const normalized = new Date(Date.UTC(y, m - 1, d + (match[1].toLowerCase() === 'tomorrow' ? 1 : 0)));
+    const hour = +match[2] % 12 + (match[4].toLowerCase() === 'pm' ? 12 : 0), minute = +(match[3] ?? 0);
+    const stamp = zone === 'UTC' ? Date.UTC(normalized.getUTCFullYear(), normalized.getUTCMonth(), normalized.getUTCDate(), hour, minute)
+      : pacificWallTime(normalized.getUTCFullYear(), normalized.getUTCMonth() + 1, normalized.getUTCDate(), hour, minute);
+    return new Date(stamp).toISOString();
+  }
+  const relative = value.match(/\b(?:in|over|within)\s+(?:the\s+)?next\s+(?:(\d{1,2})\s+)?(hour|minute)s?\b/i)
+    ?? value.match(/\b(?:in|within)\s+~?\s*(\d{1,2})\s+(hour|minute)s?\b/i);
+  if (relative) return new Date(Date.parse(post.publishedAt) + +(relative[1] ?? 1) * (relative[2].toLowerCase() === 'hour' ? SIGNAL_HOUR : 60000)).toISOString();
+  return null;
+}
+function classifyStatement(value, context = '') {
+  const text = value.replace(/[’‘]/g, "'").replace(/\s+/g, ' ').trim();
+  const related = /\breset|usage limits?|rate limits?|quota|credits?\b/i.test(text);
+  const banked = /\bbanked\s+reset|reset\s+(?:card|bank)|reset into.*bank/i.test(text + ' ' + context);
+  if (/^(?:done(?: and dusted)?|hi[.!]? it is done|it is done|all propagated)[.!\s]*$/i.test(text) && !/\breset\b/i.test(context)) return {kind:'uncertain',reason:'needs_context',resetType:'regular'};
+  if (!related && !/\breset\b/i.test(context)) return { kind: 'unrelated', reason: 'unrelated', resetType: 'regular' };
+  const type = banked ? 'banked' : 'regular';
+  if (/\b(?:not yet|has not|haven't|hasn't|not done|not (?:a )?reset|no reset|cancel(?:led|ed)?)\b/i.test(text)) return { kind: 'uncertain', reason: 'not_confirmed', resetType: type };
+  if (!banked && !/\breset\b/i.test(text) && /\bcredits?|quota|usage\b/i.test(text) && !/\breset\b/i.test(context)) return { kind: 'adjustment', reason: 'limited_compensation', resetType: type };
+  if (!banked && /\b(?:affected|some users|\d[\d,]* accounts)\b/i.test(text) && /\bcredits?|compensat|inconsistency/i.test(text)) return { kind: 'adjustment', reason: 'limited_compensation', resetType: type };
+  if (/\b(?:will|going to|tomorrow|lands?|landing|incoming|soon|next\s+(?:hour|day)|before\s+\d)\b/i.test(text)) return { kind: 'scheduled', reason: 'future_wording', resetType: type };
+  const explicit = /\b(?:usage|rate)\s+limits?\s+(?:have|has)\s+(?:now\s+)?been\s+reset\b/i.test(text)
+    || /\b(?:we|i)(?:'ve| have)?\s+(?:now\s+)?reset\b.{0,100}\b(?:usage|limits|accounts|everyone)\b/i.test(text)
+    || /\bresets?\s+(?:(?:has|have|is|are)\s+)?(?:(?:all|now|fully)\s+)*(?:propagated|completed?|done|landed)\b/i.test(text)
+    || /\b(?:confirmed|fully)\s+landed\s+across\s+all\s+accounts\b/i.test(text)
+    || /\band reset[.!\s]+Enjoy\b/i.test(text);
+  const contextualDone = /^(?:done(?: and dusted)?|hi[.!]? it is done|it is done|all propagated)[.!\s]*$/i.test(text) && /\breset\b/i.test(context);
+  const cardIssued = banked && /\b(?:we|i)(?:'ve| have)?\s+(?:now\s+)?(?:added|credited|loaded|deposited)\b/i.test(text);
+  if (explicit || contextualDone || cardIssued) return { kind: 'completed', reason: contextualDone ? 'completion_in_reset_thread' : 'explicit_completion', resetType: type };
+  if (related && /\breset\b/i.test(text)) return { kind: 'announced', reason: 'announcement_not_completion', resetType: type };
+  return { kind: 'uncertain', reason: 'needs_context', resetType: type };
+}
+function normalizeSignals(input = [], now = Date.now()) {
+  if (!Array.isArray(input) || input.length > 300) throw new Error('Invalid X signal list');
+  const posts = new Map();
+  for (const row of input) {
+    if (!row || !/^\d{16,24}$/.test(row.id ?? '') || row.author !== 'thsottiaux' || typeof row.text !== 'string') continue;
+    const stamp = xPostTime(row.id);
+    if (!Number.isFinite(stamp) || stamp < Date.UTC(2020,0,1) || stamp > now + 300000) continue;
+    const url = `https://x.com/thsottiaux/status/${row.id}`;
+    if (row.url !== url) continue;
+    const contextId = /^\d{16,24}$/.test(row.contextId ?? '') && row.contextId !== row.id ? row.contextId : null;
+    posts.set(row.id, { id: row.id, author: 'thsottiaux', url, publishedAt: new Date(stamp).toISOString(),
+      text: row.text.slice(0,12000), contextId, truncated: row.truncated === true,
+      ...(row.excerpt === true && ['scheduled','completed','announced','adjustment','uncertain','unrelated'].includes(row.kind)
+        && ['unrelated','not_confirmed','future_wording','limited_compensation','explicit_completion','completion_in_reset_thread','announcement_not_completion','needs_context','truncated_text','conflicting_followup'].includes(row.reason)
+        ? { excerpt: true, kind: row.kind, reason: row.reason, resetType: row.resetType === 'banked' ? 'banked' : 'regular' } : {}) });
+  }
+  const classified = [...posts.values()].map(post => {
+    if (post.excerpt) return post;
+    const context = posts.get(post.contextId)?.text ?? '';
+    const judgement = classifyStatement(post.text, context);
+    if (post.truncated && judgement.kind !== 'unrelated') return { ...post, ...judgement, kind: 'uncertain', reason: 'truncated_text' };
+    return { ...post, ...judgement };
+  });
+  for (const post of classified) {
+    const futureReply = classified.find(reply => reply.contextId === post.id && reply.kind === 'scheduled');
+    if (futureReply && post.kind === 'completed') { post.kind = 'uncertain'; post.reason = 'conflicting_followup'; }
+  }
+  return classified.sort((a,b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt)).slice(0,160);
+}
+function scheduledFromSignals(signals, now = Date.now()) {
+  const completed = signals.filter(post => post.kind === 'completed');
+  const latestRegularCompletion = Math.max(-Infinity,...completed.filter(post=>post.resetType==='regular').map(post=>Date.parse(post.publishedAt)));
+  const post = signals.find(post => ['scheduled','announced'].includes(post.kind)
+    && Date.parse(post.publishedAt) >= now - 7 * SIGNAL_DAY
+    && Date.parse(post.publishedAt) >= latestRegularCompletion
+    && !completed.some(done => (done.contextId ?? done.id) === (post.contextId ?? post.id) && done.publishedAt >= post.publishedAt));
+  if (!post) return null;
+  return { id: post.id, announced_at: post.publishedAt, scheduled_for: announcedDeadline(post), text: post.text,
+    reset_type: post.resetType, source: { type: 'x_post', author: 'thsottiaux', url: post.url }, time_basis: 'x_author' };
+}
+
 const DAY = 86_400_000;
 const HOUR = 3_600_000;
 const API = 'https://codex-resets.com/api/v1';
@@ -218,10 +335,9 @@ function dailyBoundary(now = Date.now()) {
 }
 
 function nextPageReload(now = Date.now()) {
-  // The local task fetches at 05:00. Reload the static file at 05:30, after its retry budget.
-  // Reloading the page never queries the upstream API.
-  const grace = 30 * 60000;
-  return dailyBoundary(now - grace) + DAY + grace;
+  // The hourly local check may need bounded five-minute recovery; reload only the static page.
+  const grace = 20 * 60000;
+  return Math.floor((now - grace) / HOUR) * HOUR + HOUR + grace;
 }
 
 const object = value => value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -283,7 +399,17 @@ function normalizeDataset(input, now = Date.now()) {
   if (object(status.latest_reset)) rows.push(status.latest_reset);
   const { records, rejected } = normalizeRecords(rows, now);
   if (rows.length && !records.length) throw new Error('没有有效的重置记录');
-  const scheduled = object(status.scheduled_reset) ? status.scheduled_reset : null;
+  const signals = normalizeSignals(input.signals ?? [], now);
+  const check = object(input.sourceCheck) && input.sourceCheck.source === 'x_author'
+    && Number.isFinite(time(input.sourceCheck.checkedAt)) && time(input.sourceCheck.checkedAt) <= now + 300000
+    && ['ok','partial','unavailable'].includes(input.sourceCheck.status) ? input.sourceCheck : null;
+  let scheduled = object(status.scheduled_reset) ? status.scheduled_reset : null;
+  if (check && signals.length) {
+    const fromX = scheduledFromSignals(signals,now);
+    if (fromX && scheduled?.id === fromX.id && scheduled.time_basis === 'x_author'
+      && Number.isFinite(time(scheduled.scheduled_for))) fromX.scheduled_for = scheduled.scheduled_for;
+    scheduled = fromX;
+  }
   const watch = object(status.active_watch) ? status.active_watch : null;
   const scheduledTime = scheduled ? time(scheduled.scheduled_for) : NaN;
   const announcedTime = scheduled ? time(scheduled.announced_at) : NaN;
@@ -305,12 +431,18 @@ function normalizeDataset(input, now = Date.now()) {
         reset_type: scheduled.reset_type === 'banked' ? 'banked' : 'regular',
         source: { type: scheduledSource.type === 'x_post' ? 'x_post' : 'observed',
           author: text(scheduledSource.author, 80), url: scheduledURL },
+        time_basis: scheduled.time_basis === 'x_author' ? 'x_author' : 'upstream',
       } : null,
       active_watch: watch && (!Number.isFinite(expires) || expires > now) ? {
         text: text(watch.text), forecast_window: text(watch.forecast_window, 160),
         expires_at: Number.isFinite(expires) ? new Date(expires).toISOString() : null,
       } : null,
     },
+    ...(check ? { signals, sourceCheck: { source: 'x_author', checkedAt: new Date(time(check.checkedAt)).toISOString(),
+      status: check.status, pagesRead: Math.max(0,Math.min(20,Number(check.pagesRead)||0)),
+      postsRead: Math.max(0,Math.min(300,Number(check.postsRead)||0)),
+      coverage: text(check.coverage,300), limitation: text(check.limitation,300),
+      historyStatus: check.historyStatus === 'preserved' ? 'preserved' : 'ok' } } : {}),
   };
 }
 
@@ -332,6 +464,8 @@ function publicSnapshot(input, now = Date.now()) {
     records: data.records.map(row => ({ id: row.id, reset_type: row.reset_type,
       announced_at: row.announced_at, text: excerpt(row.text),
       source: { type: row.source.type, author: row.source.author, url: row.source.url } })),
+    ...(data.sourceCheck ? { sourceCheck: data.sourceCheck,
+      signals: data.signals.filter(post=>post.kind!=='unrelated').map(post=>({ ...post, text: excerpt(post.text), excerpt: true })) } : {}),
   };
 }
 
@@ -368,15 +502,31 @@ function announcementForecast(dataset, now = Date.now()) {
     expectedAt: target, announcedAt: Number.isFinite(announcedAt) ? announcedAt : null,
     deadline, literalAt, literalZone, timezoneConflict, quote,
     source: scheduled.source, resetType: scheduled.reset_type,
-    timeBasis: Number.isFinite(expectedAt) ? '数据源标注' : '原文时区换算',
+    timeBasis: scheduled.time_basis === 'x_author' ? '原帖按太平洋当地时间换算' : Number.isFinite(expectedAt) ? '数据源标注' : '原文时区换算',
     phase: target === null ? 'unspecified' : now >= lastDeadline ? 'overdue'
       : timezoneConflict && now >= Math.min(target, literalAt) ? 'ambiguous' : 'pending',
   };
 }
 
 function derive(dataset, now = Date.now()) {
-  const records = dataset?.records ?? [];
-  const regular = records.filter(row => row.reset_type === 'regular');
+  const primary = dataset?.signals ?? [];
+  const all = new Map((dataset?.records ?? []).map(row=>[row.id,row]));
+  const confirmedEvents = new Map();
+  for (const post of primary.filter(post=>post.kind==='completed')) {
+    const event = post.contextId ?? post.id;
+    const key = event + ':' + post.resetType;
+    if (!confirmedEvents.has(key)) confirmedEvents.set(key,{event,post});
+  }
+  for (const {event,post} of confirmedEvents.values()) {
+    // An announcement plus one or more completion replies is ONE event, not multiple resets.
+    for (const related of primary.filter(row=>(row.id===event||row.contextId===event)&&row.resetType===post.resetType)) all.delete(related.id);
+    all.set(post.id, { id: post.id, reset_type: post.resetType, announced_at: post.publishedAt,
+      t: Date.parse(post.publishedAt), text: post.text, source: {type:'x_post',author:post.author,url:post.url} });
+  }
+  const records = [...all.values()].sort((a,b)=>b.t-a.t);
+  const contradicted = new Set(primary.filter(post=>!['completed','unrelated'].includes(post.kind)).map(post=>post.id));
+  // Community observations/forecast deadlines are not author-confirmed execution times.
+  const regular = records.filter(row => row.reset_type === 'regular' && row.source.type !== 'observed' && !contradicted.has(row.id));
   const gaps = [];
   for (let index = 0; index < regular.length - 1; index++) {
     const days = (regular[index].t - regular[index + 1].t) / DAY;
@@ -391,6 +541,7 @@ function derive(dataset, now = Date.now()) {
       from: last.t + q1 * DAY, mid: last.t + median * DAY, to: last.t + q3 * DAY };
   }
   return { records, regular, last, latest: records[0] ?? null, gaps, estimate,
+    signals: primary.filter(post=>post.kind!=='unrelated'), observations: records.filter(row=>row.source.type==='observed'),
     bankedCount: records.filter(row => row.reset_type === 'banked').length,
     average: gaps.length ? gaps.reduce((sum, gap) => sum + gap.days, 0) / gaps.length : null,
     elapsed: last ? Math.max(0, now - last.t) : null,
@@ -434,7 +585,7 @@ function dayKey(timestamp, zone) {
 
 // Calendar arithmetic uses UTC day ordinals AFTER assigning each event to its chosen local day.
 // This avoids 23/25-hour DST days causing duplicated or missing calendar cells.
-function calendarModel(records, estimate, now, zone, months = 6) {
+function calendarModel(records, estimate, now, zone, months = 6, signals = []) {
   const todayKey = dayKey(now, zone);
   const [year, month] = todayKey.split('-').map(Number);
   const first = new Date(Date.UTC(year, month - months, 1));
@@ -442,6 +593,12 @@ function calendarModel(records, estimate, now, zone, months = 6) {
   const monthEnd = new Date(Date.UTC(year, month, 0));
   const end = +monthEnd + (6 - (monthEnd.getUTCDay() + 6) % 7) * DAY;
   const byDay = new Map();
+  const announcements = new Map();
+  for (const post of signals.filter(post=>['announced','scheduled'].includes(post.kind))) {
+    const key=dayKey(Date.parse(post.publishedAt),zone);
+    if(!announcements.has(key))announcements.set(key,[]);
+    announcements.get(key).push(post);
+  }
   for (const row of records) {
     const key = dayKey(row.t, zone);
     if (!byDay.has(key)) byDay.set(key, []);
@@ -454,7 +611,7 @@ function calendarModel(records, estimate, now, zone, months = 6) {
     const key = new Date(stamp).toISOString().slice(0, 10);
     days.push({ key, day: new Date(stamp).getUTCDate(), month: new Date(stamp).getUTCMonth() + 1,
       outside: stamp < +first || stamp > +monthEnd,
-      today: key === todayKey, future: key > todayKey, records: byDay.get(key) ?? [],
+      today: key === todayKey, future: key > todayKey, records: byDay.get(key) ?? [], announcements: announcements.get(key) ?? [],
       estimated: !!from && key >= todayKey && key >= from && key <= to });
   }
   return { days, weeks: days.length / 7, todayKey };
@@ -528,7 +685,7 @@ const ZONE_KEY = 'codex-reset-observatory:timezone:v1';
 const PAGE = 6;
 const state = { dataset: null, mode: 'snapshot', syncing: false, error: null,
   retries: 0, nextAt: 0, automaticStopped: false, filter: 'all', query: '', shown: PAGE,
-  zone: 'Asia/Shanghai', calendarPick: null, rhythmPick: null, expanded: new Set() };
+  zone: 'Asia/Shanghai', calendarPick: null, rhythmPick: null, expanded: new Set(), signalShown: 6 };
 let model = null, calendar = null, timer = null, toastTimer = null, reloadTimer = null;
 let reloadAt = nextPageReload();
 
@@ -558,34 +715,25 @@ function toast(message) {
 }
 
 function renderStatus() {
-  const element = $('sync-status'), hasData = !!state.dataset;
-  const fetched = hasData ? fullDate(state.dataset.fetchedAt) : null;
-  let label, className;
-  if (state.syncing) { label = hasData ? '正在同步 · 保留现有数据' : '正在连接公开数据源'; className = 'status-busy'; }
-  else if (state.error) { label = hasData ? '同步失败 · 保留旧数据' : '暂时无法读取数据'; className = 'status-error'; }
-  else if (state.mode === 'live') { label = '已手动同步 · ' + hms(state.dataset.fetchedAt); className = 'status-live'; }
-  else {
-    const current = hasData && Date.parse(state.dataset.fetchedAt) >= dailyBoundary();
-    label = (current ? '当日快照 · ' : '历史快照 · ') + (hasData ? hm(state.dataset.fetchedAt) : '无数据');
-    className = current ? 'status-live' : '';
-  }
-  element.className = className;
+  const element = $('sync-status'), check = state.dataset?.sourceCheck;
+  const label = state.error ? '快照无法读取' : check
+    ? (check.status === 'ok' ? 'X本人原帖快照 · ' : check.status === 'partial' ? 'X部分核查 · ' : 'X核查未完成 · ') + hm(check.checkedAt)
+    : '第三方历史快照 · 未含X直接核查';
+  element.className = state.error || check?.status === 'unavailable' ? 'status-error' : check?.status === 'ok' ? 'status-live' : '';
   element.innerHTML = '<i class="status-dot" aria-hidden="true"></i>' + E(label);
-  $('refresh').disabled = state.syncing;
-  $('sync-note').textContent = state.error && state.nextAt
-    ? '下次重试 ' + hms(state.nextAt)
-    : state.automaticStopped ? '自动重试已停止 · 可手动同步' : '每日 05:00 更新 · 北京时间';
+  $('sync-note').textContent = '每小时核查X · 变化才发布';
   const notice = $('data-notice');
   const messages = [];
-  if (!hasData || state.error || Date.parse(state.dataset.fetchedAt) < dailyBoundary()) {
-    messages.push(hasData ? `${state.mode === 'snapshot' ? '内置快照' : '本地数据'}时间：${fetched}。当前不是实时结果。` : '尚无可用数据。');
-    if (!state.error && hasData) messages.push('尚未载入最近一次 05:00 更新；可以重新打开页面或点击手动同步。');
-  }
-  if (state.error) messages.push(state.error + '。' + (state.nextAt ? '至少等待 5 分钟后自动重试。' : '请稍后手动同步。'));
+  if (state.dataset) messages.push(`公开内容快照：${fullDate(state.dataset.fetchedAt)}。本机每小时核查，有新内容或状态变化才发布；本页不显示每次无变化检查，也不是实时个人额度。`);
+  if (!check) messages.push('尚无直接X核查证据，不能把第三方归类当作本人完成声明。');
+  if (check?.limitation) messages.push(check.limitation);
+  if (check?.historyStatus === 'preserved') messages.push('备用历史源读取失败，保留既有历史；X核查结果另行标记。');
+  if (check && Date.now()-Date.parse(check.checkedAt)>2*HOUR) messages.push('公开快照已超过两小时；可能没有新内容，也可能本机离线。请查看本人X核对最新动态。');
+  if (state.error) messages.push(state.error);
   if (state.dataset?.coverage.rejected) messages.push(`已忽略 ${state.dataset.coverage.rejected} 条无效或未来时间记录。`);
   if (state.dataset && !state.dataset.coverage.complete) messages.push('历史覆盖范围未确认，统计仅供参考。');
   notice.hidden = !messages.length; notice.textContent = messages.join(' ');
-  notice.classList.toggle('error', !!state.error);
+  notice.classList.toggle('error', !!state.error || check?.status === 'unavailable');
 }
 
 function tick() {
@@ -598,7 +746,7 @@ function tick() {
   const parts = bigParts(elapsed);
   $('elapsed-number').textContent = parts.number;
   $('elapsed-unit').textContent = parts.unit;
-  $('elapsed-accessible').textContent = '距离上次常规重置 ' + duration(elapsed);
+  $('elapsed-accessible').textContent = $('elapsed-label').textContent + ' ' + duration(elapsed);
 }
 
 function renderHero() {
@@ -609,6 +757,9 @@ function renderHero() {
     return;
   }
   $('last-date').textContent = fullDate(model.last.t);
+  const authorConfirmed = model.signals.some(post=>post.id===model.last.id&&post.kind==='completed');
+  $('elapsed-label').textContent = authorConfirmed ? '距最近本人完成声明' : '距历史来源收录公告';
+  document.querySelector('.last-caption').textContent = authorConfirmed ? '本人完成公告时间（非个人到账时间）' : '历史来源分类 · 未逐条复核';
   const text = cleanText(model.last.text);
   $('last-quote').textContent = text ? '“' + text + '”' : '这条公告没有可显示的正文。';
   $('last-quote').title = text;
@@ -641,7 +792,7 @@ function renderEstimate() {
     $('announcement-quote').textContent = announcement.quote ? '“' + announcement.quote + '”' : '这条预告没有可显示的正文。';
     $('announcement-timezone-note').hidden = !announcement.timezoneConflict;
     $('announcement-timezone-note').textContent = announcement.timezoneConflict
-      ? `时区有歧义：原文 ${announcement.literalZone} 按 ${announcement.literalZone === 'PST' ? 'UTC−8' : announcement.literalZone === 'PDT' ? 'UTC−7' : 'UTC'} 字面换算为 ${fullDate(announcement.literalAt)}${announcement.deadline ? ' 前' : ''}（${label}），与数据源标注不同。两者是不同解释下的${announcement.deadline ? '截止时刻' : '时间'}，不是必定发生的区间。`
+      ? `时区有歧义：原文 ${announcement.literalZone} 按 ${announcement.literalZone === 'PST' ? 'UTC−8' : announcement.literalZone === 'PDT' ? 'UTC−7' : 'UTC'} 字面换算为 ${fullDate(announcement.literalAt)}${announcement.deadline ? ' 前' : ''}（${label}），与太平洋当地时间解释不同。两者是不同解释下的${announcement.deadline ? '截止时刻' : '时间'}，不是必定发生的区间。`
       : '';
     $('announcement-author').textContent = announcement.source?.author ? '@' + announcement.source.author : '第三方数据源收录';
     $('announcement-date').textContent = announcement.announcedAt !== null ? '公告发布 ' + fullDate(announcement.announcedAt) : '';
@@ -691,14 +842,32 @@ function renderAlerts() {
   $('alerts').innerHTML = alerts.join(''); $('alerts').hidden = !alerts.length;
 }
 
+function renderSignals() {
+  const posts = model.signals, check = state.dataset?.sourceCheck;
+  $('primary-signals').hidden = !posts.length;
+  $('primary-coverage').textContent = check
+    ? `本期原帖核查：${fullDate(check.checkedAt)} · ${check.postsRead}条本人帖子 · ${check.coverage}。未来时态只算预告；“Done”等短回复必须属于已核实的重置会话。`
+    : '没有直接X核查记录。';
+  const names = { scheduled:'预计生效 · 未确认完成', announced:'已宣布重置 · 未确认完成', completed:'本人完成声明', adjustment:'额度说明 / 局部补偿', uncertain:'语义或上下文待核实' };
+  $('signals').innerHTML = posts.slice(0,state.signalShown).map(post => {
+    const url = sourceURL(post.url), parent = post.contextId ? sourceURL(`https://x.com/thsottiaux/status/${post.contextId}`) : null;
+    return `<li class="signal signal-${post.kind}"><div class="signal-meta"><strong>${E(names[post.kind] ?? '待核实')}</strong><time datetime="${E(post.publishedAt)}">${E(fullDate(post.publishedAt))}</time></div><blockquote>${E(cleanText(post.text))}</blockquote><div class="signal-links"><span>@thsottiaux${post.resetType === 'banked' ? ' · 重置卡（不等于直接恢复额度）' : ''}</span>${parent ? `<a href="${E(parent)}" target="_blank" rel="noopener noreferrer">关联主帖 ↗</a>` : ''}${url ? `<a href="${E(url)}" target="_blank" rel="noopener noreferrer">查看原帖 ↗</a>` : ''}</div></li>`;
+  }).join('');
+  $('more-signals').hidden = state.signalShown >= posts.length;
+  const observed = model.observations[0];
+  $('observations-note').hidden = !observed;
+  $('observations-note').textContent = observed ? `第三方观测记录：${fullDate(observed.t)}（${typeName(observed.reset_type)}）。这不是Tibo本人完成原帖，观测时间也可能来自预告时间；单独保留，不用于“已确认完成”的计时或区间统计。` : '';
+}
+
 function calendarLabel(day) {
-  const events = day.records.length ? day.records.map(row => typeName(row.reset_type) + ' ' + hm(row.t)).join('、')
+  const events = day.records.length ? day.records.map(row => (row.source.type==='observed'?'第三方观测（非本人完成）':typeName(row.reset_type)+'历史公告') + ' ' + hm(row.t)).join('、')
     : day.estimated ? '统计估算区间，非排期' : day.future ? '未来日期' : '无收录重置';
-  return day.key + (day.today ? ' · 今天' : '') + ' · ' + events;
+  const announcement = day.announcements.length ? `；本人预告${day.announcements.length}条原帖（主帖和补充不是多次重置，未确认完成）` : '';
+  return day.key + (day.today ? ' · 今天' : '') + ' · ' + events + announcement;
 }
 
 function renderCalendar() {
-  calendar = calendarModel(model.records, model.estimate, Date.now(), zone());
+  calendar = calendarModel(model.records, model.estimate, Date.now(), zone(),6,model.signals);
   const oldFocus = document.activeElement?.closest('#calendar button')?.dataset.key;
   const selected = calendar.days.some(day => day.key === state.calendarPick) ? state.calendarPick : calendar.todayKey;
   $('calendar').style.gridTemplateColumns = `repeat(${calendar.weeks},minmax(0,1fr))`;
@@ -709,9 +878,10 @@ function renderCalendar() {
   });
   $('calendar-months').innerHTML = monthLabels.join('');
   $('calendar').innerHTML = calendar.days.map(day => {
-    const regular = day.records.some(row => row.reset_type === 'regular');
-    const banked = day.records.some(row => row.reset_type === 'banked');
-    const classes = [regular && 'regular', banked && 'banked', day.future && 'future', day.today && 'today', day.estimated && 'estimated', day.outside && 'outside'].filter(Boolean).join(' ');
+    const regular = day.records.some(row => row.reset_type === 'regular'&&row.source.type!=='observed');
+    const banked = day.records.some(row => row.reset_type === 'banked'&&row.source.type!=='observed');
+    const observed = day.records.some(row=>row.source.type==='observed');
+    const classes = [regular && 'regular', banked && 'banked', observed&&'observed',day.announcements.length&&'announced',day.future && 'future', day.today && 'today', day.estimated && 'estimated', day.outside && 'outside'].filter(Boolean).join(' ');
     const label = calendarLabel(day);
     return `<button type="button" class="${classes}" data-key="${day.key}" tabindex="${day.key === selected ? 0 : -1}" aria-pressed="${day.key === state.calendarPick}" aria-label="${E(label)}" title="${E(label)}"></button>`;
   }).join('');
@@ -777,7 +947,7 @@ function renderList() {
   $('search-count').textContent = `显示 ${visible.length} / ${matches.length} 条` + (query ? ' · 搜索结果' : ' · 按公告时间倒序');
   $('entries').innerHTML = visible.length ? visible.map(row => {
     const index = model.records.indexOf(row), text = cleanText(row.text), expanded = state.expanded.has(row.id);
-    const author = row.source.type === 'x_post' && row.source.author ? '@' + row.source.author : '站点观测记录';
+    const author = row.source.type === 'x_post' && row.source.author ? '@' + row.source.author : '第三方观测（非本人完成声明）';
     const url = sourceURL(row.source.url);
     return `<li class="entry" data-record="${E(row.id)}" data-type="${row.reset_type}"><span class="entry-number">${String(model.records.length - index).padStart(3, '0')}</span><div class="entry-content"><div class="entry-header"><span class="entry-tag ${row.reset_type}">${typeName(row.reset_type)}</span><time class="entry-date" datetime="${E(row.announced_at)}">${E(fullDate(row.t))}</time><span class="entry-relative">${E(relative(row.t))}</span></div><p class="entry-text${!expanded && text.length > 240 ? ' collapsed' : ''}">${E(text || '（这条公告没有正文，可能只有图片或链接。）')}</p>${text.length > 240 ? `<button type="button" class="expand-text" data-expand="${E(row.id)}" aria-expanded="${expanded}">${expanded ? '收起正文 ↑' : '展开完整正文 ↓'}</button>` : ''}<div class="entry-source"><span>${E(author)} · ${row.source.type === 'x_post' ? 'X 公告' : '分类沿用数据源'}</span>${url ? `<a href="${E(url)}" target="_blank" rel="noopener noreferrer">查看原帖 ↗</a>` : '<span>无可用原帖链接</span>'}</div></div></li>`;
   }).join('') : '<li class="empty-state">没有找到匹配的公告，试试其他关键词或类型。</li>';
@@ -792,41 +962,11 @@ function renderAll() {
   model = derive(state.dataset);
   renderStatus(); renderHero(); renderEstimate(); renderMetrics(); renderAlerts();
   renderCalendar(); renderRhythm(); renderList();
+  renderSignals();
 }
 
-function schedule(delay) {
-  clearTimeout(timer); state.nextAt = Date.now() + delay;
-  const due = () => {
-    const remaining = state.nextAt - Date.now();
-    if (remaining > 0) { timer = setTimeout(due, Math.min(remaining, 2147483647)); return; }
-    timer = null;
-    if (document.hidden) return;
-    sync(false);
-  };
-  timer = setTimeout(due, Math.min(delay, 2147483647));
-}
-
-async function sync(manual = false) {
-  if (state.syncing) return;
-  clearTimeout(timer); timer = null; state.nextAt = 0;
-  if (manual) { state.retries = 0; state.automaticStopped = false; }
-  state.syncing = true; renderStatus();
-  try {
-    const data = await loadDataset();
-    state.dataset = data; state.mode = 'live'; state.error = null; state.retries = 0; state.automaticStopped = false;
-    const cached = storageWrite(CACHE_KEY, JSON.stringify(data));
-    state.nextAt = 0;
-    if (manual) toast(cached ? '已同步到最新公开记录' : '已同步，但浏览器未允许保存离线缓存');
-  } catch (error) {
-    state.error = error.message;
-    const delay = retryDelay(error, state.retries);
-    if (delay !== null) { state.retries++; schedule(delay); }
-    else { state.automaticStopped = true; state.nextAt = 0; }
-    if (manual) toast('同步未完成，已保留本地数据');
-  } finally { state.syncing = false; renderAll(); }
-}
-
-$('refresh').addEventListener('click', () => sync(true));
+$('refresh').addEventListener('click', () => location.reload());
+$('more-signals').addEventListener('click', () => { state.signalShown += PAGE; renderSignals(); });
 $('filters').addEventListener('click', event => {
   const button = event.target.closest('[data-filter]');
   if (!button || button.dataset.filter === state.filter) return;
@@ -896,12 +1036,7 @@ document.addEventListener('visibilitychange', () => {
   if (!document.hidden) {
     if (Date.now() >= reloadAt) { location.reload(); return; }
     tick();
-    if (!state.syncing && !state.automaticStopped && state.nextAt && Date.now() >= state.nextAt) sync(false);
   }
-});
-window.addEventListener('online', () => {
-  // Reconnection never shortens an already scheduled five-minute recovery delay.
-  if (!document.hidden && !state.automaticStopped && state.nextAt && Date.now() >= state.nextAt) sync(false);
 });
 function scheduleLocalReload() {
   clearTimeout(reloadTimer);
@@ -917,15 +1052,7 @@ if (['Asia/Shanghai', 'local', 'UTC'].includes(preferredZone)) state.zone = pref
 $('timezone').value = state.zone;
 try { state.dataset = normalizeDataset(JSON.parse($('snapshot').textContent)); }
 catch { state.error = '内置快照无法读取'; }
-try {
-  const raw = storageRead(CACHE_KEY);
-  if (raw) {
-    const cached = normalizeDataset(JSON.parse(raw));
-    if (!state.dataset || Date.parse(cached.fetchedAt) >= Date.parse(state.dataset.fetchedAt)) {
-      state.dataset = cached; state.mode = 'cache';
-    }
-  }
-} catch { /* A corrupt or unavailable cache must not prevent loading the bundled snapshot. */ }
+// Old third-party-only browser caches must never replace the bundled direct-X evidence.
 renderAll();
 scheduleLocalReload();
 

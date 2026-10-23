@@ -18,7 +18,7 @@ export function inspectCodexPage(html) {
       throw new Error('Unexpected public Codex field.');
     }
   };
-  keys(data, ['schemaVersion', 'fetchedAt', 'coverage', 'status', 'records']);
+  keys(data, ['schemaVersion', 'fetchedAt', 'coverage', 'status', 'records', 'signals', 'sourceCheck']);
   if (data.schemaVersion !== 1 || !Number.isFinite(Date.parse(data.fetchedAt))
     || !Array.isArray(data.records) || data.records.length > 10000) throw new Error('Invalid public Codex snapshot.');
   keys(data.coverage, ['complete', 'rejected']);
@@ -42,7 +42,7 @@ export function inspectCodexPage(html) {
   };
   if (data.status.scheduled_reset) {
     const scheduled = data.status.scheduled_reset;
-    keys(scheduled, ['id', 'announced_at', 'scheduled_for', 'text', 'reset_type', 'source']);
+    keys(scheduled, ['id', 'announced_at', 'scheduled_for', 'text', 'reset_type', 'source', 'time_basis']);
     excerpt(scheduled.text);
     if (!['regular', 'banked'].includes(scheduled.reset_type)
       || (scheduled.scheduled_for !== null && !Number.isFinite(Date.parse(scheduled.scheduled_for)))
@@ -51,6 +51,7 @@ export function inspectCodexPage(html) {
       throw new Error('Invalid public Codex announcement.');
     }
     if (scheduled.source !== undefined) source(scheduled.source);
+    if (scheduled.time_basis !== undefined && !['x_author','upstream'].includes(scheduled.time_basis)) throw new Error('Invalid announcement time basis.');
   }
   if (data.status.active_watch) {
     keys(data.status.active_watch, ['text', 'forecast_window', 'expires_at']);
@@ -62,6 +63,33 @@ export function inspectCodexPage(html) {
       || !Number.isFinite(Date.parse(record.announced_at))) throw new Error('Invalid public Codex record.');
     excerpt(record.text);
     source(record.source);
+  }
+  if (data.sourceCheck !== undefined) {
+    const check = data.sourceCheck;
+    keys(check,['source','checkedAt','status','pagesRead','postsRead','coverage','limitation','historyStatus']);
+    if (check.source !== 'x_author' || !Number.isFinite(Date.parse(check.checkedAt))
+      || !['ok','partial','unavailable'].includes(check.status)
+      || !['ok','preserved'].includes(check.historyStatus)
+      || !Number.isSafeInteger(check.pagesRead) || check.pagesRead < 0 || check.pagesRead > 20
+      || !Number.isSafeInteger(check.postsRead) || check.postsRead < 0 || check.postsRead > 300
+      || typeof check.coverage !== 'string' || check.coverage.length > 300
+      || typeof check.limitation !== 'string' || check.limitation.length > 300) throw new Error('Invalid X source-check projection.');
+  }
+  if (data.signals !== undefined) {
+    if (!data.sourceCheck || !Array.isArray(data.signals) || data.signals.length > 160) throw new Error('Invalid X signals.');
+    for (const post of data.signals) {
+      keys(post,['id','author','url','publishedAt','text','contextId','truncated','kind','reason','resetType','excerpt']);
+      if (!/^\d{16,24}$/.test(post.id) || post.author !== 'thsottiaux'
+        || post.url !== `https://x.com/thsottiaux/status/${post.id}`
+        || !Number.isFinite(Date.parse(post.publishedAt))
+        || Math.abs(Date.parse(post.publishedAt) - Number((BigInt(post.id)>>22n)+1288834974657n)) > 1
+        || (post.contextId !== null && !/^\d{16,24}$/.test(post.contextId))
+        || typeof post.truncated !== 'boolean' || post.excerpt !== true
+        || !['scheduled','completed','announced','adjustment','uncertain'].includes(post.kind)
+        || !['not_confirmed','future_wording','limited_compensation','explicit_completion','completion_in_reset_thread','announcement_not_completion','needs_context','truncated_text','conflicting_followup'].includes(post.reason)
+        || !['regular','banked'].includes(post.resetType)) throw new Error('Invalid public author-post signal.');
+      excerpt(post.text);
+    }
   }
   return { fetchedAt: data.fetchedAt, records: data.records.length, publicProjection: true };
 }
