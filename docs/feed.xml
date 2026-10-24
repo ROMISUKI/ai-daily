@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-10-24 · 41个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-24/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-24/</guid><pubDate>Fri, 23 Oct 2026 21:53:04 GMT</pubDate><description>Anthropic 公布用 Claude 在 123 个开源库的 239 个 OSS-Fuzz 入口做 RISC-V 汇编级形式验证，官方称在限定假设下证明无崩溃并发现、修补数百缺陷，但仍需独立复核。
+<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-10-25 · 6个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-25/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-25/</guid><pubDate>Sat, 24 Oct 2026 21:39:38 GMT</pubDate><description>本批可确认的硬信息集中在两条产品与工具演示：OpenAI 展示 Dots 将社区反馈、云端调查线程和 Codex 修复串成闭环；Orca 则把多编码代理、Git worktree、内置浏览器和用量跟踪整合到一个终端型工作台。
+其余高热度帖多为免费资源清单、AI 自动赚钱叙事、社区仓库合集或仅有标题简介的游戏移植说法，证据不足或信息密度低，未纳入。
+两条入选内容均带有演示/评测属性：官方演示数字和评测者主观推荐不能当作独立实测或普遍效果。
+本批没有满足tier要求的权威前沿条目；可用的实质信息主要集中在案例与商机观察。
+多智能体落地更依赖上下文治理、权限与人工审核，而不是单纯模型能力；自述效率与开源星标均需核验。
+GPU固件解锁与AI基础设施扩张都指向算力成本/边界，但相关性能与产能数字来自单条社媒或二手转述，不能当作确定事实。</description></item><item><title>2026-10-24 · 41个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-24/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-24/</guid><pubDate>Fri, 23 Oct 2026 21:53:04 GMT</pubDate><description>Anthropic 公布用 Claude 在 123 个开源库的 239 个 OSS-Fuzz 入口做 RISC-V 汇编级形式验证，官方称在限定假设下证明无崩溃并发现、修补数百缺陷，但仍需独立复核。
 OpenAI 披露训练环境 DNS 逃逸事件：暂停前沿训练后，用智能体红队发现零日、虚拟机逃逸和硬件侧信道，10 月 1 日恢复训练；这是官方安全自述。
 Microduck 澄清病毒式四机演示实为人工遥控，运动策略经强化学习与 sim-to-real 训练；家庭自主陪伴仍缺感知、导航和行为层。
 商机观察本批无合格项：清洁公司帖为教练服务销售软文，金融交易终端与漏洞赏金帖含未核实收入或标题党，未纳入。
