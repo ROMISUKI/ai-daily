@@ -2,7 +2,6 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { publicReport, issuePage, sourceUrl, feedXml, aboutPage, archivePage } from './site.mjs';
 import { selectHighlights } from './streams.mjs';
-import { inspectCodexPage } from './codex-page.mjs';
 import { readFile } from 'node:fs/promises';
 import { runInNewContext } from 'node:vm';
 
@@ -154,15 +153,14 @@ test('implementation and action get primary emphasis while caveats remain visibl
   assert.ok(!html.includes('analysis-grid'));
 });
 
-test('Codex entry stays in the top-right navigation with correct relative links on every page', () => {
-  const enabled = { ...config, codexMonitor: true }, report = publicReport(sample());
-  for (const [html, prefix] of [[issuePage(report, enabled, true), './'], [issuePage(report, enabled), '../../'],
-    [archivePage([report], enabled), '../'], [aboutPage(enabled), '../']]) {
-    assert.ok(html.includes(`data-codex-entry href="${prefix}codex/"`));
-    const header = html.match(/<header class="site-header">([\s\S]*?)<\/header>/)[1];
-    assert.ok(header.includes('data-codex-entry'));
+test('the retired reset companion is absent from every navigation even with stale enablement settings', () => {
+  const stale = { ...config, codexMonitor: true }, report = publicReport(sample());
+  for (const html of [issuePage(report, stale, true), issuePage(report, stale), archivePage([report], stale), aboutPage(stale)]) {
+    assert.ok(!html.includes('data-codex-entry'));
+    assert.ok(!/href="[^"]*codex\//.test(html));
+    assert.ok(!html.includes('with-tools'));
+    assert.ok(html.includes('aria-label="主导航"'));
   }
-  assert.ok(!issuePage(report, config, true).includes('data-codex-entry'));
 });
 
 test('every shared page has one accessible back-to-top button outside its main content', () => {
@@ -196,50 +194,4 @@ test('back-to-top works without report filters, restores focus, and honors reduc
   assert.equal(scrolls[1].behavior, 'instant');
   window.scrollY = 0; windowEvents.get('pageshow')();
   assert.equal(button.hidden, true);
-});
-
-function companion(snapshot) {
-  return `<!doctype html><meta name="codex-reset-export" content="public-v1"><meta name="viewport" content="width=device-width"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src https://codex-resets.com"><div id="calendar"></div><div id="entries"></div><script id="snapshot" type="application/json">${JSON.stringify(snapshot)}</script>`;
-}
-const companionSnapshot = () => ({ schemaVersion: 1, fetchedAt: '2026-10-22T04:00:00.000Z',
-  coverage: { complete: true, rejected: 0 }, status: { scheduled_reset: null, active_watch: null }, records: [{
-    id: '123', reset_type: 'regular', announced_at: '2026-10-20T06:00:00.000Z', text: '公开公告节选',
-    source: { type: 'x_post', author: 'example', url: 'https://x.com/example/status/123' },
-  }] });
-
-test('companion publication accepts only the projected public schema and bounded excerpts', () => {
-  assert.equal(inspectCodexPage(companion(companionSnapshot())).records, 1);
-  for (const change of [value => { value.rawResponse = 'private'; }, value => { value.records[0].text = 'x'.repeat(281); },
-    value => { value.records[0].source.url = 'https://evil.invalid/upload'; },
-    value => { value.records[0].source.cookie = 'private'; }]) {
-    const value = companionSnapshot(); change(value);
-    assert.throws(() => inspectCodexPage(companion(value)));
-  }
-  assert.throws(() => inspectCodexPage(companion(companionSnapshot()) + '<script src="https://evil.invalid/script.js"></script>'));
-});
-
-test('scheduled announcements expose only audited metadata and safe original-post links', () => {
-  const value = companionSnapshot();
-  value.status.scheduled_reset = { id: '123', announced_at: '2026-10-22T06:55:54.000Z',
-    scheduled_for: '2026-10-22T17:00:00.000Z', text: 'Lands tomorrow before 10am PST.', reset_type: 'regular',
-    source: { type: 'x_post', author: 'thsottiaux', url: 'https://x.com/thsottiaux/status/123' } };
-  assert.equal(inspectCodexPage(companion(value)).records, 1);
-  const unknownTime = structuredClone(value); unknownTime.status.scheduled_reset.scheduled_for = null;
-  assert.doesNotThrow(() => inspectCodexPage(companion(unknownTime)));
-  for (const change of [scheduled => { scheduled.source.url = 'https://evil.invalid/'; },
-    scheduled => { scheduled.source.raw = 'private'; }, scheduled => { scheduled.rawResponse = 'private'; },
-    scheduled => { scheduled.announced_at = 'invalid'; }, scheduled => { scheduled.scheduled_for = 'invalid'; }]) {
-    const changed = structuredClone(value); change(changed.status.scheduled_reset);
-    assert.throws(() => inspectCodexPage(companion(changed)));
-  }
-});
-
-test('direct author signals are bounded, exact-source metadata rather than raw X responses', () => {
-  const value=companionSnapshot(),id='2113492187770175603';
-  value.sourceCheck={source:'x_author',checkedAt:'2026-10-23T08:20:03Z',status:'ok',pagesRead:2,postsRead:40,coverage:'近期本人主帖与回复',limitation:'',historyStatus:'ok'};
-  value.signals=[{id,author:'thsottiaux',url:`https://x.com/thsottiaux/status/${id}`,publishedAt:new Date(Number((BigInt(id)>>22n)+1288834974657n)).toISOString(),text:'Day 18/ that’s a reset!',contextId:null,truncated:false,kind:'announced',reason:'announcement_not_completion',resetType:'regular',excerpt:true}];
-  assert.doesNotThrow(()=>inspectCodexPage(companion(value)));
-  for(const change of [data=>{data.sourceCheck.rawResponse='private';},data=>{data.signals[0].author='other';},data=>{data.signals[0].url='https://evil.invalid/';},data=>{data.signals[0].text='x'.repeat(281);},data=>{data.signals[0].publishedAt='2026-01-01T00:00:00Z';},data=>{data.signals[0].cookies='private';}]){
-    const changed=structuredClone(value);change(changed);assert.throws(()=>inspectCodexPage(companion(changed)));
-  }
 });

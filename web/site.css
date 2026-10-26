@@ -47,8 +47,6 @@ button, summary { cursor: pointer; }
 .brand small { display: block; font-size: 9px; font-weight: 600; letter-spacing: .18em; margin-top: 7px; color: var(--muted); }
 .brand-mark { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; background: #163650; color: var(--cyan); border: 1px solid #477f9a; border-radius: 12px; font-size: 17px; letter-spacing: -.04em; }
 .site-header nav { display: flex; gap: 25px; font-size: 13px; color: var(--muted); }
-.site-header .codex-entry { color: var(--cyan); background: #162b45; border: 1px solid #315273; border-radius: 6px; padding: 5px 9px; margin: -6px 0; white-space: nowrap; }
-.site-header .codex-entry:hover { background: #1a3851; border-color: #4e8d9f; }
 main { max-width: 1180px; margin: auto; padding: 0 30px; }
 .issue-hero { padding: 34px 0 26px; }
 .hero-top { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
@@ -242,8 +240,7 @@ h1 em { font-style: normal; color: var(--blue); }
   .brand-mark { width: 36px; height: 36px; }
   .brand small { font-size: 8px; }
   .site-header nav { gap: 15px; font-size: 11px; }
-  .site-header nav a[href$="feed.xml"], .site-header nav.with-tools a[href$="about/"] { display: none; }
-  .site-header .codex-label { display: none; }
+  .site-header nav a[href$="feed.xml"] { display: none; }
   main { padding: 0 18px; }
   .issue-hero { padding-top: 25px; }
   .hero-heading { grid-template-columns: 1fr; gap: 0; }
