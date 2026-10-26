@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-10-26 · 42个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-26/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-26/</guid><pubDate>Mon, 26 Oct 2026 17:59:10 GMT</pubDate><description>可用的价值集中在桌面代理跨应用操作、VLM真实机器人时空排序评测，以及ASML设备供需/预付款的商机线索；三者证据均以单条帖子为主，需核验。
+<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-10-27 · 34个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-27/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-27/</guid><pubDate>Mon, 26 Oct 2026 21:52:19 GMT</pubDate><description>案例区较有信息量的是智能眼镜实时象棋提示链路，但仅见转述帖，未提供可核验代码或项目页，且涉及作弊与平台合规风险。
+带明显推广 CTA 的增长数据帖和课程式工具清单不宜当作已验证案例，未纳入。 Anthropic 的 S-1 属资本事件，未混入技术条目。
+Nebius与NVIDIA的机器人工作流提供了较具体的仿真—训练—评估链路，但仓库、视频、40%提效和客户部署均未核验。
+商机侧可保留AI数据中心硬件需求信号：Celestica增长与扩产计划强，但库存、资本开支和客户集中度同时抬升风险；其余互关帖、币圈教程和弱相关财报未收。
+本窗口可保留的实质发布集中在两件：OpenAI 官方推出 GPT-6.1 Terra，官方称其强化计算机使用并降低 API 价格；以及作者公开的 WebPerf Snippets 网页性能调试片段工具。
+GPT-6.1 Terra 目前只有官方标题与简介，缺少字幕、独立基准与画面核验；其能力、价格和可用范围应视为官方声明。
+WebPerf Snippets 展示了“测量片段 + Playwright CLI + MCP 交给 agent 解释”的轻量性能审计链路，但仓库与运行效果未在候选证据中核验。
+两个案例都把最终决定留给人工：法律工具输出备忘录和修订痕迹待律师确认，浏览器代理把回复和帖子保留为草稿；材料均未提供独立准确率、成本或安全审计。
+ego lite 教程含赞助披露，OpenAI 视频为官方介绍；两者都不能当作生产实测。</description></item><item><title>2026-10-26 · 42个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-26/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-26/</guid><pubDate>Mon, 26 Oct 2026 17:59:10 GMT</pubDate><description>可用的价值集中在桌面代理跨应用操作、VLM真实机器人时空排序评测，以及ASML设备供需/预付款的商机线索；三者证据均以单条帖子为主，需核验。
 可保留的信号主要是：省token插件要看缓存与子智能体带来的总成本；纯文本编曲DSL试图让音乐草稿可读、可diff、可被AI修改；年付税务产品的决策窗口受税季和 incumbent 分发能力制约。
 一条科技媒体视频简介展示了口播自动转 3D 成片的流程，但仅有标题与简介，不能当作独立实测或稳定生产能力。
 开源亮点集中在代理逆向、生产推理、安全审计和多CLI工作区，说明竞争正从模型本体转向工具链与工作流。
