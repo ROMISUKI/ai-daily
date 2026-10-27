@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-10-27 · 34个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-27/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-27/</guid><pubDate>Mon, 26 Oct 2026 21:52:19 GMT</pubDate><description>案例区较有信息量的是智能眼镜实时象棋提示链路，但仅见转述帖，未提供可核验代码或项目页，且涉及作弊与平台合规风险。
+<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-10-28 · 53个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-28/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-28/</guid><pubDate>Tue, 27 Oct 2026 22:02:55 GMT</pubDate><description>其余候选分别是加速器招募、Web3/NFT宣传帖和缺乏需求证据的销售观察，未纳入，避免把广告或观点当技术进展。
+高信息量内容集中在代理工具生态与 AI 基础设施财报解读：前者展示社区拼装链路，后者提供存储与供电需求信号，但均需降权核验。
+两条 Web3/NFT 推广帖流量高但缺少可验证技术细节，未纳入；AI 基础设施条目也不构成投资建议。
+案例侧 SurfCore 展示了 DSH 插件把同一人格与记忆映射到 QQ、B站和桌宠的多入口链路，并披露了目的机制、记忆衰减和语音方案；公开仓库可核验存在，但未运行或审计。
+其余候选包括标题党式工具清单、职业观点帖和财经财报解读，缺少可核验的技术变化或可落地商机链路，本轮未收入。
+AI代理落地案例集中在两类：借现有聊天入口分发知识型代理，以及用MCP/CLI、知识库和人工复核改造运营流程；收入、注册量和效率数字多为官方或作者自述。
+视频创作方向出现“生成+独立审查”组合，但测试数据、仓库链接与源码细节缺失，应按未验证线索处理。
+案例区两条都强调工作流：代理任务分派与量化研究回测，但需要权限隔离、人工复核和防过拟合。
+商机线索仅有Seagate财报解读，财务数字待官方核验，存储需求与周期风险需分开看。</description></item><item><title>2026-10-27 · 34个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-27/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-27/</guid><pubDate>Mon, 26 Oct 2026 21:52:19 GMT</pubDate><description>案例区较有信息量的是智能眼镜实时象棋提示链路，但仅见转述帖，未提供可核验代码或项目页，且涉及作弊与平台合规风险。
 带明显推广 CTA 的增长数据帖和课程式工具清单不宜当作已验证案例，未纳入。 Anthropic 的 S-1 属资本事件，未混入技术条目。
 Nebius与NVIDIA的机器人工作流提供了较具体的仿真—训练—评估链路，但仓库、视频、40%提效和客户部署均未核验。
 商机侧可保留AI数据中心硬件需求信号：Celestica增长与扩产计划强，但库存、资本开支和客户集中度同时抬升风险；其余互关帖、币圈教程和弱相关财报未收。
