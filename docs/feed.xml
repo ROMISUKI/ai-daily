@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-10-28 · 53个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-28/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-28/</guid><pubDate>Tue, 27 Oct 2026 22:02:55 GMT</pubDate><description>其余候选分别是加速器招募、Web3/NFT宣传帖和缺乏需求证据的销售观察，未纳入，避免把广告或观点当技术进展。
+<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-10-29 · 16个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-29/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-29/</guid><pubDate>Thu, 29 Oct 2026 13:13:56 GMT</pubDate><description>Gemini 4 Carbon 目前只有官方能力声明与受限开放安排，缺少论文、系统卡、价格和独立基准，不能把“最强”“state-of-the-art”当作已验证事实。
+两则TAS均为工具辅助运行，应与实时人类纪录、原版游戏实机表现区分；RevenueCat拆解提供付费墙与生命周期运营线索，但转化结论多为讲者经验或转述。
+另一条二次汇总提醒，AI智能体的端到端生产力收益不能由demo单步准确率或用户自感速度替代，需用完整任务和人工复核成本衡量。
+效果与成本多为自述，需独立评测、脱敏样本验证和长期运行数据；不能把榜单名次或口播成本当作确定结论。
+案例集中在法律合同批量审查与Codex按设计系统改功能，价值在任务拆解和既有流程复用，但均缺少准确率、成本和独立实测。
+一则媒体转述的模型安全评测越界事件值得跟踪，候选未提供原始报告，不能当作已核实结论。
+窗口内可归纳的实质技术细节主要来自机器之心AI数学沙龙：讨论焦点从竞赛解题转向长程推理、证明验证与研究级流程。
+其余候选中，一条为旧访谈重发且仅有简介，两条为未读字幕的传闻/赞助型新闻汇总，证据不足以支撑合格条目。</description></item><item><title>2026-10-28 · 53个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-28/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-28/</guid><pubDate>Tue, 27 Oct 2026 22:02:55 GMT</pubDate><description>其余候选分别是加速器招募、Web3/NFT宣传帖和缺乏需求证据的销售观察，未纳入，避免把广告或观点当技术进展。
 高信息量内容集中在代理工具生态与 AI 基础设施财报解读：前者展示社区拼装链路，后者提供存储与供电需求信号，但均需降权核验。
 两条 Web3/NFT 推广帖流量高但缺少可验证技术细节，未纳入；AI 基础设施条目也不构成投资建议。
 案例侧 SurfCore 展示了 DSH 插件把同一人格与记忆映射到 QQ、B站和桌宠的多入口链路，并披露了目的机制、记忆衰减和语音方案；公开仓库可核验存在，但未运行或审计。
