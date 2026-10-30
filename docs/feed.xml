@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-10-30 · 49个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-30/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-30/</guid><pubDate>Thu, 29 Oct 2026 22:17:21 GMT</pubDate><description>商机侧出现两类线索：AI算力扩张对存储、设备交期和先进封装的供应链传导，以及极早期创业融资窗口；前者为第三方财报解读，后者为项目方招募口径，均需核验。
+<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-10-31 · 37个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-31/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-31/</guid><pubDate>Fri, 30 Oct 2026 23:13:31 GMT</pubDate><description>文档碎片重建的CV流程有参考价值，但候选仅有帖子综述，软件、开源项目与“90%+”准确率均需核验。
+另一条值得跟踪的是Agent Harness工程：二手长帖称不改LLM、只改外围控制与验证即可提升编码智能体基准，但需回原始研究核验。
+MecAgent的CAD数据采集争议尚缺一手证据，却清楚暴露企业采用CAD AI时的数据合规、审计与本地化门槛。
+其余候选主要是产品宣传、域名/平台招商式长帖或无关社会事件，信息不足以支撑权威前沿或商机判断，未纳入。
+其余候选多为活动召集、产品折扣、SEO建议或岗位广告，缺少可核验的技术变化与需求证据，未纳入。
+企业案例和会议演示均披露了具体使用链路，但多为发布者或演讲者口径，缺少独立评测与ROI/性能核验。
+交易高收益承诺帖和泛泛行业焦虑帖无实质信息或含卖课引流，已排除。
+TokenEconomizer 以本地黑盒插件切入编码代理 token 成本，但降本与 Pass@1 数据仅为原帖声称，未核验官方公告或代码库。
+OpenAI“指数时间假设为假”目前只是视频标题/简介层面的高传播线索，不能当作已确认的理论结论。</description></item><item><title>2026-10-30 · 49个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-30/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-30/</guid><pubDate>Thu, 29 Oct 2026 22:17:21 GMT</pubDate><description>商机侧出现两类线索：AI算力扩张对存储、设备交期和先进封装的供应链传导，以及极早期创业融资窗口；前者为第三方财报解读，后者为项目方招募口径，均需核验。
 其余候选多为观点清单、未上线应用或带代币推广的信息，证据不足，未纳入日报。
 Android MCP 把移动应用能力变成系统智能体可调用的工具，App Functions 进入 beta，但 Connected Apps 仍为 preview，设备覆盖与安全边界待验证。
 Mistral Large 4 的发布帖强调开放权重、自有数据中心训练和网络安全，但缺少模型卡与基准，暂不能当作独立实测。

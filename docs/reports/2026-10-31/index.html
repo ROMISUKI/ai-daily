@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'"><meta name="color-scheme" content="dark"><meta name="theme-color" content="#090f1b"><title>2026-10-31 · AI 科技日报</title><link rel="canonical" href="https://romisuki.github.io/ai-daily/reports/2026-10-31/"><link rel="stylesheet" href="../../assets/site.css"><link rel="alternate" type="application/rss+xml" title="AI 科技日报" href="../../feed.xml"><script src="../../assets/site.js" defer></script></head><body><header class="site-header"><a class="brand" href="../../"><span class="brand-mark" aria-hidden="true">AI</span><span>科技日报<small>THE DAILY SIGNAL</small></span></a><nav aria-label="主导航"><a href="../../#today">最新一期</a><a href="../../archive/">历史归档</a><a href="../../about/">关于</a><a href="../../feed.xml">RSS</a></nav></header><main><section class="issue-hero" id="today">
+      <div class="hero-top"><span class="edition">历史日报 / 2026-10-31</span><a class="text-link" href="../../archive/">按日期回看 ↗</a></div>
+      <div class="hero-heading"><div><span class="hero-kicker">RESEARCH / BUILD / OPPORTUNITY</span><h1>看见前沿，拆开玩法。<br><em>把信号变成可验证的想法。</em></h1><p class="intro">前沿有据，玩法有解，机会有边界。先读重点，再展开每一条实现与来源。</p></div><div class="edition-mark" aria-hidden="true">DAILY<br><span>SIGNAL</span><i>↗</i></div></div>
+      <div class="issue-stats"><span><strong>37</strong>条内容</span><span><strong>108</strong>候选线索</span><span class="window">10/30 05:00 — 10/31 05:00<small>北京时间 · 严格24小时窗口</small></span></div>
+    </section>
+
+    <nav class="stream-overview" aria-label="日报分区"><a class="stream-card card-frontier" href="#frontier" data-clear-filters><span class="section-dot" aria-hidden="true"></span><span class="stream-label"><small>01</small>权威前沿</span><b>8</b></a><a class="stream-card card-cases" href="#cases" data-clear-filters><span class="section-dot" aria-hidden="true"></span><span class="stream-label"><small>02</small>案例与玩法</span><b>25</b></a><a class="stream-card card-opportunities" href="#opportunities" data-clear-filters><span class="section-dot" aria-hidden="true"></span><span class="stream-label"><small>03</small>商机观察</span><b>4</b></a></nav>
+    <section class="spotlights" aria-labelledby="spotlight-heading"><div class="block-heading"><div><span class="eyebrow">START HERE</span><h2 id="spotlight-heading">本期先读<span>少一点寻找，多一点重点</span></h2></div><span class="reading-label">3 条阅读入口</span></div><div class="spotlight-grid"><a class="spotlight-card spotlight-frontier spotlight-lead" href="#story-1" data-spotlight-link data-clear-filters><div class="spotlight-meta"><span>权威前沿</span><span class="spotlight-number">01 ↗</span></div><h3>英伟达 Nemotron Retriever 开放检索模型与配方</h3><p>AI代理每次额外搜索都会消耗token；若检索器能在保持准确率的同时减少无效检索，会直接影响代理成本与延迟。官方对比值得关注，但需独立复现。</p><small>优先展开实现或需求依据</small><span class="spotlight-action">展开这条内容 <span aria-hidden="true">→</span></span></a><a class="spotlight-card spotlight-cases" href="#story-11" data-spotlight-link data-clear-filters><div class="spotlight-meta"><span>案例与玩法</span><span class="spotlight-number">11 ↗</span></div><h3>AI生成《忍者龙剑传》合法输入文件，模拟快于人类纪录</h3><p>展示LLM或智能体在长时序搜索、规则约束、游戏内存读取和工具编排上的组合能力；比单次演示更接近可复核的TAS工程，但也凸显模拟输入、人类规则与排行榜记录之间的边界。</p><small>优先展开实现或需求依据</small><span class="spotlight-action">展开这条内容 <span aria-hidden="true">→</span></span></a><a class="spotlight-card spotlight-opportunities" href="#story-34" data-spotlight-link data-clear-filters><div class="spotlight-meta"><span>商机观察</span><span class="spotlight-number">34 ↗</span></div><h3>CAD智能体免费层数据采集争议指向合规与本地化需求</h3><p>CAD文件含零件、装配、特征树与设计意图，是企业核心IP。若AI工具数据条款不清，工程团队采用会受IT/法务限制，催生本地化、审计与数据防泄漏需求。</p><small>优先展开实现或需求依据</small><span class="spotlight-action">展开这条内容 <span aria-hidden="true">→</span></span></a></div><p class="selection-note">按现有来源覆盖与分析完整度辅助选择，不是事实认证、全局重要性排名或投资评级。</p></section>
+    <section class="takeaways"><div><span class="eyebrow">THE BIG PICTURE</span><h2>抓住本期信号</h2></div><div><ul><li>文档碎片重建的CV流程有参考价值，但候选仅有帖子综述，软件、开源项目与“90%+”准确率均需核验。</li><li>另一条值得跟踪的是Agent Harness工程：二手长帖称不改LLM、只改外围控制与验证即可提升编码智能体基准，但需回原始研究核验。</li><li>MecAgent的CAD数据采集争议尚缺一手证据，却清楚暴露企业采用CAD AI时的数据合规、审计与本地化门槛。</li></ul><details class="more-takeaways"><summary>展开其余 6 条观察</summary><ul><li>其余候选主要是产品宣传、域名/平台招商式长帖或无关社会事件，信息不足以支撑权威前沿或商机判断，未纳入。</li><li>其余候选多为活动召集、产品折扣、SEO建议或岗位广告，缺少可核验的技术变化与需求证据，未纳入。</li><li>企业案例和会议演示均披露了具体使用链路，但多为发布者或演讲者口径，缺少独立评测与ROI/性能核验。</li><li>交易高收益承诺帖和泛泛行业焦虑帖无实质信息或含卖课引流，已排除。</li><li>TokenEconomizer 以本地黑盒插件切入编码代理 token 成本，但降本与 Pass@1 数据仅为原帖声称，未核验官方公告或代码库。</li><li>OpenAI“指数时间假设为假”目前只是视频标题/简介层面的高传播线索，不能当作已确认的理论结论。</li></ul></details></div></section>
+    <section class="filter-panel" aria-label="筛选日报"><label class="search"><span>检索本期</span><input type="search" id="search" placeholder="模型、插件、MIDI、客户需求…" autocomplete="off"></label><div class="filters"><button type="button" class="active" data-filter="all" aria-pressed="true">全部 37</button><button type="button" data-filter="模型与研究" aria-pressed="false">模型与研究</button><button type="button" data-filter="开发工具与智能体" aria-pressed="false">开发工具与智能体</button><button type="button" data-filter="机器人与硬件" aria-pressed="false">机器人与硬件</button><button type="button" data-filter="应用与产业" aria-pressed="false">应用与产业</button><button type="button" data-filter="技术解读" aria-pressed="false">技术解读</button><button type="button" data-filter="音视频与创作" aria-pressed="false">音视频与创作</button><button type="button" data-filter="游戏与仿真" aria-pressed="false">游戏与仿真</button><button type="button" data-filter="视觉与自动化" aria-pressed="false">视觉与自动化</button><button type="button" data-filter="产品与生意" aria-pressed="false">产品与生意</button></div><p id="filter-result" class="sr-only" aria-live="polite"></p></section>
+    <div class="daily-layout"><aside class="issue-jump"><b>展开阅读</b><a href="#frontier" data-clear-filters>权威前沿<span>8</span></a><a href="#cases" data-clear-filters>案例与玩法<span>25</span></a><a href="#opportunities" data-clear-filters>商机观察<span>4</span></a><p>高光条目带有<br><span class="priority-badge">分区先读</span><br>可先读，再展开其余内容。</p></aside><div class="stream-content"><section class="stream-section stream-frontier" id="frontier" data-stream><header class="section-heading"><span class="section-number">01</span><div><span class="eyebrow">FRONTIER</span><h2>权威前沿<small>8 条</small></h2><p>一手来源里的模型、研究与工程进展。</p></div></header><div class="topic-list"><article id="story-1" class="topic stream-topic topic-featured" data-topic data-category="模型与研究" data-section="权威前沿" data-highlight>
+    <div class="topic-index" aria-hidden="true">01</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">模型与研究</span><span class="priority-badge">分区先读</span></div>
+      <h3>英伟达 Nemotron Retriever 开放检索模型与配方</h3>
+      <p class="summary">英伟达官方账号称，Nemotron Retriever 可与另一开源检索栈回答同一组问题，并比较检索到的证据、准确率与 token 用量；相关开放模型和配方已放在 Hugging Face。该帖的核心信息是检索效率与证据质量，而不是单一模型参数。原帖附视频未核验，也没有给出独立基准、数据集细节或完整结果，因此只能视为官方披露的对比展示。</p>
+      <div class="meaning"><b>为什么值得看</b><p>AI代理每次额外搜索都会消耗token；若检索器能在保持准确率的同时减少无效检索，会直接影响代理成本与延迟。官方对比值得关注，但需独立复现。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>官方称用同一组问题对比 Nemotron Retriever 与另一开源检索栈，展示各自检索到的证据、准确率和token用量，并提供开放模型与配方。未披露检索架构、训练数据、评测集和统计方法。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>在公开模型与配方可获取后，可选一组自有问答或代理检索任务，固定候选文档与提示词，记录准确率、证据命中率和token消耗，做小规模复现对比。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：英伟达官方帖文自述；所附视频/图片未核验，未做独立基准复现。</p></section><section><h4>成本与风险</h4><p>需要GPU/推理与评测成本；依赖公开模型和配方的可用性、许可证及数据质量；官方对比可能存在选型偏差，不能直接外推生产效果。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>未核验视频和完整评测；无独立第三方结果，准确率与token优势均不应视为已证实。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2115962853463396395" target="_blank" rel="noopener noreferrer">X · @NVIDIAAI ↗</a><time datetime="2026-10-30T00:23:51.000Z">10/30 08:23</time><p>已读取原帖正文；所附视频/图片未核验</p></li></ul></details>
+    </div>
+  </article><article id="story-2" class="topic stream-topic" data-topic data-category="应用与产业" data-section="权威前沿">
+    <div class="topic-index" aria-hidden="true">02</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">应用与产业</span></div>
+      <h3>OpenAI 发布 Private Intelligence 企业数据控制方案</h3>
+      <p class="summary">OpenAI 官方账号称，Private Intelligence 让企业在使用其最强模型时获得更强的数据控制，并称这些保护是与部分最大客户紧密合作构建，目标是让前沿AI用于最敏感的业务工作。帖文未说明具体技术架构、部署方式、价格、可用地区或独立安全审计结果。</p>
+      <div class="meaning"><b>为什么值得看</b><p>企业采用前沿模型的主要障碍之一是敏感数据控制。若官方方案能落地，可能扩大AI在高合规场景的使用，但目前只有产品层面的表述，不能当作安全能力已获证明。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>官方仅披露：为企业提供更强数据控制，并与大客户共同构建防护；未说明加密、隔离、日志、权限、模型调用或数据留存的具体实现。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>若面向企业评估，可先收集官方文档与合规材料，用非敏感样本做权限、日志、数据留存和删除流程的桌面演练，再决定是否小范围试点。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：OpenAI官方帖文；视频/图片未核验，未查阅产品文档或安全审计。</p></section><section><h4>成本与风险</h4><p>成本、部署依赖和合同条款未知；企业需关注数据驻留、访问控制、审计、模型滥用与供应商锁定；官方宣传不等于独立安全认证。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>缺乏技术细节和第三方验证；不能确认功能可用性、价格或合规覆盖范围。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2116186509384815084" target="_blank" rel="noopener noreferrer">X · @OpenAI ↗</a><time datetime="2026-10-30T15:12:35.000Z">10/30 23:12</time><p>已读取原帖正文；所附视频/图片未核验</p></li></ul></details>
+    </div>
+  </article><article id="story-3" class="topic stream-topic" data-topic data-category="开发工具与智能体" data-section="权威前沿">
+    <div class="topic-index" aria-hidden="true">03</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">开发工具与智能体</span></div>
+      <h3>Siemens EDA用NeMo Gym改进芯片设计智能体验证</h3>
+      <p class="summary">NVIDIA官方X称，Siemens EDA团队用NeMo Gym检查芯片设计智能体生成的工程文件、追踪错误并改进智能体技能与工具描述。在其标准单元表征基准上，官方称综合验证分数由约55%升至约95%，智能体轮次减少66%，输出token减少64%。这显示评测与验证闭环可能比单纯换模型更能提升工程智能体可靠性，但数据为厂商自述，尚未独立复现。</p>
+      <div class="meaning"><b>为什么值得看</b><p>工程智能体落地的瓶颈常在验证、纠错和工具描述质量，而非只靠更强模型。若该闭环可复现，可能降低芯片设计流程中的人工审查与无效交互成本。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>来源披露的链路是：智能体生成工程文件→NeMo Gym执行检查与验证→追踪错误→回写改进智能体技能和工具说明→再次评测；标准单元表征基准用于比较修改前后的验证分数、轮次和token消耗。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>可用公开或自建小基准复现“验证—错误归因—工具描述修订”闭环，记录通过率、轮次与token；不执行来源中的外部代码。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：NVIDIA官方帖给出方法和指标；性能数字均为来源方口径，未独立核验，技术博客直链和视频内容未逐项核验。</p></section><section><h4>成本与风险</h4><p>依赖专有EDA流程、基准与NeMo Gym；验证环境搭建和专家标注成本较高；厂商基准可能过拟合；芯片设计数据需合规隔离。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅有NVIDIA官方X帖正文；未读取技术博客、未独立测试，不能把指标视为跨场景保证。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2116236342653026706" target="_blank" rel="noopener noreferrer">X · @NVIDIAAI ↗</a><time datetime="2026-10-30T18:30:36.000Z">10/31 02:30</time><p>已读取原帖正文；所附视频/图片未核验</p></li></ul></details>
+    </div>
+  </article><article id="story-4" class="topic stream-topic" data-topic data-category="模型与研究" data-section="权威前沿">
+    <div class="topic-index" aria-hidden="true">04</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">模型与研究</span></div>
+      <h3>英伟达发布9.6M参数多语言音频降噪模型RE-USE</h3>
+      <p class="summary">英伟达AI官方账号宣布，研究者推出开放多语言NemotronLabs RE-USE模型，用于清理背景噪声、回声和其他音频失真，以提升语音清晰度；官方称参数量仅9.6M，并提供Hugging Face演示与模型下载。当前可确认的是发布意图与入口线索，尚不能据帖文判断降噪质量、语言覆盖、推理延迟或许可证细节。</p>
+      <div class="meaning"><b>为什么值得看</b><p>小参数语音增强模型若能在端侧或低成本服务中稳定运行，可降低会议、通话和录音降噪的部署门槛；9.6M规模也便于与实时链路结合。但目前只是官方发布信息，实际效果仍需复现和横向测试。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>官方描述为对含噪语音做背景噪声、回声与失真清理。具体网络结构、训练数据、损失函数、语言列表和推理开销未在候选正文中披露，不能推断。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>从官方Hugging Face页面获取模型卡与许可，选取少量自有含噪语音与常见降噪基线做同等条件对比，记录语言、噪声类型、延迟和显存占用；不执行未审查代码。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：功能、参数量、开放多语言及Hugging Face入口来自英伟达官方帖；未披露技术细节，也未核验演示音频或模型卡。</p></section><section><h4>成本与风险</h4><p>需承担模型下载、推理硬件与评测人力成本；许可证、商用限制、语言偏差、回声场景泛化和实时性能均待核验。官方演示不等于独立实测。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅读取原帖正文，未读取模型卡或论文，未核验视频音频，未运行模型；参数量与功能为官方称，效果和成本不可据此确认。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2116262634349818190" target="_blank" rel="noopener noreferrer">X · @NVIDIAAI ↗</a><time datetime="2026-10-30T20:15:04.000Z">10/31 04:15</time><p>已读取原帖正文；所附视频/图片未核验</p></li></ul></details>
+    </div>
+  </article><article id="story-5" class="topic stream-topic" data-topic data-category="技术解读" data-section="权威前沿">
+    <div class="topic-index" aria-hidden="true">05</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">技术解读</span></div>
+      <h3>Two Minute Papers 介绍 OpenAI“指数时间假设为假”论文</h3>
+      <p class="summary">Two Minute Papers 发布视频，简介称 OpenAI 的论文《The Exponential-Time Hypothesis is False》可获取，视频标题则用“OpenAI 声称完成了不可能的事”概括。若论文主张成立，将触及计算复杂性理论中对困难问题下界的核心假设，影响算法、密码学与 AI 理论讨论；但目前仅有视频元数据，尚未读取论文、字幕或画面。</p>
+      <div class="meaning"><b>为什么值得看</b><p>ETH 是许多复杂性下界与算法难度论证的基石；若被推翻或修正，影响远超单一模型，需同行评审与可复现证明。视频标题有传播性，不宜当作已确认结论。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>视频为解读类内容；简介只给出论文题目与链接，未提供可核验的证明路径。未读论文，无法说明其定义、归约或证明步骤。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>直接阅读论文摘要、定义与证明，查同行评审/复现讨论；不把视频标题当结论。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：仅标题与简介；简介给出 OpenAI 论文题目，未读字幕、论文或画面。</p></section><section><h4>成本与风险</h4><p>理论验证依赖专家审阅，公开讨论可能滞后；若定义或计算模型前提不同，结论适用范围有限；媒体标题可能夸大。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅读取标题/简介，未读字幕、未核验视频画面，也未读论文；不能确认 OpenAI 是否正式主张、证明是否成立或是否已同行评审。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://www.youtube.com/watch?v=CWdTBLsbaQs" target="_blank" rel="noopener noreferrer">YouTube · Two Minute Papers ↗</a><time datetime="2026-10-30T15:57:16.000Z">10/30 23:57</time><p>已读取公开视频标题/简介及精确发布时间；尚未读取字幕，未核验视频画面</p></li></ul></details>
+    </div>
+  </article><article id="story-6" class="topic stream-topic" data-topic data-category="机器人与硬件" data-section="权威前沿">
+    <div class="topic-index" aria-hidden="true">06</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">机器人与硬件</span></div>
+      <h3>智元创新日展示八类物理AI应用与Worken概念</h3>
+      <p class="summary">2026智元创新日上，讲者梳理八类具身智能部署态应用，包括机器人越障与格斗、拼装积木、全模态端到端交互模型WITA-OMNI、远征A3自主充电、脑机接口控制灵犀X2、灵巧手、数据采集、重载机器人G2 Max和舞蹈复刻。活动还提出以“有效智能工时”（Work Token/Worken）衡量物理AI效用。</p>
+      <div class="meaning"><b>为什么值得看</b><p>它把关注点从单点演示转向部署态应用和效用度量；若Worken能落地，可能影响具身智能的评测与商业化口径。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>简介只列出应用与模型名称，未披露WITA-OMNI架构、训练数据、控制链路或Worken计算方法；现有材料无法核验这些应用是否已真实部署。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>可先梳理官方公开资料，确认WITA-OMNI、A3充电与Worken是否有独立技术说明或可复现评测。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：仅标题/简介；视频正文未读取，画面与现场演示未逐帧核验。</p></section><section><h4>成本与风险</h4><p>依赖官方后续披露；活动展示不等同于规模化部署，Worken作为新指标尚缺定义与第三方验证，存在宣传口径风险。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅基于候选简介，未看完整视频，不能确认八项应用的实际完成度、成功率或部署范围；Work Token为活动方提法。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://www.bilibili.com/video/BV1tbxe6rEAS" target="_blank" rel="noopener noreferrer">B站 · 同济子豪兄 ↗</a><time datetime="2026-10-30T10:54:02.000Z">10/30 18:54</time><p>仅标题/简介，尚未读取视频正文</p></li></ul></details>
+    </div>
+  </article><article id="story-7" class="topic stream-topic" data-topic data-category="模型与研究" data-section="权威前沿">
+    <div class="topic-index" aria-hidden="true">07</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">模型与研究</span></div>
+      <h3>媒体称有限单群分类定理完成4310万行Lean形式化</h3>
+      <p class="summary">B站量子位Daily 的标题/简介称，Axiom 让 AI 与数学家协作，用 24 天把有限单群分类定理转成 4310 万行 Lean 代码，并已通过计算机验证；该定理据称由上百位学者积累数十年。若属实，这代表大型数学证明形式化与机器校验的一次规模跃迁；但目前只有媒体标题/简介，未读取视频正文，也未取得论文、代码库或验证报告。</p>
+      <div class="meaning"><b>为什么值得看</b><p>大型数学证明形式化长期受人力与工程成本限制；若 AI 能显著缩短形式化周期，将影响数学知识可验证性与 AI 数学研究。但当前仅媒体转述，不能当作独立实测或已审计成果。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>标题/简介披露的链路是：AI 与数学家协作，将既有证明转写为 Lean 代码，再交由计算机逐行验证。具体模型、交互方式、代码生成与人工审核比例、验证覆盖范围均未披露。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>应优先查找作者团队论文、Lean仓库、CI验证记录和独立数学家评论；在获得原始材料前不引用性能数字作为确定结论。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：仅有量子位Daily标题与简介；未读取视频正文、论文或代码。“24天”“4310万行”“通过验证”均为媒体说法，未独立核验；AI贡献比例和验证覆盖范围属于未知。</p></section><section><h4>成本与风险</h4><p>大型形式化依赖长期专家协作与Lean工程维护；算力与人力成本未披露；若验证范围或代码来源不清，可复现性和学术价值存疑；媒体标题可能夸大AI贡献比例。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅标题/简介，尚未读取视频正文；无法确认Axiom角色、验证覆盖范围和代码质量；“人类史上最大”等表述不可当事实。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://www.bilibili.com/video/BV1NuxY6iExj" target="_blank" rel="noopener noreferrer">B站 · 量子位Daily ↗</a><time datetime="2026-10-30T10:10:00.000Z">10/30 18:10</time><p>仅标题/简介，尚未读取视频正文</p></li></ul></details>
+    </div>
+  </article><article id="story-8" class="topic stream-topic" data-topic data-category="应用与产业" data-section="权威前沿">
+    <div class="topic-index" aria-hidden="true">08</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">应用与产业</span></div>
+      <h3>机器之心称 Anthropic、Google 调整面试：从算法题转向 AI 代码审查</h3>
+      <p class="summary">机器之心官方视频简介称，Anthropic 取消 LeetCode 式算法测试、Google 允许面试者用 Gemini 找 Bug，大厂面试正转向考察候选人能否与 AI 协作、读懂 AI 生成代码并发现深层漏洞。若属实，招聘评价会从手写算法转向代码审计和人机协同；但当前只有标题/简介，未读视频，也未核验两家公司的官方公告，具体范围和实施时间待确认。</p>
+      <div class="meaning"><b>为什么值得看</b><p>它反映AI编程工具进入招聘流程后，企业可能更看重审查与协作能力，而非单纯刷题；这会牵动候选人准备方式和工程团队用人标准。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>简介描述的链路是：面试官给出或让候选人用AI生成代码，候选人借助Gemini等工具定位Bug、审查复杂逻辑，面试评价转向AI协作、代码审计和漏洞识别。未披露具体题目、评分标准或试点范围。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>低成本验证：分别检索Anthropic、Google招聘页面和官方博客，确认是否有面试形式调整；再用小样本面试官访谈核对评分维度，不把媒体说法当既定政策。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：机器之心媒体简介提出相关变化；未读视频正文，未取得Anthropic/Google官方公告，企业实践细节为待核验信息。</p></section><section><h4>成本与风险</h4><p>若企业跟进，需要重新设计题库、评分标准和防作弊流程；候选人可能因工具可及性不同产生不公平，AI生成代码的版权、安全和隐私风险也需治理；媒体标题可能放大趋势。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅标题/简介，未读视频；Anthropic、Google相关说法未获官方来源核验；不能据此判断所有大厂或所有岗位都已改变。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://www.bilibili.com/video/BV1VZxi68E9K" target="_blank" rel="noopener noreferrer">B站 · 机器之心官方 ↗</a><time datetime="2026-10-30T12:59:10.000Z">10/30 20:59</time><p>仅标题/简介，尚未读取视频正文</p></li></ul></details>
+    </div>
+  </article></div></section><section class="stream-section stream-cases" id="cases" data-stream><header class="section-heading"><span class="section-number">02</span><div><span class="eyebrow">BUILD & PLAY</span><h2>案例与玩法<small>25 条</small></h2><p>从有趣效果，拆到工具链、实现和复现边界。</p></div></header><div class="topic-list"><article id="story-9" class="topic stream-topic" data-topic data-category="视觉与自动化" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">09</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">视觉与自动化</span></div>
+      <h3>文档碎片重建：计算机视觉“反碎纸”流程解析</h3>
+      <p class="summary">一条技术帖梳理了被切碎或撕毁文档的数字重建：先高分辨率扫描碎片，再提取边缘、纸张纹理、文字行和墨迹等特征，用图匹配或神经网络寻找拼接对，最后用OCR/语言模型检查语义连贯性。帖文还点名商业取证软件、开源项目和自监督模型，并称复杂场景准确率可超过90%，但这些说法没有附链接或独立验证。</p>
+      <div class="meaning"><b>为什么值得看</b><p>它把“数字拼图”拆成可理解的CV流水线，说明文档取证不只是图像拼接，还依赖边缘匹配、语义校验和高质量扫描；对档案修复、取证和碎片识别有参考价值。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>来源描述的链路为：暗色背景高分辨率数字化→提取切割轮廓、纸张纹理、文字行/字体/墨迹→基于图论或神经网络的边缘匹配→OCR/LLM语义检查。高级微粒碎纸成功率会显著下降。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>低成本验证可先做条状切纸的小样本：固定扫描分辨率与背景，手工标注若干真实拼接对，比较边缘特征+图匹配基线与OCR语义校验的增益，记录成功率和人工复核时间。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：流程、软件和“超过90%”等说法均来自作者帖文；未提供项目链接、论文、数据集或可复现实验，属于未核验的技术综述。</p></section><section><h4>成本与风险</h4><p>需要高分辨率扫描、标注和计算资源；微粒碎纸、混合文档和纸张形变会显著增加难度；用于取证需保证证据链、隐私与合规，开源许可证和商业软件授权也需核查。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅读到原帖文字，未核验任何软件、项目或准确率；不能把90%+视为通用性能。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2116208486715461830" target="_blank" rel="noopener noreferrer">X · @bokipop_034 ↗</a><time datetime="2026-10-30T16:39:55.000Z">10/31 00:39</time><p>已读取原帖正文</p></li></ul></details>
+    </div>
+  </article><article id="story-10" class="topic stream-topic" data-topic data-category="技术解读" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">10</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">技术解读</span></div>
+      <h3>不改模型，Agent Harness工程被指显著提升编码智能体</h3>
+      <p class="summary">X长帖归纳LangChain等研究称，仅改智能体外围harness，LangChain编码智能体在Terminal-Bench 2.0从52.8%升至66.5%，排名从30名外进入前5，未更换LLM。帖子将harness拆为执行循环、工具工程、上下文、记忆状态、控制评测五层，并举例完成前校验与循环检测。该结果为二手归纳，需回原始研究核验。</p>
+      <div class="meaning"><b>为什么值得看</b><p>说明智能体能力不只由模型决定，工具权限、上下文管理、验证与循环检测等工程层可带来显著差异，也给开发工具、评测和运行框架带来空间。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>来源披露链路：准备上下文→调用LLM→检查权限→执行工具→返回结果→循环；在完成前要求对照原始任务验证，并检测反复编辑同一文件等无进展循环。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>可固定同一模型，在开源编码任务集上对基础循环与加入完成校验、循环检测、进度文件的harness做A/B，记录通过率和成本。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露但属二手归纳：X用户转述LangChain、Anthropic及开源项目；52.8%→66.5%等数字来自其转述，未回原始论文或博客逐项核验。</p></section><section><h4>成本与风险</h4><p>需要评测环境、工具沙箱与人工检查；基准分数可能因提示和任务集过拟合；权限控制不当会带来执行风险；商业工具集成有成本。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅读原帖正文；未读Terminal-Bench原始结果或LangChain完整研究，不能确认排名和数字。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2116269384926928950" target="_blank" rel="noopener noreferrer">X · @MaryamMiradi ↗</a><time datetime="2026-10-30T20:41:54.000Z">10/31 04:41</time><p>已读取原帖正文；所附视频/图片未核验</p></li></ul></details>
+    </div>
+  </article><article id="story-11" class="topic stream-topic topic-featured" data-topic data-category="游戏与仿真" data-section="案例与玩法" data-highlight>
+    <div class="topic-index" aria-hidden="true">11</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">游戏与仿真</span><span class="priority-badge">分区先读</span></div>
+      <h3>AI生成《忍者龙剑传》合法输入文件，模拟快于人类纪录</h3>
+      <p class="summary">Bears Gaming Den展示一项实验：Claude相关工具从已公布TAS路线出发，在限制连按、禁止对向键等人类规则下，生成NES《忍者龙剑传》Any%输入文件，在BizHawk回放为11:25.704，比其引用的11:32.183人类纪录快6.479秒；另一AI从开机逐帧复核。作者明确它不是实时人类游玩，不能上排行榜，也不是最佳TAS；输入文件和代码尚称将发布。</p>
+      <div class="meaning"><b>为什么值得看</b><p>展示LLM或智能体在长时序搜索、规则约束、游戏内存读取和工具编排上的组合能力；比单次演示更接近可复核的TAS工程，但也凸显模拟输入、人类规则与排行榜记录之间的边界。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>作者称，先让Claude搭建BizHawk帧级桥接，能单帧步进、存档读档和读取内存；以公开TAS路线为起点，去除人类禁用输入并限制到每秒最多12次按键，再按关卡从开机起逐步搜索。遇到敌人全局计数器、鸟生成时机和Boss延迟等，进行大规模枚举并编写鸟行为模拟器，最后由另一AI用独立工具逐帧重放校验。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>待作者放出输入文件和代码后，在自有合法ROM与BizHawk版本上按视频规则重放，核对两个计时事件、按键频率和逐帧一致性；先做单关复现，不直接宣称完整纪录。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：流程、时间、规则与校验方式来自完整视频字幕和简介；输入文件、代码与逐帧日志尚未公开，画面未逐帧核验。</p></section><section><h4>成本与风险</h4><p>作者称约10天、60个AI辅助器和3.47亿token，按API牌价约2950美元，实际跑在200美元/月订阅上；这些是作者口径，非独立成本审计。依赖模拟器、ROM合规、模型额度与大量搜索；输入文件不可上实时排行榜，TAS与人类纪录不可混同。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅读取标题、简介和完整字幕轨，字幕未经人工校对，未核验视频画面、输入文件或代码；结果和成本均为作者声称，代码与输入文件标注为coming soon，不能视为已独立复现。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://www.youtube.com/watch?v=VTVDW15C1C8" target="_blank" rel="noopener noreferrer">YouTube · Bears Gaming Den ↗</a><time datetime="2026-10-30T14:34:34.000Z">10/30 22:34</time><p>已读取YouTube平台字幕（工具未返回实际语言及人工/自动类型；未经人工校对；未核验画面）；完整返回字幕轨</p></li></ul></details>
+    </div>
+  </article><article id="story-12" class="topic stream-topic" data-topic data-category="开发工具与智能体" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">12</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">开发工具与智能体</span></div>
+      <h3>用大模型做播客简报：全量转录、两轮筛选与业务回查</h3>
+      <p class="summary">一位公寓运营者披露，其团队用Claude搭建“播客简报”流程：每天读取约500档节目的新单集全文，先由Sonnet做首轮筛选并标出短段落，再由Opus回到完整转录做二轮核验，输出人物、时间点、与业务的关系和待查事项。作者称一周处理约365集，首轮标出197段、二轮保留12条。</p>
+      <div class="meaning"><b>为什么值得看</b><p>把长音频从“没时间听”变成可检索、可核验的业务情报，展示了面向垂直业务的智能体信息流水线：不是单次摘要，而是全量输入、分层筛选、回查主源和人工纠错。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>来源披露的链路是：先定义关注域并建立约500个节目清单；维护会随业务更新的上下文文档；每天读取新单集全文转录，不用关键词过滤；Sonnet首读标出候选段落，Opus回到全文并对照内部笔记和主源；团队纠错后写回上下文文档。作者强调把嘉宾原话与自身结论分开。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>低成本复现可从10—20个高相关节目、一页业务上下文和一周新单集开始，保留人工抽查；先验证每条简报能否追溯到转录时间点与主源，再决定是否扩大节目量。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：流程、模型分工与数量均来自作者原帖自述；未获得转录、提示词、运行日志或独立复核。</p></section><section><h4>成本与风险</h4><p>成本主要是节目转录/模型调用与人工复核时间；依赖Claude模型、转录质量和持续维护的上下文文档。风险包括机器转录错人名或买卖方、模型误配内部笔记、版权/平台抓取限制，以及错误结论被用于税务或经营决策。原帖未披露价格、延迟和准确率。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>单作者内部案例；处理量、筛选数量和“二读抓出79处错误”等均为自述，未核验实际系统、输出质量或业务收益；不能据此认定其他行业可同样奏效。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2116258892241932372" target="_blank" rel="noopener noreferrer">X · @DallasAptGP ↗</a><time datetime="2026-10-30T20:00:12.000Z">10/31 04:00</time><p>已读取原帖正文</p></li></ul></details>
+    </div>
+  </article><article id="story-13" class="topic stream-topic" data-topic data-category="应用与产业" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">13</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">应用与产业</span></div>
+      <h3>Zendesk用ChatGPT Enterprise让员工自建约600个内部应用</h3>
+      <p class="summary">OpenAI官方视频简介称，Zendesk约600个内部应用由不同员工自建，ChatGPT Enterprise面向全员；销售AI代理把产品使用与工单信息关联，提示扩张机会并解释客户收益，约1000人每日使用。它展示企业AI从通用聊天转向部门自建工具和销售工作流，但数据为官方口径，未给出准确率、权限治理与ROI细节。</p>
+      <div class="meaning"><b>为什么值得看</b><p>企业AI的看点正从“能否问答”转向员工能否围绕自有数据快速搭建可日常使用的工具，尤其是销售场景中的客户洞察与行动提示。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>官方称Zendesk全员可使用ChatGPT Enterprise，销售、营销和运营团队按自身流程构建应用；销售代理把产品使用情况与工单数据关联，用于发现扩张机会并帮助销售解释客户收益。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>可在企业沙箱中用脱敏的少量工单与产品使用数据做销售提示原型，加入人工审核和权限隔离后再评估是否扩展。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：OpenAI官方视频标题与简介；未读取字幕，未独立核验企业数据、权限配置或使用效果。</p></section><section><h4>成本与风险</h4><p>依赖企业数据权限、模型输出准确性和应用治理；员工自建应用扩散会带来维护与合规成本，官方日活不等于收益或准确率。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅读取官方简介及发布时间，未核验视频画面；“约600个应用、1000人每日使用”为官方宣传口径，非独立审计。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://www.youtube.com/watch?v=GNYHDltnwZQ" target="_blank" rel="noopener noreferrer">YouTube · OpenAI ↗</a><time datetime="2026-10-29T22:48:11.000Z">10/30 06:48</time><p>已读取公开视频标题/简介及精确发布时间；尚未读取字幕，未核验视频画面</p></li></ul></details>
+    </div>
+  </article><article id="story-14" class="topic stream-topic" data-topic data-category="音视频与创作" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">14</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">音视频与创作</span></div>
+      <h3>本地运行UVR分离人声与多轨乐器，并串联音频转MIDI</h3>
+      <p class="summary">视频演示免费开源工具Ultimate Vocal Remover：在本机导入歌曲，选择HTDemucs_6S分离人声、鼓、贝斯、吉他、钢琴和其他轨，或用Roformer类模型做人声/伴奏双轨分离，还可用Ensemble串行组合多模型。作者称在一台无独立显卡的基础Intel电脑上分离六轨约需10分钟，并建议先把鼓轨单独送入Muscriptor以改善转MIDI。</p>
+      <div class="meaning"><b>为什么值得看</b><p>它把过去依赖在线付费服务的音轨分离搬到本地，降低隐私与订阅成本；对混音、卡拉OK、采样和音频转MIDI工作流有直接参考价值。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>在UVR中选择输入音频和输出目录，通过下载中心获取模型，选择六轨或双轨分离方法，必要时用Ensemble依次运行多个模型，最后导出分轨；口播进一步把分离出的鼓轨送Muscriptor做转录。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>用一段自有且已获授权的短音频，分别跑六轨模型和双轨模型，固定输出格式对比串音与可懂度，再测试鼓轨对MIDI转录的帮助。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：完整字幕口播演示；模型名称、耗时与效果受自动字幕影响，未逐帧核验画面，也未做独立音质评测。</p></section><section><h4>成本与风险</h4><p>依赖本地算力、模型下载与软件兼容性；分离质量随曲目和模型变化，无显卡时耗时可能明显增加；公开音乐仍涉版权，不能把分离结果直接用于未授权传播。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>字幕为自动转写且未人工校对，部分模型名可能不精确；“10分钟”为作者单机口述，不是标准基准，画面与音频结果未逐帧核验。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://www.youtube.com/watch?v=F8ouOuBiyD4" target="_blank" rel="noopener noreferrer">YouTube · Construtor Musical - Luthieria de Pobre ↗</a><time datetime="2026-10-30T17:04:03.000Z">10/31 01:04</time><p>已读取YouTube平台字幕（工具未返回实际语言及人工/自动类型；未经人工校对；未核验画面）；完整返回字幕轨</p></li></ul></details>
+    </div>
+  </article><article id="story-15" class="topic stream-topic" data-topic data-category="音视频与创作" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">15</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">音视频与创作</span></div>
+      <h3>用GPT式Transformer做可“演奏”的大型钢琴生成模型</h3>
+      <p class="summary">ADC Japan 2026演讲介绍Large Piano Models：把MIDI音符的pitch、onset、offset、velocity及踏板等信息编码为token，用GPT式Transformer在公开与合规采集的MIDI数据上训练，并以prompt notes、scramble notes和特殊token控制生成。口播称数据集已超4亿token，演示用12小节布鲁斯等片段展示可控生成；重点不是一次性文本提示，而是需要练习的生成乐器界面。</p>
+      <div class="meaning"><b>为什么值得看</b><p>它把语言模型的下一token预测迁移到钢琴演奏控制，探索“生成乐器”而非单纯自动作曲；对音乐软件界面、MIDI数据工程和可控生成有参考价值。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>演讲描述的数据管线包括MIDI预处理、约10毫秒级量化、音高/起止/力度/踏板token化、训练不同规模Transformer；推理时用户提供prompt notes和可被改写的scramble notes，调整温度、随机种子、音区与时值等，模型填充或改写指定区域，并用算法检测特殊token增强控制。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>用公开MIDI小样本复现音符四属性token化和短序列生成，固定随机种子比较prompt/scramble控制是否稳定，再决定是否扩大数据与算力。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：会议演讲完整字幕口播；数据规模、模型参数、训练成本和音乐效果为演讲者口径，ASR未人工校对，未独立复现。</p></section><section><h4>成本与风险</h4><p>依赖大量合规MIDI数据与GPU算力；口播称单次较大训练实验约需一周多、约500美元，但该数字受ASR影响；生成具随机性，分布外风格可能明显变差，训练数据版权与授权需审查。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>未核验演示音频和画面；部分术语、参数与成本数字可能因自动字幕转写而不准确，不能把演示效果当作已部署产品性能。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://www.youtube.com/watch?v=EO-hGj8_BUY" target="_blank" rel="noopener noreferrer">YouTube · ADC - Audio Developer Conference ↗</a><time datetime="2026-10-30T13:00:09.000Z">10/30 21:00</time><p>已读取YouTube平台字幕（工具未返回实际语言及人工/自动类型；未经人工校对；未核验画面）；完整返回字幕轨</p></li></ul></details>
+    </div>
+  </article><article id="story-16" class="topic stream-topic" data-topic data-category="开发工具与智能体" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">16</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">开发工具与智能体</span></div>
+      <h3>TokenEconomizer：AI编码代理的本地Token成本控制插件</h3>
+      <p class="summary">据原帖，微软开源 TokenEconomizer，一个工作区内的黑盒插件，用于减少 AI 编码代理的 token 浪费，且不更换底层模型或代理。帖子称它会学习环境配置、构建命令和自定义事实，自动移除跨会话未使用的工具定义，使用 Python 3.10+ 本地运行，复用现有代理会话与凭据，并本地记录所有动作、由用户控制编辑。帖子还称在 SWE-Bench 上平均成本降低 18.4%–30.9%，同时保持或提升 Pass@1。</p>
+      <div class="meaning"><b>为什么值得看</b><p>若属实，token 成本是编码代理规模化使用的直接瓶颈；黑盒本地插件方式降低接入门槛，并避免修改底层模型。但需官方代码与独立复现。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>帖子描述的实现链路是：插件嵌入开发工作区，复用现有代理会话与凭据，学习环境配置、构建命令和自定义事实，识别并剥离跨会话未使用的工具定义，本地记录操作；底层模型与代理不变。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>在隔离仓库选一组编码代理任务，对照开启/关闭插件的 token 成本与通过率，并检查源码、日志与凭据权限；不执行安装。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：功能与 SWE-Bench 数字均来自单条 X 帖子；未核验代码库、论文、视频或独立基准。</p></section><section><h4>成本与风险</h4><p>依赖 Python 3.10+、现有代理会话与凭据；黑盒插件带来权限、隐私与供应链风险，成本节省和通过率需独立复现，跨模型/任务泛化未知。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>未看到 Microsoft 官方公告或已核验项目页；原帖附视频/图片未核验；18.4%–30.9% 与 Pass@1 为原帖声称，不是独立实测。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2116263950472163667" target="_blank" rel="noopener noreferrer">X · @aidevnewss ↗</a><time datetime="2026-10-30T20:20:18.000Z">10/31 04:20</time><p>已读取原帖正文；所附视频/图片未核验</p></li></ul></details>
+    </div>
+  </article><article id="story-17" class="topic stream-topic" data-topic data-category="开发工具与智能体" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">17</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">开发工具与智能体</span></div>
+      <h3>RoboSkills用技能工具把编码代理接入机器人工作流</h3>
+      <p class="summary">开源项目RoboSkills把SAM 3/SAM 3D、MoGe、HaWoR、GVHMR、MuJoCo、运动规划器和抓取模型封装成技能与工具，让Claude Code、Codex等编码代理执行机器人任务。作者称五种工作流各自少于1000行，覆盖Agent as Policy、Auto Research、Real2Sim和Agentic Simulation；DeepSeek在RoboDojo stack_blocks任务5/5，成本0.16美元。</p>
+      <div class="meaning"><b>为什么值得看</b><p>它展示了机器人代理的一种分工：LLM负责每轮写Python调用机器人API，研究循环负责搜索可冻结程序，从而把推理成本与执行解耦。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>工具层封装分割/三维网格、深度、手部与人体运动、仿真、规划与抓取；Agent as Policy每轮生成Python调用observe、segment、grasp、plan、execute；Auto Research在开发布局上试验并冻结最佳solve(bot)；Real2Sim从视频提取掩码、深度、物体网格和手姿，重定向到机器人手后用MPC操作。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>低成本复现可先选一个工作流，在固定随机种子下记录任务成功率、API调用次数与费用，并与不使用技能工具的基线对照。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：作者原帖详述工具链和实验；未读取论文（作者称尚无论文），视频/图片未核验，代码未审计。</p></section><section><h4>成本与风险</h4><p>依赖多套模型、MuJoCo与机器人API；LLM调用和仿真调试有成本；结果仅基于3—5个随机种子的单任务，缺论文与独立复现，不能外推为通用能力。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>成本与5/5成绩来自作者自述，未独立核验；无论文，代码虽称MIT许可但未审计；演示视频未逐帧核验。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2116233674232377381" target="_blank" rel="noopener noreferrer">X · @_bbelousov ↗</a><time datetime="2026-10-30T18:20:00.000Z">10/31 02:20</time><p>已读取原帖正文；所附视频/图片未核验</p></li></ul></details>
+    </div>
+  </article><article id="story-18" class="topic stream-topic" data-topic data-category="应用与产业" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">18</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">应用与产业</span></div>
+      <h3>Filer：用端侧嵌入给 Android 文件管理器做语义搜索</h3>
+      <p class="summary">X 用户 @Navaneeth_V29 称，其用 Google 的 EmbeddingGemma 2 做了 Android 文件管理器 Filer，把端侧嵌入用于手机文件的语义搜索，而不是只做演示。原帖给出 GitHub 短链，但候选未提供已核验项目页。若实现属实，它展示了本地模型在隐私敏感的文件管理场景中的轻量应用方向；目前仅有作者自述，缺少性能、机型兼容与隐私实现细节。</p>
+      <div class="meaning"><b>为什么值得看</b><p>手机文件搜索通常依赖文件名或目录；端侧语义检索可能让用户按自然语言找文件，并避免上传云端。但实际体验取决于索引成本、耗电、模型体积和权限。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>原帖披露的是在 Android 文件管理器中调用端侧 EmbeddingGemma 2 做语义搜索；实现上通常需要本地索引与向量匹配。合理推测存在文件分块、索引更新和相似度排序，但原帖未说明这些细节。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>最小验证可在少量样本文件上复现：记录索引耗时、搜索准确率、耗电与权限范围，并检查是否离线运行；不执行未知安装包。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：项目名、端侧嵌入、Android 文件管理与语义搜索；合理推测：本地索引/向量匹配。GitHub 短链未核验，未运行代码。</p></section><section><h4>成本与风险</h4><p>端侧模型带来存储、内存、耗电和机型碎片化成本；文件权限与索引缓存有隐私风险；若代码不可审计，不应直接安装。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅读原帖正文，未核验 GitHub 链接或代码；作者未披露性能数字，不能推断已上线或可用于生产。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2116220295283658779" target="_blank" rel="noopener noreferrer">X · @Navaneeth_V29 ↗</a><time datetime="2026-10-30T17:26:50.000Z">10/31 01:26</time><p>已读取原帖正文</p></li></ul></details>
+    </div>
+  </article><article id="story-19" class="topic stream-topic" data-topic data-category="开发工具与智能体" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">19</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">开发工具与智能体</span></div>
+      <h3>Pad-Lattice：把 Codex CLI 智能体接到 MIDI 垫和 Stream Deck</h3>
+      <p class="summary">X 用户 @Manuel__Rueda 介绍 Pad-Lattice，称其把 Codex CLI 接到 MIDI 打击垫、Stream Deck 和虚拟控制面：颜色标识不同智能体，符号显示状态，按钮用于回应或操作。作者称免费且开源。它把终端里的多智能体工作流映射到物理控制器，适合演示和桌面自动化；但原帖附有链接，候选中未提供已核验项目页，具体协议、兼容性和实际控制链路仍待确认。</p>
+      <div class="meaning"><b>为什么值得看</b><p>多智能体/CLI 工具通常在终端里运行，状态不直观；物理控制面可能降低监控与切换成本，也为直播演示和桌面工作流提供新交互。当前更像作者展示，不是成熟产品评测。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>原帖披露：用颜色区分智能体、符号表示状态、按钮作为输入，将 Codex CLI 与 MIDI 垫、Stream Deck、虚拟表面连接。合理推测需一个桥接层把 CLI 状态转为视觉信号、把硬件按键事件转为命令；具体桥接方式和协议未披露。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>最小复现可先做只读状态面板：把单个 Codex CLI 任务的运行/等待/完成状态映射到一盏灯或一个 Stream Deck 键，再测试按键回传；不执行未知脚本。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：连接对象和交互设计；合理推测：桥接层与事件映射。免费开源和链接未在候选中核验，未运行代码。</p></section><section><h4>成本与风险</h4><p>依赖 Codex CLI 的接口稳定性、MIDI/Stream Deck 驱动和桌面权限；硬件兼容与延迟未验证；开源代码若未审计存在安全风险。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅读原帖正文，未核验所附链接或代码；原帖未披露支持矩阵、延迟和开源许可证细节。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2116224756823560396" target="_blank" rel="noopener noreferrer">X · @Manuel__Rueda ↗</a><time datetime="2026-10-30T17:44:34.000Z">10/31 01:44</time><p>已读取原帖正文</p></li></ul></details>
+    </div>
+  </article><article id="story-20" class="topic stream-topic" data-topic data-category="音视频与创作" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">20</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">音视频与创作</span></div>
+      <h3>X用户展示日语实时转写模型Haas-ja-v1.0</h3>
+      <p class="summary">X用户展示并介绍日语语音识别模型Haas-ja-v1.0，称可用于近实时转写和STT，长时间录音转写速度很快；作者称其基于NVIDIA Parakeet-TDT设计，使用约4.6万小时音频训练，但在专有名词和诗意表达上仍不及Microsoft MAI，建议用词典登记修正。原帖附演示视频，但未提供项目链接或独立评测。</p>
+      <div class="meaning"><b>为什么值得看</b><p>若所述属实，低成本、高速的日语ASR可推动本地语音输入、会议转写和长音频处理；但当前只有个人演示，尚不能据此判断真实产品能力。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>来源披露：模型名为Haas-ja-v1.0，用于日语STT/实时转写；作者称其设计基于NVIDIA Parakeet-TDT并组合其他方法，使用约4.6万小时音频训练；演示后半段专有名词和诗意表达出现误识，作者建议用词典登记补足。实现细节、代码与部署方式未披露。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>低成本验证：先核对官方模型页、权重及许可证，再用同一段含专有名词的日语录音，对比实时转写延迟、错字率和词典修正效果；当前没有已核验项目链接，不执行安装。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露与推测边界：模型名、Parakeet-TDT基础、约4.6万小时数据、对比误差均来自原帖；实时性和本地化应用是作者判断，未提供独立基准、代码或可复现实验。</p></section><section><h4>成本与风险</h4><p>依赖训练数据质量、推理硬件和模型许可；专有名词/文学表达错误会影响转写可靠性；缺少独立评测与可下载证据，存在宣传偏差和部署成本未知。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>原帖为个人介绍，非官方发布；所附视频未核验，未读字幕轨，无法确认实时延迟、准确率及模型是否开源/可下载；与Microsoft MAI的对比仅为作者说法。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2116209179115565073" target="_blank" rel="noopener noreferrer">X · @studio_yebisu ↗</a><time datetime="2026-10-30T16:42:40.000Z">10/31 00:42</time><p>已读取原帖正文；所附视频/图片未核验</p></li></ul></details>
+    </div>
+  </article><article id="story-21" class="topic stream-topic" data-topic data-category="机器人与硬件" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">21</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">机器人与硬件</span></div>
+      <h3>机器人用摆动与视觉估计绳缆物理属性</h3>
+      <p class="summary">CMU Robotics 账号介绍“Wiggle and Go”：机器人主动摆动绳子或线缆，让相机追踪其波动，再用计算机视觉与 AI 模型从运动估计绳缆物理属性，以支持更精确的操作。原帖只给出概念与演示描述，未提供论文、代码或量化指标，适合作为绳缆操作研究方向线索，而非已验证产品。</p>
+      <div class="meaning"><b>为什么值得看</b><p>绳缆是柔性物体，抓取与操作难度高；若能用主动摆动加视觉在线估计属性，可能减少对固定标定和精确建模的依赖。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>按原帖：机器人先让绳缆产生可控摆动，相机记录波形；视觉与 AI 模型从运动反推物理属性，再把估计结果用于后续抓取或操作。具体模型、传感器配置与精度未披露。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>可先搭建固定相机下绳缆摆动视频采集，复现“运动到属性估计”的基线，再接入简单抓取策略做小规模对照；不执行或安装外部代码。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：仅依据 CMU Robotics 原帖文字；未核验视频、论文或实验数据，技术组件与效果边界均为原帖说法。</p></section><section><h4>成本与风险</h4><p>需要机器人或相机平台与安全摆动空间；柔性体建模和域差异会限制泛化；缺少开源与量化结果，复现成本与效果不确定。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>原帖未附可核验论文或项目页，画面与性能未逐帧核验；不能据此认定已实现精确操作或优于现有方法。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2116213379295515000" target="_blank" rel="noopener noreferrer">X · @CMU_Robotics ↗</a><time datetime="2026-10-30T16:59:21.000Z">10/31 00:59</time><p>已读取原帖正文</p></li></ul></details>
+    </div>
+  </article><article id="story-22" class="topic stream-topic" data-topic data-category="开发工具与智能体" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">22</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">开发工具与智能体</span></div>
+      <h3>角色外观提示词生成器：点选组合并支持多平台</h3>
+      <p class="summary">日本作者 @o8ee_L 发布免费、免注册的原创角色外观提示词生成器：用户点选发型、刘海、发色、肤色、眼形或眼色、眉毛与表情等选项，自动拼成角色外观 prompt，也支持随机和自由补充。原帖称可配合 niji・journey、PixAI、ChatGPT 及 zeta 等聊天应用使用，并列出发型女39男22、刘海24、发色16色等选项数量。</p>
+      <div class="meaning"><b>为什么值得看</b><p>把角色设定的隐性经验拆成可点选字段，降低 OC 创作和跨模型提示词迁移门槛；对小型创作工具的产品化有参考价值。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>原帖披露的链路是“选项枚举→模板拼装→输出 prompt”，用户可随机或自由补写；支持多平台但未说明各平台适配方式。未披露前端实现、模型调用或提示词模板细节。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>可用表单枚举加模板字符串做一个最小版本，选少量字段验证不同模型下的角色一致性；不抓取或安装作者页面代码。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：选项数量、免费免注册与平台兼容均来自原帖；未核验网页、生成效果或视频。</p></section><section><h4>成本与风险</h4><p>主要成本是选项分类体系与模板维护；平台提示词语法变化、生成结果不稳定、角色版权与内容合规需注意；免费工具的留存和变现不明。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅读原帖正文，未打开链接验证工具可用性；选项数量与“支持”平台为作者声称，实际效果未测试。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2116092748831027219" target="_blank" rel="noopener noreferrer">X · @o8ee_L ↗</a><time datetime="2026-10-30T09:00:01.000Z">10/30 17:00</time><p>已读取原帖正文；所附视频/图片未核验</p></li></ul></details>
+    </div>
+  </article><article id="story-23" class="topic stream-topic" data-topic data-category="游戏与仿真" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">23</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">游戏与仿真</span></div>
+      <h3>Niftski 直播冲击《超级马力欧兄弟》TAS Tie 并刷新人类纪录</h3>
+      <p class="summary">小飛Xiaofey 的视频梳理 Niftski 自 2026 年 8 月起约一个半月的直播挑战：他反复尝试帧级操作和 8-4 关卡，把与 TAS 4:54.265 的差距压缩到约四帧，并在过程中刷新《超级马力欧兄弟》人类世界纪录。视频还讲到 Input Swapping 遭禁用后经社群投票有限开放。这里的 TAS 是工具辅助速通的极限参照，不是 AI 自动游玩。</p>
+      <div class="meaning"><b>为什么值得看</b><p>展示人类在规则、社区治理与帧级操作极限下的长期优化；也提醒 TAS 纪录与实时人类成绩不能混为一谈。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>视频披露的挑战链路是：选手反复练习并直播尝试 8-4 等关卡的帧级操作，包括多次 Fast Acceleration、反向跳跃等；社区对 Input Swapping 规则投票后有限开放，选手再以更保守路线完成整局。没有 AI 训练或自动搜索 TAS 的实现。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>可对照公开排行榜与逐帧输入记录核验纪录及与 TAS 的帧差；不建议直接模仿高强度刷记录。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：基于完整字幕轨概括；视频为解说，未核验官方排行榜、逐帧输入或画面。</p></section><section><h4>成本与风险</h4><p>挑战依赖长时间直播练习、精确输入设备与稳定状态；规则争议和社群认定会影响成绩有效性；视频中“2027 年达成”的预测仅是作者观点。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>字幕可能为自动或 ASR 且未人工校对；未核验画面和官方榜单；TAS 是人类操作模仿的工具辅助极限，不是实时人类原始纪录。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://www.youtube.com/watch?v=JQ1_5CQk15s" target="_blank" rel="noopener noreferrer">YouTube · 小飛Xiaofey~ ↗</a><time datetime="2026-10-30T11:00:29.000Z">10/30 19:00</time><p>已读取YouTube平台字幕（工具未返回实际语言及人工/自动类型；未经人工校对；未核验画面）；完整返回字幕轨</p></li></ul></details>
+    </div>
+  </article><article id="story-24" class="topic stream-topic" data-topic data-category="技术解读" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">24</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">技术解读</span></div>
+      <h3>AI-ECG心衰筛查证据审计：检测提升不等于结局改善</h3>
+      <p class="summary">据视频完整字幕，Zero-Click 梳理心衰与 AI-ECG 的公开证据：EAGLE 集群随机试验使低射血分数新诊断约每千人增加5例，但终点只是诊断，未测治疗结局；被标记者约一半未在90天内做超声。植入设备预警可提前中位34天，却无试验证明据此干预能减少住院；再入院机器学习未优于逻辑回归，移植模型按时间验证后AUC由0.89降至0.66；Viz HCM 阳性预测值13.7%。</p>
+      <div class="meaning"><b>为什么值得看</b><p>它把“检测更准”与“患者结局更好”分开，指出商业化AI-ECG在部署、随访、成本和偏倚上的证据缺口，适合作为医疗AI评估框架。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>链路是心电波形输入AI模型，输出低射血分数、房颤或心肌病等风险标记，再由医生决定是否做超声或转诊；植入设备则融合心音、阻抗、呼吸等信号形成失代偿预警。视频逐项对照随机试验、前瞻验证、FDA clearance和成本模型。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>低成本复现：选取EAGLE、MultiSENSE、Viz HCM三类公开摘要，列出“标记—确认—治疗—结局”指标与阴性/阳性成本；不执行任何临床或数据采集。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：已读完整字幕，视频引述20项研究及监管摘要；未独立核对论文原文、未逐帧核验画面。</p></section><section><h4>成本与风险</h4><p>真实部署需超声、转诊、医生审阅和IT集成；误报会带来检查与焦虑成本，漏报和负结果误解有安全风险；单中心/回顾性AUC外推有限，商业利益与试验团队重叠需披露。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>视频为独立医学证据评论，非临床指南；字幕未经人工校对，数字来自其引述的研究和监管文件，未逐项核验；不能据此改变诊疗。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://www.youtube.com/watch?v=bxhlrqzhPzM" target="_blank" rel="noopener noreferrer">YouTube · Zero-Click ↗</a><time datetime="2026-10-30T19:48:39.000Z">10/31 03:48</time><p>已读取YouTube平台字幕（工具未返回实际语言及人工/自动类型；未经人工校对；未核验画面）；完整返回字幕轨</p></li></ul></details>
+    </div>
+  </article><article id="story-25" class="topic stream-topic" data-topic data-category="开发工具与智能体" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">25</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">开发工具与智能体</span></div>
+      <h3>n8n官方演示：定时触发、HTTP取数与数据表存储的最小工作流</h3>
+      <p class="summary">n8n 官方发布首个工作流教程：用助手或手动节点搭建每天早上运行的流程，先由定时触发器启动，再用 HTTP Request 拉取柏林天气 API，经 Edit Fields 表达式把响应整理成短报告，最后写入数据表并发布。简介还称会讲触发器、JSON 在节点间传递和自动列映射；但目前仅读简介，未看字幕和画面。</p>
+      <div class="meaning"><b>为什么值得看</b><p>对想入门自动化的人来说，它把“触发器—取数—表达式—存储—发布”的最小闭环讲清楚，也展示助手生成与手动搭建的差别。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>来源披露的链路：定时触发器启动，HTTP Request 调用天气API，Edit Fields 用表达式引用字段生成报告，Data Table 存储，再发布为自动运行工作流；助手路径是先写提示词、批准动作再测试。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>用公开且无敏感凭据的天气API做最小复现：建定时触发、单次HTTP请求、字段映射和本地/测试数据表，先手动运行看JSON，再决定是否发布。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：仅依据官方标题/简介和精确发布时间；未读取字幕、未核验画面，不能确认实际演示细节。</p></section><section><h4>成本与风险</h4><p>依赖n8n云或自托管、API配额和凭据管理；定时任务失败、字段变更、隐私数据和供应商锁定都需处理；官方教程含试用推广，不等于生产可用性验证。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅标题/简介，未看视频；工作流组件来自简介描述，未验证实际节点配置和运行结果。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://www.youtube.com/watch?v=0BzaIm7Fwyo" target="_blank" rel="noopener noreferrer">YouTube · n8n ↗</a><time datetime="2026-10-30T14:16:38.000Z">10/30 22:16</time><p>已读取公开视频标题/简介及精确发布时间；尚未读取字幕，未核验视频画面</p></li></ul></details>
+    </div>
+  </article><article id="story-26" class="topic stream-topic" data-topic data-category="游戏与仿真" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">26</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">游戏与仿真</span></div>
+      <h3>用AI六天重制Java手游并做浏览器版</h3>
+      <p class="summary">作者称用Claude Code等AI工具，在六天内把2007年Java手游《Playman Extreme Running》重制为浏览器可玩的非商业粉丝版《Parapet Classic》。流程包括反编译原jar、让AI梳理混淆代码、用原版模拟器作oracle高频比对输入与状态，并加入12个Boss、回放链接和TAS路线搜索；作者还称未手写代码。</p>
+      <div class="meaning"><b>为什么值得看</b><p>展示AI编程从生成代码走向逆向理解、行为对齐和回归验证；对旧游戏保存/浏览器移植有参考价值，但仍是作者自述的粉丝项目，不等于原版官方移植或独立性能审计。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>作者描述：先让AI反编译原jar并整理无注释的混淆代码，重建浏览器引擎；再用原版模拟器与新引擎同步输入、高频比较角色位置/动作，发现并修复反编译继承的抖动bug；最后用AI搜索路线生成Boss跑法，并保留回放/速通功能。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>最小复现：选一个开源Java小游戏jar，搭建原版模拟器作为oracle，接入AI编码代理做反编译与行为比对，记录输入重放一致率和修复bug数；不直接复用本项目代码或安装未知依赖。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：作者在完整字幕中说明工具链、六天周期、oracle比对和代码量；未提供独立第三方复现或性能审计。“未手写代码”“60,000行”等为作者声称。</p></section><section><h4>成本与风险</h4><p>依赖AI编码工具额度、原版模拟器/运行环境、版权与商标清理；粉丝重制不能商业化或替代授权；oracle只能验证已覆盖行为，AI生成代码仍需安全审计、性能测试和人工维护。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>已读取完整YouTube字幕轨，但工具未标明人工/自动字幕且未人工校对；未逐帧核验游戏画面、源码仓库或在线版本。TAS搜索是自动化寻路，不等同实时人类纪录；重制版与原版仍需独立对比。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://www.youtube.com/watch?v=UPW5fNUvD14" target="_blank" rel="noopener noreferrer">YouTube · Петра Радько / Гвинерва ↗</a><time datetime="2026-10-29T21:49:55.000Z">10/30 05:49</time><p>已读取YouTube平台字幕（工具未返回实际语言及人工/自动类型；未经人工校对；未核验画面）；完整返回字幕轨</p></li></ul></details>
+    </div>
+  </article><article id="story-27" class="topic stream-topic" data-topic data-category="开发工具与智能体" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">27</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">开发工具与智能体</span></div>
+      <h3>给AI代理接入Search Console与SEO数据的MCP清单</h3>
+      <p class="summary">作者整理了一套让Claude等编码代理做SEO的工具链：社区版Google Search Console MCP、多个SEO技能仓库，以及DataForSEO、Ahrefs、Semrush、Yandex Wordstat/Webmaster等数据MCP；免费起步可用GSC加claude-seo仓库，但需要Google Cloud API key或各平台订阅/OAuth。</p>
+      <div class="meaning"><b>为什么值得看</b><p>说明AI代理正从写代码扩展到读取搜索流量、关键词和竞品数据；但该帖是工具清单，未展示审计前后排名、流量或收入变化，价值需自行小规模验证。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>作者描述的链路：用MCP把GSC/关键词/外链数据源接到Claude等代理，再加载SEO审计/博客/技术SEO技能仓库，让代理查询流量与检索词、检查索引问题并生成修复建议；数据源按API key、OAuth或订阅接入。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>最小验证：选一个自有小站，只接GSC MCP与一个SEO审计技能，限定只读权限，跑一次索引/查询词检查并人工复核建议；记录耗时与可执行项，不安装未审计插件。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：作者列出工具、依赖和免费/订阅方式；未提供运行截图、代码审计、客户案例或效果数据。“最流行repo”等为作者说法。</p></section><section><h4>成本与风险</h4><p>依赖Google Cloud/Ahrefs/Semrush/Yandex等账号、API额度与OAuth权限；第三方MCP和社区技能仓库有供应链、隐私和越权风险；平台条款、数据准确性和SEO效果不确定性高。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅读取X原帖正文，所附视频/图片未核验；未运行任何MCP、未审计仓库代码，不能确认工具可用性、兼容性或实际SEO收益。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2116255529987342349" target="_blank" rel="noopener noreferrer">X · @TeddyinMedia ↗</a><time datetime="2026-10-30T19:46:51.000Z">10/31 03:46</time><p>已读取原帖正文；所附视频/图片未核验</p></li></ul></details>
+    </div>
+  </article><article id="story-28" class="topic stream-topic" data-topic data-category="视觉与自动化" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">28</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">视觉与自动化</span></div>
+      <h3>车载视频违规识别原型展示语音触发与多模型链路</h3>
+      <p class="summary">X 用户转述开发者 DrMakerr 的“Dr Traffic”车载视频违规识别原型：以语音口令截取事件前后短片，结合语音转写、YOLO/ByteTrack 跟踪、Qwen 视觉模型读取车牌，并输出含图像、时间、坐标和车速的 JSON 报告。帖文列出四种违规类型，强调这是概念验证；实际精度、合法性和部署效果未在候选证据中核验。</p>
+      <div class="meaning"><b>为什么值得看</b><p>把行车记录仪从被动录像变成事件触发、可生成结构化证据的辅助审查链路，展示了单人在现有视觉模型上搭建端到端原型的可行性；但涉及隐私、误报与执法采信边界。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>实现链路按帖文为：驾驶员语音口令触发约10秒片段；语音转文字提取违规与车辆描述；视觉模型检测/跟踪车辆并判断路肩行驶等行为；视觉语言模型识别车牌；汇总图像、视频、时间、坐标和车速为 JSON 供人工复核。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>在获得授权的少量行车视频上做最小复现：人工标注四类事件，分别测试检测、跟踪、车牌识别与报告生成，记录误报和漏报及隐私脱敏流程；不直接用于执法或公开举报。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：仅读取第三方 X 帖文对项目的描述；未观看所链接视频、未查看代码或论文、未核验模型版本或准确率。</p></section><section><h4>成本与风险</h4><p>需 GPU 或推理成本、模型与数据许可、车牌和位置等敏感数据处理、隐私合规与证据可采性评估；复杂光照、遮挡、车牌地域差异会放大误报，平台与法规依赖强。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>第三方转述且未人工校对视频或 ASR；文中“四种违规”和原型能力是作者说法，不能视为已部署或已获官方认可。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2116265145529753873" target="_blank" rel="noopener noreferrer">X · @drops609 ↗</a><time datetime="2026-10-30T20:25:03.000Z">10/31 04:25</time><p>已读取原帖正文</p></li></ul></details>
+    </div>
+  </article><article id="story-29" class="topic stream-topic" data-topic data-category="开发工具与智能体" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">29</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">开发工具与智能体</span></div>
+      <h3>Cosmos DB Emulator 教程展示本地与 Actions 测试 AI agent 响应</h3>
+      <p class="summary">VSMdev 帖文称，微软新教程展示如何用 Azure Cosmos DB Emulator 在本地测试数据库更新，并通过 GitHub Actions 测试 AI agent 响应。该内容指向开发测试工作流：先在本地模拟数据库，再在 CI 中跑自动化验证。候选仅提供帖文概述，未包含教程步骤、agent 实现或测试结果，需以原教程和实际运行结果为准。</p>
+      <div class="meaning"><b>为什么值得看</b><p>AI agent 的数据库读写与响应测试若能在本地和 CI 复现，有助于降低云端依赖、提前发现回归问题；但模拟器与实际云服务存在差异，不能替代生产验证。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>帖文披露的链路是：使用 Cosmos DB Emulator 本地模拟数据库更新，再把相关测试接入 GitHub Actions，以验证 AI agent 的响应；具体测试框架、断言方式和 agent 架构未披露。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>用最小示例仓库复现：本地启动 Emulator，写入一组测试数据，增加一个调用 agent 的测试并放入 GitHub Actions；记录模拟器与云端的差异。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：仅读取 X 帖文对微软教程的转述；未打开教程、未运行 Emulator 或 Actions，也未核验兼容性与测试结果。</p></section><section><h4>成本与风险</h4><p>依赖本地运行环境、Emulator 功能覆盖、CI 分钟与凭据权限；模拟器不等同生产，未覆盖网络、配额和一致性差异，敏感数据进入 CI 需脱敏。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>教程效果与 AI agent 响应质量未经独立验证；候选未给出代码、性能数字或发布日期。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2116228834668253490" target="_blank" rel="noopener noreferrer">X · @VSMdev ↗</a><time datetime="2026-10-30T18:00:46.000Z">10/31 02:00</time><p>已读取原帖正文</p></li></ul></details>
+    </div>
+  </article><article id="story-30" class="topic stream-topic" data-topic data-category="视觉与自动化" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">30</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">视觉与自动化</span></div>
+      <h3>用航拍影像探索风机目标检测与地理空间分析</h3>
+      <p class="summary">X用户展示用航拍影像和Ultralytics相关数据集探索风机目标检测，并称用于可再生能源测绘与地理空间分析。原帖只给出应用方向与数据集线索，没有披露模型结构、数据规模、精度或部署方式；所附视频也未核验。它可作为低成本遥感目标检测案例，但目前更像演示线索，不能据此判断实际地图产品可用性。</p>
+      <div class="meaning"><b>为什么值得看</b><p>风机点位与可再生能源设施测绘有明确地理空间需求；若能用公开航拍数据和轻量检测流程降低标注与巡检成本，值得做小样本验证。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>来源披露的链路仅到“航拍影像+Ultralytics数据集”探索目标检测；合理推测的完整链路是影像采集与切片→风机标注→检测模型训练→输出点位并叠加地理坐标，但模型、标注规范和部署均未说明。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>取一小批公开航拍图，按统一标注规范标出风机，建立检测基线并记录不同尺度、遮挡和背景下的漏检/误检；再抽样核对地理坐标叠加误差。仅作验证建议，不执行采集或训练。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：应用方向与数据集线索；合理推测：训练与地理叠加链路；未核验视频画面和检测结果。</p></section><section><h4>成本与风险</h4><p>需要影像授权、标注人力与算力；航拍分辨率、季节/光照变化、风机尺度差异会造成泛化风险，地理定位误差和误报也可能影响测绘结论。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅读取原帖正文，所附视频/图片未核验；无精度、数据规模、代码或部署证据，不能把演示当作真实产品。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2116232973527945395" target="_blank" rel="noopener noreferrer">X · @joelnadarai ↗</a><time datetime="2026-10-30T18:17:13.000Z">10/31 02:17</time><p>已读取原帖正文；所附视频/图片未核验</p></li></ul></details>
+    </div>
+  </article><article id="story-31" class="topic stream-topic" data-topic data-category="视觉与自动化" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">31</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">视觉与自动化</span></div>
+      <h3>单摄像头足球分析原型：拆解中场推进指标</h3>
+      <p class="summary">X用户复盘一个单摄像头足球分析原型：不统计跑动距离，而是尝试量化中场球员如何推动球队前进。已拆出接球位置与盯防对手、传球向前推进距离、带球推进米数等组件，但最终指数未完成。作者指出最大难点是多球员跟踪在遮挡时丢人且不报错；原帖未给模型、精度或代码，视频未核验。</p>
+      <div class="meaning"><b>为什么值得看</b><p>把足球评论中的“推进能力”拆成可计算组件，展示了单摄像头视觉分析从追踪到指标设计的路径；对体育分析、青训和低成本视频工具都有参考价值，但离稳定产品尚远。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>单摄像头视频→多球员位置跟踪→识别接球位置及盯防对手→计算每次传球向前推进距离与带球推进米数→组合成中场推进指标。来源明确最终指数未完成，遮挡导致跟踪丢失是核心失败点；具体检测/跟踪模型未披露。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>用一段公开比赛视频和少量人工标注，先复现球员位置跟踪与传球/带球事件切分，统计遮挡导致的ID切换和漏跟踪；再评估三类组件是否足以稳定计算。仅作验证建议，不执行。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：分析目标、三类组件和遮挡跟踪难点；未披露模型、训练数据、精度与代码；所附视频未核验。</p></section><section><h4>成本与风险</h4><p>依赖比赛视频授权、人工标注和跟踪算力；遮挡、镜头运动、球员相似外观会造成ID切换，商业使用还涉及赛事版权与隐私合规；作者也提到市场有资金和数据更强的竞争者。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅读取原帖正文，最终指数未完成，无量化结果；所附视频未核验，不能据此认定系统已能实战评估球员。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2116264559325458862" target="_blank" rel="noopener noreferrer">X · @CescBuilds ↗</a><time datetime="2026-10-30T20:22:43.000Z">10/31 04:22</time><p>已读取原帖正文；所附视频/图片未核验</p></li></ul></details>
+    </div>
+  </article><article id="story-32" class="topic stream-topic" data-topic data-category="模型与研究" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">32</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">模型与研究</span></div>
+      <h3>作者称Qwen-FN无审查量化模型可在8GB显存设备推理</h3>
+      <p class="summary">X用户称在Strata中发现并运行Qwen-FN无审查模型，并在显存8GB的游戏笔记本上选用IQ3-XXS量化版本；帖文只给出使用感受与配置片段，未提供模型卡、量化方法、推理速度或输出对比。该线索说明低显存本地运行量化对话模型仍是受关注玩法，但“无审查化效果”和技术来源均未独立核验。</p>
+      <div class="meaning"><b>为什么值得看</b><p>若属实，低显存设备可运行经过量化的定制模型，降低本地实验门槛；但当前仅是个人体验，不能据此推断模型安全性、质量或可复现性。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>来源披露的链路是：选用Qwen-FN的IQ3-XXS量化版本，在作者所述Strata推理环境中加载，并部署到8GB显存游戏笔记本；量化格式、基座模型来源、推理后端与提示配置均未披露。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>先核对模型卡、许可证和原始权重来源，再在隔离环境用常见本地推理工具尝试加载同一量化标签，记录显存占用、吞吐和输出一致性；不执行帖文链接中的安装或账号操作。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：原帖正文给出模型名、量化标签、显存条件和使用感受；合理推测：仅能判断其采用低比特量化以降低显存占用，其他技术细节未知。</p></section><section><h4>成本与风险</h4><p>需具备至少8GB显存设备与模型下载、存储成本；量化可能损失质量，无审查模型带来安全、合规与滥用风险；缺少可核验项目页，复现和授权状态不明。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅读取原帖正文，未核验所附链接、视频或模型页面；8GB显存与效果均为作者自述，“无审查”能力、速度和质量未独立测试。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2116141001308004614" target="_blank" rel="noopener noreferrer">X · @Tono_Ken3 ↗</a><time datetime="2026-10-30T12:11:45.000Z">10/30 20:11</time><p>已读取原帖正文</p></li></ul></details>
+    </div>
+  </article><article id="story-33" class="topic stream-topic" data-topic data-category="音视频与创作" data-section="案例与玩法">
+    <div class="topic-index" aria-hidden="true">33</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">音视频与创作</span></div>
+      <h3>AI辅助MIDI钢琴练习视频，把双手谱、键盘和泰语歌词联动可视化</h3>
+      <p class="summary">泰国频道Pia &amp; Sing发布《หยุด》钢琴伴奏练习视频，简介称音频由MIDI合成、制作有AI辅助，画面把双手音符、移动钢琴键盘和按和弦分句的泰语歌词放在一起，独奏段使用独立视觉网格。该视频定位为练唱/练琴材料，难度暂评4/5，并明确未做真人试奏、也非逐音认证转谱。</p>
+      <div class="meaning"><b>为什么值得看</b><p>它展示了低成本音乐教育内容的生产链路：MIDI编曲、AI辅助制作与可视化结合，而非只生成音频；对个人创作者有复现价值，但可读性、演奏适配和版权仍需验证。</p></div>
+      <section class="analysis-primary"><h4>实现链路</h4><p>简介披露的链路是：MIDI合成钢琴音色，再经AI辅助制作，把双手音符、键盘动画与按和弦分句的泰语歌词同步；独奏段改用独立视觉网格，音频与键盘保持固定演奏时序。具体AI工具和模型未披露。</p></section>
+      <section class="analysis-action"><h4>最小复现思路</h4><p>取一段自有或已授权MIDI，做30秒原型：渲染钢琴音轨，生成双手谱/键盘动画和歌词分句，检查音画同步、指法可读性与移动端字号。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：MIDI合成、AI辅助、可视化方式与“未真人试奏”来自视频简介；字幕轨可读但主要是音乐标记；未核验画面，AI工具细节未知。</p></section><section><h4>成本与风险</h4><p>需处理MIDI与歌曲版权、编曲准确性和视觉可读性；未真人试奏意味着难度与指法可能不适合实际演奏；平台对翻奏和AI辅助内容可能有版权或标识要求。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅读标题、简介和字幕轨，未逐帧核验视频；字幕未人工校对，且大量为音乐标记；不能确认具体AI工具或转谱精度。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://www.youtube.com/watch?v=_NNS2TRmdE4" target="_blank" rel="noopener noreferrer">YouTube · Pia &amp; Sing ↗</a><time datetime="2026-10-30T01:40:07.000Z">10/30 09:40</time><p>已读取YouTube平台字幕（工具未返回实际语言及人工/自动类型；未经人工校对；未核验画面）；完整返回字幕轨</p></li></ul></details>
+    </div>
+  </article></div></section><section class="stream-section stream-opportunities" id="opportunities" data-stream><header class="section-heading"><span class="section-number">03</span><div><span class="eyebrow">OPPORTUNITIES</span><h2>商机观察<small>4 条</small></h2><p>从真实需求出发，用小成本实验验证机会。</p></div></header><div class="topic-list"><article id="story-34" class="topic stream-topic topic-featured" data-topic data-category="产品与生意" data-section="商机观察" data-highlight>
+    <div class="topic-index" aria-hidden="true">34</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">产品与生意</span><span class="priority-badge">分区先读</span></div>
+      <h3>CAD智能体免费层数据采集争议指向合规与本地化需求</h3>
+      <p class="summary">X帖称，自称“CAD版Cursor”的MecAgent被SolidWorks subreddit用户发现会在后台扫描磁盘并上传CAD文件；帖中称公司代表回应付费方案不收集数据，免费层采集用于尚未开始的潜在训练，并已暂停免费层采集直到澄清条款。事件尚缺原始帖与公司声明直链，但暴露CAD设计数据上云的ITAR/EAR合规与信任门槛。</p>
+      <div class="meaning"><b>为什么值得看</b><p>CAD文件含零件、装配、特征树与设计意图，是企业核心IP。若AI工具数据条款不清，工程团队采用会受IT/法务限制，催生本地化、审计与数据防泄漏需求。</p></div>
+      <section class="analysis-primary"><h4>需求与机会依据</h4><p>客户痛点/需求证据：X帖转述Reddit用户观察到AI聊天占用网络资源，进而质疑后台上传；帖中公司回应称免费层采集用于未来训练并已暂停。目前只有合规顾虑信号，尚无付费线索。可验证方向是CAD团队的网络出口审计、数据分类与本地/私有化助手。</p></section>
+      <section class="analysis-action"><h4>低成本验证</h4><p>可先访谈5至10家使用SolidWorks或Onshape的工程团队，记录其对云端AI数据条款的顾虑；在授权隔离环境用测试CAD文件观察网络出口，并设计最小DLP或本地检索原型。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露但为转述：X用户转述Reddit帖及公司代表回应，未提供原始链接；不能确认扫描上传行为、回应原文和暂停范围，属待核验需求线索。</p></section><section><h4>成本与风险</h4><p>企业销售周期长，需法务与安全评审；ITAR/EAR等合规依赖具体数据和部署方式；平台方可能内置类似能力；测试上传行为必须在授权隔离环境，避免泄露真实图纸。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅有单条X帖；未核验Reddit原帖、公司声明或软件行为，视频和图片未核验。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2116255125367029938" target="_blank" rel="noopener noreferrer">X · @mikekalilmfg ↗</a><time datetime="2026-10-30T19:45:14.000Z">10/31 03:45</time><p>已读取原帖正文；所附视频/图片未核验</p></li></ul></details>
+    </div>
+  </article><article id="story-35" class="topic stream-topic" data-topic data-category="产品与生意" data-section="商机观察">
+    <div class="topic-index" aria-hidden="true">35</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">产品与生意</span></div>
+      <h3>开源邮箱查找工具声称把单条线索成本压到约6分钱</h3>
+      <p class="summary">量子位Daily视频简介称，Jev母公司TypeSafe AI与Agent工具平台Treg开源一款邮箱查找工具，单条邮箱成本约6分钱，比Clay便宜85%，并获得超6k星标。若属实，这会压低销售和招聘的线索获取成本；但简介未给出准确率、数据来源、开源许可和合规边界，不能据此认定可商用或能稳定获客。</p>
+      <div class="meaning"><b>为什么值得看</b><p>低成本联系人发现是销售、招聘和商务拓展的真实痛点，开源工具可能改变线索工具的定价；但个人信息获取与反垃圾邮件合规是核心门槛。</p></div>
+      <section class="analysis-primary"><h4>需求与机会依据</h4><p>客户痛点是从公开信息中快速找到可用邮箱，传统工具常按席位或用量收费；需求证据是媒体给出的单价对比和星标，但这不等于付费成交或可验证的准确率，具体实现链路未披露。</p></section>
+      <section class="analysis-action"><h4>低成本验证</h4><p>用获得授权的公开样本做小规模测试，记录命中率、退信率和来源合法性，先人工复核少量结果，不进行批量抓取或群发。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>媒体简介披露；未读取视频正文，成本、星标、竞品价差和开源状态均待核验。</p></section><section><h4>成本与风险</h4><p>涉及个人信息保护、反垃圾邮件、平台条款、数据来源与许可、误报和退信风险；低价数字可能不含代理、验证与合规成本，竞争者也可能快速降价。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅有标题和简介，未核验工具仓库、许可证、实际成本或邮箱准确率；“6分钱”和“便宜85%”是媒体口径，不是核实结果。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://www.bilibili.com/video/BV1bJxF6SEye" target="_blank" rel="noopener noreferrer">B站 · 量子位Daily ↗</a><time datetime="2026-10-30T00:05:00.000Z">10/30 08:05</time><p>仅标题/简介，尚未读取视频正文</p></li></ul></details>
+    </div>
+  </article><article id="story-36" class="topic stream-topic" data-topic data-category="产品与生意" data-section="商机观察">
+    <div class="topic-index" aria-hidden="true">36</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">产品与生意</span></div>
+      <h3>AI工作流CI仍以分钟计，开发者寻求秒级反馈</h3>
+      <p class="summary">一名开发者在X上称，其AI工作流当前最大瓶颈之一是GitHub Actions的CI检查与部署耗时：即便已做优化并切换到Blacksmith加速，面对成千上万测试和更复杂部署仍要数分钟，希望降到秒级。这是公开的工程效率痛点，且已有为更快runner付费/迁移的线索；但只是单条求助帖，没有成本、团队规模或付费意愿数据，不能据此断定市场成立。</p>
+      <div class="meaning"><b>为什么值得看</b><p>AI应用迭代频繁，CI/部署反馈时延直接拖慢开发节奏；若能把测试选择、缓存、并行化和远程runner组合成低成本方案，可能形成开发者工具或服务机会。</p></div>
+      <section class="analysis-primary"><h4>需求与机会依据</h4><p>客户痛点：AI工作流仓库测试多、部署场景复杂，GitHub Actions分钟级反馈成为瓶颈；作者已优化流程并改用Blacksmith，说明对更快CI有实际投入意愿。</p></section>
+      <section class="analysis-action"><h4>低成本验证</h4><p>低成本验证：访谈10个有上千测试的AI/软件团队，记录CI时长与月费；用现成缓存、测试分片和远程runner对1个开源仓库做前后对比，再决定是否做审计服务或轻量工具。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：原帖自述CI耗时与已切换Blacksmith；未披露仓库规模、费用、测试类型和提速结果。付费意愿与市场规模为待核验推断。</p></section><section><h4>成本与风险</h4><p>依赖GitHub Actions与第三方runner的权限、配额和价格；需处理密钥安全、测试稳定性、平台锁定与竞争；若痛点只集中于少数超大仓库，工具化空间有限。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅读取原帖文本，未核验其CI配置、Blacksmith账单或实际提速；单条帖子不能代表普遍需求，收入与市场结论需更多样本。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2116243022245400851" target="_blank" rel="noopener noreferrer">X · @alexpeiniger ↗</a><time datetime="2026-10-30T18:57:09.000Z">10/31 02:57</time><p>已读取原帖正文</p></li></ul></details>
+    </div>
+  </article><article id="story-37" class="topic stream-topic" data-topic data-category="应用与产业" data-section="商机观察">
+    <div class="topic-index" aria-hidden="true">37</div>
+    <div class="topic-body">
+      <div class="topic-meta"><span class="eyebrow">应用与产业</span></div>
+      <h3>ASML产能扩张仍难满足客户需求的转述待核验</h3>
+      <p class="summary">X帖子转述ASML CEO称，2027和2028年各增加30%产能仍无法满足客户需求，已有客户希望预订2029和2030年产能。该说法把焦点放在光刻设备供给瓶颈和长期扩产压力上；但帖子未附官方财报或演讲链接，视频未核验，不能视为已确认事实。</p>
+      <div class="meaning"><b>为什么值得看</b><p>若属实，反映先进制程设备供需紧张可能延续到2020年代末，对设备零部件、维护服务和产能规划等供应链是需求信号；但当前只有二手转述，不能据此推导具体订单或收益。</p></div>
+      <section class="analysis-primary"><h4>需求与机会依据</h4><p>客户痛点是芯片制造商需要更早锁定光刻产能；需求证据是该帖所称客户对2029和2030年产能的预订意向。可把设备零部件、维护服务、产能规划咨询列为待验证方向，而非已证实商机。</p></section>
+      <section class="analysis-action"><h4>低成本验证</h4><p>先查ASML官方财报、电话会纪要和客户资本开支公告，核对原话、时间范围与订单可见度；再访谈一家半导体设备服务商，验证采购或维护需求是否真实存在。</p></section>
+      <div class="analysis-secondary"><section><h4>已知与推测</h4><p>来源披露：仅原帖文字；CEO引语、30%扩产数字和预订年份均来自帖文转述，未核对ASML官方材料；所附视频/图片未核验。</p></section><section><h4>成本与风险</h4><p>半导体设备链资本开支高、周期强，受出口管制和客户集中度影响；二手引语可能失真，不适合据此做投资、备货或扩产决策。</p></section></div>
+      <aside class="caveat"><b>边界与疑点</b><p>仅有X帖文本，无官方来源；应把转述当待核验线索，不能当确定事实。</p></aside>
+
+      <details class="evidence"><summary>原始来源与证据范围 <span>1 条</span></summary><ul><li><a href="https://x.com/i/status/2116255568197197950" target="_blank" rel="noopener noreferrer">X · @SilentInvest10M ↗</a><time datetime="2026-10-30T19:47:00.000Z">10/31 03:47</time><p>已读取原帖正文；所附视频/图片未核验</p></li></ul></details>
+    </div>
+  </article></div></section><p id="empty" class="empty" hidden>本期没有匹配内容，换个关键词试试。</p></div></div>
+    <section class="reading-note"><h2>阅读边界与本期覆盖</h2><p>案例区分来源披露与合理推测。字幕、原帖和GitHub页面不等于逐帧观看、代码执行或效果复现；商机是待验证的需求信号，不是收益保证。没有项目地址就留空，不拿相似项目冒充作者源码。</p><p>自2026-10-22起，每天北京时间05:00开始收集前24小时的公开来源。不设整份日报的成稿条数上限，但采集、字幕和编辑受运行时间与来源可访问范围限制。本页生成于10/31 07:13，日期代表真实一期，不保证整点完成。</p><p>本期采集与证据任务完成 106/128 项。</p><details><summary>查看 30 项覆盖限制</summary><ul><li>YouTube检索 AI model research 达到单次上限，热度不代表真实性或全站穷举。</li><li>YouTube检索 AI agents developer tools 达到单次上限，热度不代表真实性或全站穷举。</li><li>YouTube检索 open source AI automation workflow demo 达到单次上限，热度不代表真实性或全站穷举。</li><li>YouTube检索 audio separation music transcription MIDI AI 达到单次上限，热度不代表真实性或全站穷举。</li><li>YouTube检索 AI game TAS speedrun 达到单次上限，热度不代表真实性或全站穷举。</li><li>YouTube检索 computer vision neural network tracking project 达到单次上限，热度不代表真实性或全站穷举。</li><li>YouTube检索 indie developer customer demand small business case study 达到单次上限，热度不代表真实性或全站穷举。</li><li>X检索组 X热门AI技术内容 达到单次上限；仅覆盖已返回的候选。</li><li>X扩展 案例与玩法 达到检索上限；仅处理实际取得内容。</li><li>X扩展 商机观察 达到检索上限；仅处理实际取得内容。</li><li>B站视频信息 BV1bJxF6SEye未完成（NETWORK_ERROR）；未将失败当成没有新内容。</li><li>字幕 BV1bJxF6SEye未完成（NETWORK_ERROR）；未将失败当成没有新内容。</li><li>B站视频信息 BV1tbxe6rEAS未完成（NETWORK_ERROR）；未将失败当成没有新内容。</li><li>字幕 BV1tbxe6rEAS未完成（NETWORK_ERROR）；未将失败当成没有新内容。</li><li>B站视频信息 BV1NuxY6iExj未完成（NETWORK_ERROR）；未将失败当成没有新内容。</li><li>字幕 BV1NuxY6iExj未完成（NETWORK_ERROR）；未将失败当成没有新内容。</li><li>B站视频信息 BV1VZxi68E9K未完成（NETWORK_ERROR）；未将失败当成没有新内容。</li><li>字幕 BV1VZxi68E9K未完成（NETWORK_ERROR）；未将失败当成没有新内容。</li><li>B站视频信息 BV1TyxY6kEvS未完成（NETWORK_ERROR）；未将失败当成没有新内容。</li><li>字幕 BV1TyxY6kEvS未完成（NETWORK_ERROR）；未将失败当成没有新内容。</li><li>B站视频信息 BV11Gxv6GEqc未完成（NETWORK_ERROR）；未将失败当成没有新内容。</li><li>字幕 BV11Gxv6GEqc未完成（NETWORK_ERROR）；未将失败当成没有新内容。</li><li>YouTube 字幕 0BzaIm7Fwyo未完成（COMMAND_EXEC）；未将失败当成没有新内容。</li><li>一手链接 @NVIDIAAI因120分钟采集预算已到而跳过，已有证据仍保留。</li><li>本地短视频转写 x:2115962853463396395因120分钟采集预算已到而跳过，已有证据仍保留。</li><li>一手链接 @OpenAI因120分钟采集预算已到而跳过，已有证据仍保留。</li><li>本地短视频转写 x:2116262634349818190因120分钟采集预算已到而跳过，已有证据仍保留。</li><li>项目链接 openai/math因120分钟采集预算已到而跳过，已有证据仍保留。</li><li>项目链接 NavaneethVijay/filer因120分钟采集预算已到而跳过，已有证据仍保留。</li><li>项目链接 Gwynerva/parapet-classic因120分钟采集预算已到而跳过，已有证据仍保留。</li></ul></details></section></main><footer class="site-footer"><p>AI 辅助整理 · 以原始来源为准 · 非投资建议或收益保证</p><p><a href="../../about/">来源与阅读说明</a><span> / </span><a href="https://github.com/ROMISUKI/ai-daily" target="_blank" rel="noopener noreferrer">GitHub 开源</a></p></footer><button class="back-to-top" type="button" data-back-to-top aria-label="回到页面顶部" title="回到顶部" hidden><svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 4h14M12 20V8m-6 6 6-6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>置顶</span></button></body></html>
