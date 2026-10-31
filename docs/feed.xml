@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-10-31 · 37个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-31/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-31/</guid><pubDate>Fri, 30 Oct 2026 23:13:31 GMT</pubDate><description>文档碎片重建的CV流程有参考价值，但候选仅有帖子综述，软件、开源项目与“90%+”准确率均需核验。
+<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-01 · 28个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-01/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-01/</guid><pubDate>Sat, 31 Oct 2026 23:07:48 GMT</pubDate><description>案例侧出现本地音乐工作室把作曲、演唱、编辑、分离与 Agent 控制串成链路，价值在可编辑工作流而非单次生成，商用许可和真实音质是门槛。
+萨尔瓦多社区比特币支付网络只能作为待核验商机线索：商户数量和支付目录来自宣传性长文，需用官方资料与匿名访谈验证真实需求，不能据此承诺收益。
+其余候选包括加速器招募、财报投资解读、仅标题传闻、非技术内容和低信息量工具感想，按规则不纳入。
+DeepSeek Super-agent口播给出约47%等待时间缩短，但这是特定模拟中的调度结果，且用耗时工具替代真实写代码，不能当作编程能力提升。
+两个案例都依赖未核验的二手材料：3D物理书仅有媒体简介，nanochat仅有X帖清单，需回到原始项目或文章确认。
+一条X帖引述NBER工作论文的银行卡交易数据，提示生成式AI消费者直接付费渗透和留存可能有限；但候选未提供论文原文，数字需核验。
+其余候选包括观点访谈、销售推广和房产导览，未达到纳入标准。
+可保留的实质案例只有Gaussian Splatting与AI结合的游戏角色视觉展示，但作者未披露完整管线，效果仍需独立验证。
+两条可用信号均来自X自述：一条把AI服务SLA做成托管、收据与仲裁机制，另一条用现有付费客户反推ICP而非先自动化。</description></item><item><title>2026-10-31 · 37个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-31/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-31/</guid><pubDate>Fri, 30 Oct 2026 23:13:31 GMT</pubDate><description>文档碎片重建的CV流程有参考价值，但候选仅有帖子综述，软件、开源项目与“90%+”准确率均需核验。
 另一条值得跟踪的是Agent Harness工程：二手长帖称不改LLM、只改外围控制与验证即可提升编码智能体基准，但需回原始研究核验。
 MecAgent的CAD数据采集争议尚缺一手证据，却清楚暴露企业采用CAD AI时的数据合规、审计与本地化门槛。
 其余候选主要是产品宣传、域名/平台招商式长帖或无关社会事件，信息不足以支撑权威前沿或商机判断，未纳入。
