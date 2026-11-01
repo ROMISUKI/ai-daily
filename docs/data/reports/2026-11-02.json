@@ -1,0 +1,341 @@
+{
+  "date": "2026-11-02",
+  "window": {
+    "start": "2026-10-31T21:00:00.000Z",
+    "end": "2026-11-01T21:00:00.000Z"
+  },
+  "generatedAt": "2026-11-01T21:48:28.342Z",
+  "candidateCount": 26,
+  "status": "partial",
+  "limitations": [
+    "YouTube检索 AI model research 达到单次上限，热度不代表真实性或全站穷举。",
+    "YouTube检索 AI agents developer tools 达到单次上限，热度不代表真实性或全站穷举。",
+    "YouTube检索 open source AI automation workflow demo 达到单次上限，热度不代表真实性或全站穷举。",
+    "YouTube检索 audio separation music transcription MIDI AI 达到单次上限，热度不代表真实性或全站穷举。",
+    "YouTube检索 AI game TAS speedrun 达到单次上限，热度不代表真实性或全站穷举。",
+    "YouTube检索 computer vision neural network tracking project 达到单次上限，热度不代表真实性或全站穷举。",
+    "YouTube检索 indie developer customer demand small business case study 达到单次上限，热度不代表真实性或全站穷举。",
+    "X X热门AI技术内容未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "X扩展 案例与玩法未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "X扩展 商机观察未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "视频 BV1c3xb6UEWE 的字幕与标题/简介主题不符，未作为正文证据。",
+    "字幕 BV1QPxx6dEbr未完成（SUBTITLE_UNAVAILABLE）；未将失败当成没有新内容。",
+    "YouTube 字幕 FklTUr78YBs未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "YouTube 字幕 jbaJP2RSQCU未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "YouTube 字幕 dQqJ7tfKnQo未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "YouTube 字幕 qKK2NifJ-t8未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "YouTube 字幕 EL4SY98Aru8未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "YouTube 字幕 0t3abfbvRjs未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "YouTube 字幕 ECtWYN85BzU未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "YouTube 字幕 Uyas8HBRwBM未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "YouTube 字幕 xROHspsCwvc未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "YouTube 字幕 GS0KikO9_jw未完成（UNKNOWN）；未将失败当成没有新内容。"
+  ],
+  "coverage": {
+    "attempted": 138,
+    "succeeded": 123
+  },
+  "takeaways": [
+    "三个案例都带有明显证据边界：HackerTube 是作者自述，DSH 仓库自承经验到行为改变未验证且测试有失败，Video-to-Game 的成本与可玩性来自项目页；应把“演示/自述”与“独立实测/生产可用”分开。",
+    "赞助销售页、虚构剧情视频和未读字幕的新闻大杂烩未纳入；对多项目汇总只保留能给出公开仓库和实现链路的单个事件。",
+    "可收的实质案例集中在三类链路：音频→演奏MIDI→结构化乐谱、逐帧TAS探索游戏故障、Mac本地STT+LLM+TTS驱动多AI NPC；均需区分作者演示与独立实测。",
+    "商机侧只有Post Bridge的客户选择/流失讨论可作低成本验证线索；其20%月流失、付费预期和Higgsfield赞助内容均属来源披露，不能当作核实收入或效果。"
+  ],
+  "items": [
+    {
+      "section": "案例与玩法",
+      "title": "Karpathy 用 Claude Code 将 4300 万条 HN 评论筛成 HackerTube 推荐站",
+      "category": "开发工具与智能体",
+      "summary": "Karpathy 发帖称，他因不满 YouTube 推荐，用 Claude Code/Opus 5.5 在约两小时内把 20 年 HN 的 4300 万条评论过滤为 6,454 个被反复推荐的视频，做成 HackerTube；状态保存在本地浏览器会话，缩略图取视频中段代表帧，并公开评论分析压缩包供他人让 Claude 生成自己的版本。流程还包括申请 Google Cloud API key、购买 VPS 与域名，再让 Claude 部署、加固和优化。该帖是作者自述，效果未独立复现。",
+      "whyItMatters": "展示了一条“把大规模历史讨论当推荐信号”的轻量产品化路径，以及 coding agent 从写代码扩展到数据清洗、部署运维的完整闭环；对无登录、可自托管的推荐工具是低成本实验。",
+      "caveat": "仅原帖正文，未核验所附视频；无独立基准、用户研究或代码审计，不能把作者体验当普遍效果。",
+      "howItWorks": "作者披露：Claude Code（Mac 桌面端）默认使用 Opus 5.5 Medium effort；人工只做 Google Cloud API key、开 VPS、买域名，随后把 IP 交给 Claude 要求更新、安全加固、部署和优化；本地会话保存状态，缩略图从视频中段取帧；分析数据以 zip 公开，可让 Claude 基于该数据生成变体。",
+      "evidenceBasis": "来源披露：以上来自 Karpathy 原帖自述；所附视频/图片未核验，未独立运行 HackerTube 或复核 4300 万到 6,454 的筛选质量。",
+      "nextStep": "最小复现可先取一小批 HN 评论与视频元数据，要求 agent 输出可解释的推荐列表，再本地做静态页面；先验证筛选规则与重复推荐去重，不要一开始就购买域名或开 VPS。",
+      "costAndRisks": "依赖 Claude Code/Opus 5.5、YouTube 元数据 API、VPS 与域名；具体成本未披露；需注意 YouTube API 配额与条款、HN 数据使用、API key 与服务器安全；推荐偏差和“显著更好”属作者主观体验。",
+      "projects": [],
+      "sources": [
+        {
+          "author": "@karpathy",
+          "platform": "X",
+          "url": "https://x.com/i/status/2116957135661945283",
+          "publishedAt": "2026-11-01T18:14:46.000Z",
+          "evidence": "已读取原帖正文；所附视频/图片未核验"
+        }
+      ]
+    },
+    {
+      "section": "案例与玩法",
+      "title": "DSH SuperAgent 插件演示：文件落地触发自动归档与经验注入",
+      "category": "开发工具与智能体",
+      "summary": "B站视频演示在 DSH 桌面端安装 dsh-superagent-prototype 插件，侧栏出现 Superagent；用户把“下载的作业 PDF 自动归位”写入经验库，触发条件为 file created。下载文件后，文件监听发出信号，Agent 自开会话判断是否作业、检查目标目录并移动，全程未再下指令。视频还设想 Minecraft 崩溃日志触发读日志、定位模组、改配置、重启。仓库 README 显示这是 DeepSeek 原型的 fork，增加本机 MSP 推送感知与经验库；但仓库自承经验到行为改变仍未验证，测试也有失败项。",
+      "whyItMatters": "把 Agent 从“等人提问”推向事件驱动与常驻自动化，展示本机文件系统等非云 API 信号如何进入 Agent 编排；对桌面自动化、个人工作流和插件化感知层有参考价值。",
+      "caveat": "仅读到 B站 AI 字幕（未人工校对）和仓库公开页，未逐帧核验；仓库自承关键闭环未验证，不能视为成熟生产方案。",
+      "howItWorks": "来源披露：桌面端设置到插件添加仓库地址并重启，侧栏出现 Superagent；fork 增加 MSP Source，把文件创建等本机信号以推送方式转为 Trigger，经验以 Markdown 保存条件、动作、理由，命中后注入评估上下文。演示链路为 file created、判断作业、检查目标目录、移动文件。",
+      "evidenceBasis": "来源披露：视频 AI 字幕（未人工校对）和仓库 README 描述了安装与最小示例；未独立安装、未核验画面。仓库自述经验到行为改变未验证，1202 用例中 1153 通过、42 失败、7 跳过。",
+      "nextStep": "低成本验证：在隔离目录监控一个测试文件，定义一条只移动 .pdf 到指定文件夹的经验，记录触发、决策和回滚日志；再测试误触发与权限边界，不要直接用于重要文件。",
+      "costAndRisks": "依赖 DSH 桌面端/插件、Node 与仓库实现；Windows 有进程发现和锁文件限制；自动移动或改动文件有数据丢失与越权风险；经验规则可能误判，测试覆盖和跨平台稳定性不足。",
+      "projects": [
+        {
+          "url": "https://github.com/hxh230802/dsh-superagent-prototype",
+          "name": "hxh230802/dsh-superagent-prototype",
+          "relationship": "原来源提及的公开仓库；并不自动等于作者完整实现"
+        }
+      ],
+      "sources": [
+        {
+          "author": "创猿er",
+          "platform": "B站",
+          "url": "https://www.bilibili.com/video/BV1QHxs6sEJD",
+          "publishedAt": "2026-11-01T07:47:47.000Z",
+          "evidence": "平台AI字幕 ai-zh（未经人工校对；未核验画面）；完整字幕轨"
+        }
+      ]
+    },
+    {
+      "section": "案例与玩法",
+      "title": "Video-to-Game：把 10 到 15 秒游戏视频重建为可玩的 Three.js 网页游戏",
+      "category": "游戏与仿真",
+      "summary": "候选视频所列的 Video-to-Game 项目提供一套给 coding agent 的 skill：先从一段 10 到 15 秒游戏视频抽取帧、色板与剪辑点，写出镜头、主角、核心机制和关键瞬间的规格；再用 fal 上的图像、3D 和音频模型生成资产，由 agent 在 Three.js 中写游戏，并用键盘场景自测、录制最佳片段。项目页称已用该方法重建 31 个游戏，共 1013 次 fal 调用、约 202 美元，约 6 美元每个游戏；每个游戏是单个 index.html。该汇总视频仅以时间戳提及项目，未读字幕，成本与效果均为项目页自述。",
+      "whyItMatters": "展示一种“视频当设计文档、agent 当实现者”的游戏原型流水线，把生成式资产与可编辑代码结合；对快速验证玩法和降低 3D 原型门槛有参考价值，但离商业级游戏制作仍远。",
+      "caveat": "候选视频简介仅按时间戳列出项目，未读字幕、未逐帧核验；项目页的成本、31 个游戏和效果均为作者自述，非独立基准。",
+      "howItWorks": "项目页披露：study_video.py 把视频转成帧、contact sheet、palette 和 cut times；agent 从命名帧写 spec；fal_asset.py 调用图像、3D、音频和音乐模型生成资产；游戏用 Three.js 写成单页；record_play.mjs 以真实帧率录制，best_window.py 找最有活力的片段，形成视频与游戏的并排对比。",
+      "evidenceBasis": "来源披露：项目 README 给出了 31 个示例、1013 次 fal 调用和 202 美元总成本；候选视频只列标题和时间戳。未运行项目、未核验每个游戏可玩性，也未审计生成资产许可。",
+      "nextStep": "最小验证：选一段 10 秒视频，只重建一个核心机制与一个场景，先用少量 fal 调用生成资产，输出可玩的单页并录一段自测；记录失败帧和成本，再决定是否扩展。",
+      "costAndRisks": "依赖 fal 付费调用、Python/ffmpeg/Node/Playwright、Three.js 与手工调参；示例均摊约 6 美元每个游戏，但实际随资产量波动；生成资产和视频风格可能涉及版权与平台许可，自动录制不能替代真实玩家测试，单文件游戏也缺乏工程化与性能保障。",
+      "projects": [
+        {
+          "url": "https://github.com/lovisdotio/video-to-game",
+          "name": "lovisdotio/video-to-game",
+          "relationship": "原来源提及的公开仓库；并不自动等于作者完整实现"
+        }
+      ],
+      "sources": [
+        {
+          "author": "ManuAGI - AutoGPT Tutorials",
+          "platform": "YouTube",
+          "url": "https://www.youtube.com/watch?v=jbaJP2RSQCU",
+          "publishedAt": "2026-11-01T06:45:27.000Z",
+          "evidence": "已读取公开视频标题/简介及精确发布时间；尚未读取字幕，未核验视频画面"
+        }
+      ]
+    },
+    {
+      "section": "案例与玩法",
+      "title": "DuET：把钢琴演奏转成可编辑五线谱的开源链路",
+      "category": "音视频与创作",
+      "summary": "开源项目 DuET 把钢琴演奏转成可编辑乐谱：先用 Transkun v2 将纯钢琴音频转成演奏 MIDI，再由 DuET 从小节、拍号、调号、时值量化、左右手与装饰音等结构信息生成 MusicXML/MIDI/PDF，可导入 MuseScore 修改。在线 demo 只处理前 4 分钟，受 Hugging Face ZeroGPU 额度限制；代码 MIT，模型权重 CC BY-NC 4.0 仅非商业。作者称纯钢琴效果最好，混入人声或其他乐器会下降。",
+      "whyItMatters": "它补的是音频转MIDI之后“演奏时间到乐谱结构”的难点，直接面向练琴、扒谱和音乐教育等可编辑谱需求；开源代码与权重降低了复现门槛，但非商业权重限制商用。",
+      "caveat": "AI字幕未经校对，项目名/术语有误识别；在线 demo 限前4分钟，效果与 PDF 生成未独立核验；GitHub 公开页面不等于运行或审计代码。",
+      "howItWorks": "来源披露的链路是：钢琴音频→Transkun v2 演奏MIDI（或直接输入MIDI）→DuET 估计拍/小节并量化音符、分左右手、判断调号拍号等→导出 MusicXML、试听 MIDI 与结构化结果。视频/简介称可导出 PDF；GitHub README 说明 CLI 不生成 PDF，二者范围不同，未实测。",
+      "evidenceBasis": "来源披露：完整AI字幕（未人工校对）与已核验的公开GitHub README；未逐帧核验画面，未独立测试准确率、延迟或PDF导出。未补充未知模型细节。",
+      "nextStep": "可计划用公开 demo 或本地 CLI 对一段纯钢琴短录音生成 MusicXML，核对拍号、小节线与左右手分配，并与人工谱对比；不执行安装或上传。",
+      "costAndRisks": "依赖 Python 3.11+、PyTorch、可选 FFmpeg/Transkun；本地推理需 GPU/内存，在线 GPU 额度有限。模型权重非商业许可，商用需另行授权；复调、非钢琴与复杂节奏准确率下降，可读性后处理还会改动时值分组。",
+      "projects": [
+        {
+          "url": "https://github.com/wei-zeng98/DuET",
+          "name": "wei-zeng98/DuET",
+          "relationship": "原来源提及的公开仓库；并不自动等于作者完整实现"
+        }
+      ],
+      "sources": [
+        {
+          "author": "无限不可能引擎",
+          "platform": "B站",
+          "url": "https://www.bilibili.com/video/BV1ENxs6TEoQ",
+          "publishedAt": "2026-11-01T07:09:07.000Z",
+          "evidence": "平台AI字幕 ai-zh（未经人工校对；未核验画面）；完整字幕轨"
+        }
+      ]
+    },
+    {
+      "section": "案例与玩法",
+      "title": "Roblox 故障 TAS 蒙太奇：逐帧工具探索游戏边界",
+      "category": "游戏与仿真",
+      "summary": "SilverYT 发布 Roblox 故障 TAS 蒙太奇，作者称制作耗时 27 小时、列出 TAS Retakes 54//22，并在 30 多个 TAS 中发现 200+ 新 glitch，使总数超过 5000。视频是工具辅助速通/超级游玩展示：用逐帧精确输入、存档状态、分支与内存读取等工具追求理论上限，而非实时人类纪录。简介给出两个 Roblox 体验链接和 TAS 难度 10/10，但未说明每条故障的具体复现条件。",
+      "whyItMatters": "它展示了 TAS 作为游戏机制研究工具的价值：通过极端输入探索正常玩家难以复现的边界，但需与实时人类速通纪录区分，平台规则和版本差异会影响可复现性。",
+      "caveat": "仅读取标题/简介，未读字幕、未核验视频画面；27小时、54//22、200+新glitch等均为作者自报，未独立验证。TAS 与实时人类纪录必须区分。",
+      "howItWorks": "简介给出 TAS 的通用实现方式：在模拟器/工具中逐帧控制输入，配合存档状态、分支、重录、拼接、内存读取、宏与脚本自动化；本片具体使用的工具链未在已读证据中说明，不能推断。画面/故障细节尚未逐帧核验。",
+      "evidenceBasis": "来源披露：标题、简介与精确发布时间；简介自报耗时、重录和 glitch 数量。通用 TAS 定义来自简介；本片具体路线、工具与画面未核验，不把通用定义当作本片实现细节。",
+      "nextStep": "可计划先核对两个公开 Roblox 体验的版本与路线，选择单段公开可复现的 glitch 做逐帧输入记录，再与原片对照；不执行游戏操作或绕过平台限制。",
+      "costAndRisks": "依赖游戏版本、Roblox 平台规则与 TAS 工具兼容性；逐帧研究和剪辑耗时高，版本更新会使路线失效。TAS 结果不是实时人类纪录，也不代表普通玩家可稳定复现；公开游戏链接不等于授权修改或自动化。",
+      "projects": [],
+      "sources": [
+        {
+          "author": "SilverYT",
+          "platform": "YouTube",
+          "url": "https://www.youtube.com/watch?v=dQqJ7tfKnQo",
+          "publishedAt": "2026-10-31T23:30:08.000Z",
+          "evidence": "已读取公开视频标题/简介及精确发布时间；尚未读取字幕，未核验视频画面"
+        }
+      ]
+    },
+    {
+      "section": "案例与玩法",
+      "title": "Mac 离线运行 22 个 AI NPC 的村庄游戏原型",
+      "category": "游戏与仿真",
+      "summary": "作者在 Mac 上做一个离线运行的中世纪村庄游戏，简介称有 22 个 AI NPC：Nemotron 把玩家语音转文本，LM Studio 中的 Qwen 3.8 生成回复，Fish Audio Drama 3 合成角色语音，角色约 1.5 秒开始回应，并能记住玩家说过的话、彼此八卦。美术、场景和过场用 Higgsfield、Nano Banana Pro 与 Seedance 2.5 生成；视频由 Higgsfield 赞助，并附构建指南推广链接。",
+      "whyItMatters": "它把本地小模型、语音交互、持久记忆和多角色社会行为串成游戏原型，指向低延迟离线 NPC 的产品方向；但赞助与作者自报意味着需把演示效果和可复现性分开看。",
+      "caveat": "仅标题/简介/章节，未读字幕、未逐帧核验；22 角色、1.5 秒响应、离线与记忆/八卦行为均为作者自报，未独立测试。赞助关系需披露。",
+      "howItWorks": "来源披露的链路是：玩家语音→Nemotron STT→LM Studio 本地 Qwen 模型生成对话→Fish Audio TTS 输出角色语音；角色记忆与八卦机制、22 角色如何共享模型在简介/章节中被提及，但具体实现未读字幕，不能推断。",
+      "evidenceBasis": "来源披露：视频简介、章节与赞助披露；未读字幕、未核验本地运行画面。1.5 秒延迟、22 角色、离线与记忆效果均为作者声称；模型链按简介记录，不补充未知组件。",
+      "nextStep": "可计划在 Mac 上用 LM Studio 加载一个小型本地 LLM，接一个 STT 和一个 TTS 做单角色对话原型，测首响延迟与内存，再决定是否扩展多角色共享模型和记忆；不执行安装或游戏开发。",
+      "costAndRisks": "依赖本地 Mac 内存/算力、模型与语音许可、离线资产和工程集成；多角色共享模型会增加延迟与状态管理复杂度。视频含赞助和推广链接，存在宣传偏差；平台/版权与生成美术合规需自行评估。",
+      "projects": [],
+      "sources": [
+        {
+          "author": "Alex Grankin",
+          "platform": "YouTube",
+          "url": "https://www.youtube.com/watch?v=Bo1g-zzXdAA",
+          "publishedAt": "2026-11-01T16:45:06.000Z",
+          "evidence": "已读取公开视频标题/简介及精确发布时间；尚未读取字幕，未核验视频画面"
+        }
+      ]
+    },
+    {
+      "section": "案例与玩法",
+      "title": "DSH实时视觉插件See Now：按画面变化抽帧再拼图",
+      "category": "开发工具与智能体",
+      "summary": "作者发布给DSH使用的实时视觉插件See Now，核心不是定时截全屏，而是先用HSV网格变化分判断帧是否值得看，再按切点或积分阈值留帧，拼成一张图交给模型。仓库称可接屏幕、摄像头和视频文件，并提供逐场景模式、悬浮窗与调试工具；商业用途需书面授权。视频仅看到标题/简介，字幕因与主题不符弃用，技术细节主要来自公开仓库。",
+      "whyItMatters": "如果成立，这类前置变化检测能降低持续看屏的token成本和重复帧，对桌面智能体、陪看、自动化巡检有直接意义；但实际效果依赖宿主模型与采集源。",
+      "caveat": "视频未读取正文且AI字幕与主题不符，不能据此判断演示效果；公开仓库不等于已运行或审计，README中的成本和实测数据为作者口径。",
+      "howItWorks": "实现链路（据仓库披露）：采集屏幕/摄像头/视频，在64×36 HSV网格计算帧变化分，用绝对切点、尖峰和秒级不应期，以及积分阈值筛帧，再按档位选择格子并拼图，输出PNG交给DSH模型；悬浮窗仅通过say通道播报。参数和性能数字为仓库自述，未独立复核。",
+      "evidenceBasis": "来源披露：仓库README说明采集、变化分、切点/积分、拼图与授权；B站仅有标题/简介，视频正文未读，字幕已弃用。未运行插件或审计代码，性能/token数字未独立验证。",
+      "nextStep": "在隔离测试机按仓库文档做小规模复现：对比静止桌面、滚动网页、幻灯片切换三类场景的出图数量与延迟，再核对商业授权范围；不直接安装到生产DSH。",
+      "costAndRisks": "依赖Windows优先的屏幕采集实现，Linux/macOS需自行补采集源；宿主DSH和模型版本会影响token与延迟；商业使用需书面授权；变化检测只认像素变化，可能漏掉语义变化或产生误判。",
+      "projects": [
+        {
+          "url": "https://github.com/SAOS-3624/dsh-see-now",
+          "name": "SAOS-3624/dsh-see-now",
+          "relationship": "原来源提及的公开仓库；并不自动等于作者完整实现"
+        }
+      ],
+      "sources": [
+        {
+          "author": "苍穹晓雷",
+          "platform": "B站",
+          "url": "https://www.bilibili.com/video/BV1c3xb6UEWE",
+          "publishedAt": "2026-11-01T13:54:52.000Z",
+          "evidence": "仅标题/简介，尚未读取视频正文；字幕与主题明显不符，已弃用该字幕"
+        }
+      ]
+    },
+    {
+      "section": "案例与玩法",
+      "title": "《超级马力欧兄弟》实战速通新纪录：距无左右同按TAS仅2帧",
+      "category": "游戏与仿真",
+      "summary": "搬运视频简介称，Niftski在直播中以4:54.299刷新《超级马力欧兄弟》RTA实战速通世界纪录，比其两个月前纪录快2帧，约0.03秒；与禁止左+右同按的TAS极限也只差2帧。简介列出多个关卡的路线技巧，并说明TAS与RTA计时口径不同。该成绩来自简介叙述，尚未读取视频或核对官方榜单。",
+      "whyItMatters": "它展示人类实时操作在严格RTA规则下逼近TAS极限，也提醒比较TAS与RTA时必须统一计时和输入规则；对游戏仿真、速通社区和逐帧操作优化有观察价值。",
+      "caveat": "仅标题/简介，未读视频；作者为搬运者，非Niftski官方账号；未核验直播和榜单。",
+      "howItWorks": "简介披露的链路主要是路线与逐帧操作优化：在1-1、1-2、4-1、4-2、8-1、8-2、8-3等关卡执行不拉旗、穿水管、极限撞墙/二段跳、倒跳等技巧；简介称8-4切换手柄输入并用特殊手型做倒跳加速。这里不是TAS自动搜索，而是实时人类操作。",
+      "evidenceBasis": "来源披露：仅B站标题/简介提供成绩、帧差和路线说明；未读取视频正文，未核对Twitch直播录像、计时器或排行榜。TAS与RTA的计时差异按简介解释，未独立验证。",
+      "nextStep": "最小验证：用公开RTA计时规则和直播录像逐帧核对8-4输入、分段计时及与TAS的2帧差，确认排行榜/社区是否承认；不要将简介数字直接当作已核实官方纪录。",
+      "costAndRisks": "风险在于来源单一、帧级差异极小、计时规则和版本差异可能改变结论；世界纪录需社区/榜单复核。不要将TAS极限与人类实时纪录混为一谈。",
+      "projects": [],
+      "sources": [
+        {
+          "author": "HappyLee",
+          "platform": "B站",
+          "url": "https://www.bilibili.com/video/BV1QPxx6dEbr",
+          "publishedAt": "2026-11-01T04:39:37.000Z",
+          "evidence": "仅标题/简介，尚未读取视频正文"
+        }
+      ]
+    },
+    {
+      "section": "案例与玩法",
+      "title": "MSX2《Ys II》PSG原声的手工乐谱转写",
+      "category": "音视频与创作",
+      "summary": "同一频道发布两段MSX2《Ys II》PSG原声的乐谱转写视频，分别对应“Palace of Salmon”和“Subterranean Canal”。作者称在MuseScore 4.7.x中按PSG各声道逐轨手工转写，未使用AI；回放用方波合成音色，原曲噪声打击乐改用General MIDI打击乐近似。乐谱文件不公开，视频标注为非官方粉丝作品，版权属Nihon Falcom。",
+      "whyItMatters": "展示了一种不依赖AI的游戏音频到乐谱复现链路，可与自动音频转写/转MIDI工具形成对照，也体现老平台PSG音乐考据的人工成本与版权边界。",
+      "caveat": "仅读取标题/简介及发布时间，未看视频、未听音频；无法确认最终相似度、制作耗时或是否存在画面辅助信息。",
+      "howItWorks": "来源披露：按原始MSX PSG各声道分别处理并手工记谱到MuseScore；回放用方波合成器模拟PSG音色，噪声通道用MIDI打击乐近似，仅在原曲有噪声打击乐时增加打击乐谱表。",
+      "evidenceBasis": "来源披露制作工具、手工转写和无AI参与；未读取字幕，未核验视频画面或音频，未独立比对原曲与乐谱。",
+      "nextStep": "可选一段短PSG曲目做最小复现：按单声道手工记谱，用方波音色回放，再与原曲盲听比对；公开传播前先确认乐谱与音频的授权边界。",
+      "costAndRisks": "依赖人工听辨、乐理、MuseScore与音色库；原曲版权属Nihon Falcom，乐谱不公开，公开视频需注意粉丝作品与版权风险；转写准确性未经第三方核验。",
+      "projects": [],
+      "sources": [
+        {
+          "author": "MSX PSG Scores",
+          "platform": "YouTube",
+          "url": "https://www.youtube.com/watch?v=ECtWYN85BzU",
+          "publishedAt": "2026-11-01T16:21:32.000Z",
+          "evidence": "已读取公开视频标题/简介及精确发布时间；尚未读取字幕，未核验视频画面"
+        },
+        {
+          "author": "MSX PSG Scores",
+          "platform": "YouTube",
+          "url": "https://www.youtube.com/watch?v=GS0KikO9_jw",
+          "publishedAt": "2026-11-01T17:15:43.000Z",
+          "evidence": "已读取公开视频标题/简介及精确发布时间；尚未读取字幕，未核验视频画面"
+        }
+      ]
+    },
+    {
+      "section": "案例与玩法",
+      "title": "用Make.com与OpenAI自动分级入站销售线索",
+      "category": "开发工具与智能体",
+      "summary": "教程演示用Make.com搭建入站邮件线索分级流程：Gmail触发读取新邮件，调用OpenAI生成补全，把询盘按提示词判为Hot、Warm或NotAFit，再写入Google Sheets记录。视频给出分类标准与完整提示词，并强调这是分类任务而非让AI Agent自主选择动作；同时推广自动化模板和联盟链接，未提供准确率或节省工时的实测。",
+      "whyItMatters": "把大模型用于低成本、可审计的销售线索初筛，链路简单，适合小团队做最小验证；但分类质量高度依赖提示词、样本与人工复核，不能直接等同于可靠销售判断。",
+      "caveat": "作者未披露实测准确率、运行成本和节省时间；视频标题/简介可确认主题与模块，但不能证明实际部署效果或商业收益。",
+      "howItWorks": "来源披露：Gmail的Watch Emails模块触发新邮件，OpenAI的Generate a Completion模块按提示词输出单个分类词，Google Sheets的Add a Row模块记录结果；作者用三封不同询盘邮件做演示。",
+      "evidenceBasis": "来源披露流程、模块和完整提示词；未读取字幕，未逐帧核验视频；没有独立测试、准确率、成本或业务结果数据。",
+      "nextStep": "用10至20封历史询盘做小样本，人工标注Hot/Warm/NotAFit，再跑同一提示词比较误判类型；验证阶段只记录建议结果并人工复核，不自动回复或自动推进销售。",
+      "costAndRisks": "依赖Make.com、OpenAI API、Gmail与Sheets权限，涉及邮件隐私与数据保留合规；模板和联盟链接带商业推广属性，模型误判可能错失或误跟线索，需人工兜底与权限隔离。",
+      "projects": [],
+      "sources": [
+        {
+          "author": "Done in Clicks",
+          "platform": "YouTube",
+          "url": "https://www.youtube.com/watch?v=xROHspsCwvc",
+          "publishedAt": "2026-11-01T19:15:02.000Z",
+          "evidence": "已读取公开视频标题/简介及精确发布时间；尚未读取字幕，未核验视频画面"
+        }
+      ]
+    },
+    {
+      "section": "案例与玩法",
+      "title": "YOLO 摩托车未戴头盔与三人同骑检测教学",
+      "category": "视觉与自动化",
+      "summary": "Sinex Labs 发布面向学生的计算机视觉项目教程，演示用 YOLO11 检测摩托车未戴头盔与三人骑行，结合几何规则匹配骑手、跟踪去重、EasyOCR 加正则读取印度车牌，并生成带截图的违规报告。简介称还对比了 yolo11n 与 yolo11m 在真实交通照片上的漏检情况。视频含竞赛推广，且仅读到标题与简介，未读字幕、未核验代码或画面。",
+      "whyItMatters": "该教程把数据格式转换、检测训练、跟踪去重、OCR与报告输出串成完整原型，适合作为交通视觉入门复现；但教学演示不等于可部署执法系统，准确率、隐私与法律合规仍是主要门槛。",
+      "caveat": "仅读取公开标题、简介和精确发布时间，未读取字幕、未逐帧核验画面或代码；这是教学演示，不是真实部署，作者未提供可核验的性能数字。",
+      "howItWorks": "简介披露的链路是：把 Kaggle 头盔检测数据集从 VOC XML 转为 YOLO 格式并训练 YOLO11；用简单几何规则做骑手匹配；用跟踪让每辆车只报一次；用 EasyOCR 加正则识别车牌；最后输出带快照的违规报告。模型结构、代码细节与准确率未在证据中给出。",
+      "evidenceBasis": "来源披露：视频标题与简介列出工具和流程；未读字幕、未核验视频画面或代码。数据集与模型许可、OCR效果、实测指标均未独立验证；简介含竞赛与奖励推广，应与技术内容区分。",
+      "nextStep": "低成本验证可从许可清晰的小规模交通图片开始，先复现头盔/三人同骑检测，再接入跟踪与OCR，人工抽检误报漏报；只在合法、脱敏数据上评估，不直接用于执法或公开个人车牌。",
+      "costAndRisks": "依赖 YOLO11、EasyOCR、跟踪组件和数据集许可；真实道路存在遮挡、夜间、车牌格式差异与误报。涉及个人信息和执法合规，部署需人工复核与数据治理；视频含竞赛推广，不应把奖励宣传当作项目收益。",
+      "projects": [],
+      "sources": [
+        {
+          "author": "Sinex labs",
+          "platform": "YouTube",
+          "url": "https://www.youtube.com/watch?v=rnaphvekX-g",
+          "publishedAt": "2026-11-01T03:08:37.000Z",
+          "evidence": "已读取公开视频标题/简介及精确发布时间；尚未读取字幕，未核验视频画面"
+        }
+      ]
+    },
+    {
+      "section": "商机观察",
+      "title": "Post Bridge 流失与 ICP 讨论：先选对客户",
+      "category": "产品与生意",
+      "summary": "Jason Cohen 与 Tibo Maker 在播客中复盘 Post Bridge：该工具把帖子从一个仪表盘分发到多个社交平台，但简介称每月有 20% 客户流失，形成增长上限。创始人 Jack Friks 在 X 上公开构建，吸引到其他 builder，却不是他需要的企业营销买家；节目讨论如何定义真实 ICP、为何 A/B 测试不能替代客户选择、LinkedIn 是否更接近买家，以及按账号分层定价（如 $1/账号、最低 30 个）等思路。",
+      "whyItMatters": "对AI/工具型SaaS而言，功能之外更关键的是选对客户和渠道；这个案例把流失、ICP、定价和渠道-founder fit放在同一张桌上，适合作为低成本验证客户假设的参考，而非收入证明。",
+      "caveat": "仅标题/简介，未看完整视频；Post Bridge 的流失率、定价反应和客户画像均为节目方/嘉宾说法，未独立核验。",
+      "howItWorks": "客户痛点/需求证据来自节目简介：多平台发帖用户需要统一仪表盘，但高账号数用户可能愿为管理能力付费；讨论提出的验证路径是收窄 ICP、按账号数定价、在 LinkedIn 等渠道找真实买家，并用访谈而非单纯 A/B 测试判断客户。",
+      "evidenceBasis": "来源披露：节目简介与时间戳；未读完整字幕/未核验画面。20% 月流失、$500 付费预期等是节目描述或讨论，不是审计收入，也不构成收益承诺。无额外商业结果推测。",
+      "nextStep": "可计划访谈 10 个管理 15+ 社交账号的营销人员，测试按账号数定价的落地页/预约演示转化，记录他们当前工具、预算与流失原因；不执行投放或收款。",
+      "costAndRisks": "依赖访谈样本真实性与平台 API 政策；多平台发布工具面临平台限制、竞争和 churn 诊断误差。定价实验需合规处理用户数据，不能把节目中的收入/付费意愿当作已验证商业结果。",
+      "projects": [],
+      "sources": [
+        {
+          "author": "Jason Cohen",
+          "platform": "YouTube",
+          "url": "https://www.youtube.com/watch?v=uTVyLYDOd1M",
+          "publishedAt": "2026-11-01T08:00:09.000Z",
+          "evidence": "已读取公开视频标题/简介及精确发布时间；尚未读取字幕，未核验视频画面"
+        }
+      ]
+    }
+  ]
+}
