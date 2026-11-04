@@ -1,0 +1,241 @@
+{
+  "date": "2026-11-05",
+  "window": {
+    "start": "2026-11-03T21:00:00.000Z",
+    "end": "2026-11-04T21:00:00.000Z"
+  },
+  "generatedAt": "2026-11-04T21:57:30.936Z",
+  "candidateCount": 18,
+  "status": "partial",
+  "limitations": [
+    "YouTube检索 AI model research 达到单次上限，热度不代表真实性或全站穷举。",
+    "YouTube检索 AI agents developer tools 达到单次上限，热度不代表真实性或全站穷举。",
+    "YouTube检索 open source AI automation workflow demo 达到单次上限，热度不代表真实性或全站穷举。",
+    "YouTube扩展 audio separation music transcription MIDI AI未完成（COMMAND_EXEC）；未将失败当成没有新内容。",
+    "YouTube检索 AI game TAS speedrun 达到单次上限，热度不代表真实性或全站穷举。",
+    "YouTube检索 computer vision neural network tracking project 达到单次上限，热度不代表真实性或全站穷举。",
+    "YouTube检索 indie developer customer demand small business case study 达到单次上限，热度不代表真实性或全站穷举。",
+    "X OpenAI, AnthropicAI, GoogleDeepMind, GoogleAI, MetaAI未完成（TIMEOUT）；未将失败当成没有新内容。",
+    "X AIatMeta, NVIDIAAI, xai, deepseek_ai, Alibaba_Qwen未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "X huggingface, mistralai, MSFTResearch, karpathy, simonw未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "X rasbt, fchollet, DrJimFan未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "X X热门AI技术内容未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "X扩展 案例与玩法未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "X扩展 商机观察未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "字幕 BV1kuxQ6EEjo未完成（SUBTITLE_UNAVAILABLE）；未将失败当成没有新内容。",
+    "视频 BV1294u63En6 的字幕与标题/简介主题不符，未作为正文证据。",
+    "视频 BV13xxS6fEdi 的字幕与标题/简介主题不符，未作为正文证据。",
+    "YouTube 字幕 2l4cOVRWdHc未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "YouTube 字幕 w-Kx3uGc6Ro未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "YouTube 字幕 YC4l-VrSBzk未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "YouTube 字幕 mTGxRmjH44o未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "YouTube 字幕 Z7KEkGyBgZs未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "YouTube 字幕 8r4X7Oh5yBk未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "YouTube 字幕 W43irVHhsQg未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "YouTube 字幕 WA_UxUv97R4未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "YouTube 字幕 S0TJ8Mg1t8g未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "YouTube 字幕 W3frX8mReO8未完成（UNKNOWN）；未将失败当成没有新内容。",
+    "文字整理主路在编辑批次1调用失败（MODEL_TRANSPORT_OR_SERVICE_UNCONFIRMED），按维护者授权启用备用处理当日未完成部分；既有已校验批次保留，实际渠道另存本机记录。"
+  ],
+  "coverage": {
+    "attempted": 110,
+    "succeeded": 90
+  },
+  "takeaways": [
+    "TAS案例显示，长期纪录仍可能通过局部路线重构和模拟器迁移取得帧级改进；必须区分TAS、实时人类纪录以及原版与改版。",
+    "其余候选多为课程导览、旧论文的AI讲解、非AI的TAS/开发日志或信息不足，未达到案例链路或商机证据要求，故不凑数收录。",
+    "人形焊接机器人提供了船厂非结构化焊接的商机线索，但仍是厂商宣传和试运行前样机，不能视为量产或付费验证。",
+    "两条高标题党或证据不足的候选未纳入；非AI播客与商机观察无关，也未纳入。"
+  ],
+  "items": [
+    {
+      "section": "权威前沿",
+      "title": "OpenAI与Figma试点自然语言自助分析",
+      "category": "应用与产业",
+      "summary": "OpenAI官方账号发布与Figma的早期试点：Figma数据工程负责人称，团队正构建共享上下文，让市场人员直接询问广告活动表现和转化情况，而不必等待新建仪表盘或指标。官方称这能在Figma内部实现自助分析，缩短从问题到洞察的等待。当前披露重点是工作流和早期客户证言，未给出模型、数据接入、指标口径或准确率等技术细节，也不是独立实测。",
+      "whyItMatters": "若自然语言查询能可靠接入企业指标与权限体系，分析需求可从事务性取数转向业务人员自助探索；但现阶段应视为厂商试点信号，而非已验证的通用能力。",
+      "caveat": "仅官方宣传材料，属于早期试点；不能据此确认性能、成本或可复制性。",
+      "howItWorks": "来源披露的实现链路仅到“共享上下文+自然语言提问”：市场人员询问活动落地与转化，系统返回洞察，省去等待仪表盘或指标建设；具体模型、检索、权限与数据治理未披露。",
+      "evidenceBasis": "来源披露：OpenAI官方视频标题/简介及Figma数据工程负责人引述；未读字幕、未核验画面，无独立复现。",
+      "nextStep": "向试点方核实数据源、指标定义、权限隔离和评估方法；在自有只读数据上做小范围自然语言查询原型，与人工报表逐项对照。",
+      "costAndRisks": "依赖数据治理、指标口径、权限控制和模型可靠性；官方未披露延迟、成本、准确率与部署范围，存在错误解读、数据泄露和厂商锁定风险。",
+      "projects": [],
+      "sources": [
+        {
+          "author": "OpenAI",
+          "platform": "YouTube",
+          "url": "https://www.youtube.com/watch?v=44GBqQGc-v0",
+          "publishedAt": "2026-11-04T17:27:07.000Z",
+          "evidence": "已读取公开视频标题/简介及精确发布时间；尚未读取字幕，未核验视频画面"
+        },
+        {
+          "author": "OpenAI",
+          "platform": "YouTube",
+          "url": "https://www.youtube.com/watch?v=0LDs5rvx1EI",
+          "publishedAt": "2026-11-04T17:33:11.000Z",
+          "evidence": "已读取公开视频标题/简介及精确发布时间；尚未读取字幕，未核验视频画面"
+        }
+      ]
+    },
+    {
+      "section": "权威前沿",
+      "title": "机器之心转述陶哲轩：数学家因AI抢先风险隐藏研究，关键系统需防模型漏洞",
+      "category": "模型与研究",
+      "summary": "机器之心官方视频简介称，陶哲轩在最新演讲中提到，一些数学家因担心研究想法被抢先输入模型并发表而隐藏研究方向；他还担忧 AI 用于电网、空管和药物设计时，可能利用模型漏洞给出看似合格却偏离真实目标的答案。视频仅 103 秒，演讲原文和具体论证未在候选内提供。",
+      "whyItMatters": "若转述准确，这反映生成式 AI 正在同时改变科研优先权与安全评估：不仅影响论文生产，也影响关键系统如何验证目标一致性。",
+      "caveat": "仅标题和简介，未读视频正文；具体数学家案例、模型类型和防范建议均未知。",
+      "howItWorks": "",
+      "evidenceBasis": "媒体简介转述，未取得演讲原文或视频正文；不能把简介表述当作已核验的直接引语。",
+      "nextStep": "查找陶哲轩演讲原始视频或文字稿，核对时间、场合和原话；再区分“科研想法被模型抢先”与“关键系统目标被钻空子”两类风险。",
+      "costAndRisks": "无直接成本数据；主要风险是二手转述失真、把个别轶事扩大为普遍现象，以及把风险讨论误读为已发生的大规模事故。",
+      "projects": [],
+      "sources": [
+        {
+          "author": "机器之心官方",
+          "platform": "B站",
+          "url": "https://www.bilibili.com/video/BV1kuxQ6EEjo",
+          "publishedAt": "2026-11-04T10:30:00.000Z",
+          "evidence": "仅标题/简介，尚未读取视频正文"
+        }
+      ]
+    },
+    {
+      "section": "权威前沿",
+      "title": "北大杨灵谈Discovery RSI：让AI提出可验证问题并沉淀经验",
+      "category": "技术解读",
+      "summary": "机器之心AI Insider邀请北大杨灵介绍研究脉络，并披露Discovery RSI：不只让AI解题，还让AI提出可验证的新问题与猜想，把发现过程展开为树，按可验证分数排序，高分路径作为下一轮RSI起点。她同时指出科学长链推理数据难验证、强化学习正向奖励极稀疏、跨领域工具适配和评测体系是落地卡点。来源为完整AI字幕，未人工校对。",
+      "whyItMatters": "这把AI for Science从“生成想法/解题”推进到“提出问题—验证—经验沉淀”的闭环，核心不是更多假设，而是可验证性和真实世界反馈；这决定智能体能否持续改进。",
+      "caveat": "AI字幕未人工校对，ASR将姓名识别为“杨林”，标题简介为“杨灵”，需以官方为准；未核验画面、论文或代码，不能把访谈中的研究思路当作已独立验证的成果。",
+      "howItWorks": "字幕披露：研究从扩散模型建模真实分布，到大模型推理、智能体调用工具，再到RSI沉淀可复用经验；Discovery RSI将问题/猜想展开为树，给思维路径打可验证分数并排序，高分路径作为下一轮起点；数据侧构建科学长链推理轨迹，训练侧应对稀疏奖励，应用侧自适应调用领域工具，评测侧建立benchmark。",
+      "evidenceBasis": "来源披露（完整AI字幕，未经人工校对）；未核验视频画面、论文、代码或量化结果。",
+      "nextStep": "可选一个可自动验证的小科学任务，人工构造“问题—文献—分析—实验—结论”轨迹与验证器，比较普通解题与树搜索/验证排序的效果；不执行，仅作复现计划。",
+      "costAndRisks": "领域专家标注与验证器构建成本高；科学奖励稀疏导致训练不稳定；跨领域工具接入和评测基准缺失；ASR术语误差可能影响复现；无公开代码/数据时复现难。",
+      "projects": [],
+      "sources": [
+        {
+          "author": "机器之心官方",
+          "platform": "B站",
+          "url": "https://www.bilibili.com/video/BV1s6xS6JERz",
+          "publishedAt": "2026-11-04T04:30:00.000Z",
+          "evidence": "平台AI字幕 ai-zh（未经人工校对；未核验画面）；完整字幕轨"
+        }
+      ]
+    },
+    {
+      "section": "案例与玩法",
+      "title": "独立开发者用Claude Code接管应用日常运营",
+      "category": "开发工具与智能体",
+      "summary": "独立开发者Simon Grimm发布案例，称用Claude Code代替每天逐个打开Sentry、RevenueCat、App Store Connect、Google Play、PostHog等后台：一个提示完成早晨检查、查生产错误、分析下载下滑、写发布说明、回复评论和排查Apple Ads浪费；没有API的环节用浏览器自动化补足。作者也说明有失效场景和仍不允许智能体触碰的操作。该案例展示了多后台只读巡检与人机分工，但仅是作者披露，未独立复现。",
+      "whyItMatters": "它把编码智能体从“写代码”推进到“运营巡检”：价值不在替人决策，而在把跨SaaS的重复查看、汇总和初步定位自动化，同时保留人工审批。",
+      "caveat": "视频简介自述，未展示完整配置或失败细节；不能把“一个提示”理解为无需人工监督。",
+      "howItWorks": "简介披露：Claude Code配合MCP servers连接Sentry、RevenueCat、App Store Connect、Google Play、PostHog、Railway、Apple Search Ads和TikTok Studio，以CLAUDE.md保存上下文；每日一个提示汇总异常、下载、评论与广告花费，无API时走浏览器自动化。",
+      "evidenceBasis": "来源披露；仅读取标题/简介，未读字幕、未核验视频画面；无独立部署或效果测量。",
+      "nextStep": "用测试账号和只读令牌接入1—2个系统（如Sentry与PostHog），限定生成每日摘要，连续一周与人工检查对照，记录漏报、误报和耗时。",
+      "costAndRisks": "需维护多个API/MCP凭证、订阅和权限；存在误报、日志与用户数据泄露、浏览器自动化脆弱、平台条款及写操作越权风险；作者所述效率非独立验证。",
+      "projects": [],
+      "sources": [
+        {
+          "author": "Simon Grimm",
+          "platform": "YouTube",
+          "url": "https://www.youtube.com/watch?v=WA_UxUv97R4",
+          "publishedAt": "2026-11-04T14:00:24.000Z",
+          "evidence": "已读取公开视频标题/简介及精确发布时间；尚未读取字幕，未核验视频画面"
+        }
+      ]
+    },
+    {
+      "section": "案例与玩法",
+      "title": "《超级马力欧兄弟2》any% TAS再快5帧",
+      "category": "游戏与仿真",
+      "summary": "HappyLee发布《超级马力欧兄弟2（失落关卡）》any% TAS，用时08:03.84，称比2017版再快5帧，并从旧模拟环境迁移到BizHawk以提高精度。改进只在8-4水下房间和最终房间：用大马力欧挤入上层并反复游泳维持水平速度，替代旧版斜向穿墙后从火焰棒下通过的路线；其余沿用2017输入，所有输入由作者手动录入。作者计划用该策略继续改进其他版本。",
+      "whyItMatters": "一个保持近十年的TAS仍能靠局部路线重构取得帧级收益，说明模拟器精度、房间机制和输入复用会持续改变极限成绩；但TAS不等同实时人类纪录。",
+      "caveat": "作者个人发布；5帧改进和“最快”称号未独立核验，视频画面与输入文件未逐帧检查。",
+      "howItWorks": "来源披露：旧路线为斜向穿墙、调整屏幕位置后从火焰棒下方游过；新路线让大马力欧进入上层并反复游泳保持水平速度，仅改8-4水下与最终房间，重录次数70973，使用BizHawk，输入为键盘手动录入。",
+      "evidenceBasis": "来源披露；作者自述路线与帧数改进，未读字幕、未逐帧核验画面，纪录状态待社区确认。",
+      "nextStep": "在合法ROM和一致版本上复现8-4水下房间改动，分段比较新旧输入帧数，并核对社区计时规则、模拟器版本和原版/改版差异。",
+      "costAndRisks": "依赖合法ROM、模拟器精度与版本一致性；帧级差异易受计时规则影响，重录与验证成本高；纪录需社区审核，不能将TAS成绩等同实时人类成绩。",
+      "projects": [],
+      "sources": [
+        {
+          "author": "HappyLee",
+          "platform": "YouTube",
+          "url": "https://www.youtube.com/watch?v=YC4l-VrSBzk",
+          "publishedAt": "2026-11-04T19:00:50.000Z",
+          "evidence": "已读取公开视频标题/简介及精确发布时间；尚未读取字幕，未核验视频画面"
+        }
+      ]
+    },
+    {
+      "section": "案例与玩法",
+      "title": "REA 把逆向工程工具接入编码智能体，演示重构 Excalidraw 白板",
+      "category": "开发工具与智能体",
+      "summary": "安全频道 The BlackBox Security 发布实测视频，简介称 REA 通过 MCP 把 Claude Code 等编码智能体接到 Ghidra、Hopper、IDA 等逆向工具，并演示把 Excalidraw 重构为自制白板。作者强调 REA 本身不做反编译，外界对“闭源软件终结”的炒作被夸大；实际效果、耗时和克隆质量尚未在候选内独立核验。",
+      "whyItMatters": "它把现有的二进制/应用逆向能力封装成智能体可调用的工具层，降低分析闭源应用和追踪功能实现的操作门槛；但本质是工具编排，不等于自动破解闭源软件，也不能绕过许可与版权边界。",
+      "caveat": "只有标题、简介和仓库页面，未看完整视频；克隆质量、速度、适用范围均未独立复现，不能据此认定可替代开发或“闭源软件终结”。",
+      "howItWorks": "来源披露：REA 通过 MCP 向编码智能体暴露 Ghidra、Hopper、IDA 等工具及静态 JavaScript/Electron 分析能力；用户让智能体检查目标应用、追踪功能实现并生成类似功能。REA 自身不做反编译，由既有逆向工具产出证据。",
+      "evidenceBasis": "视频简介与已核验公开仓库首页的来源披露；未读取字幕、未核验演示画面或克隆代码。",
+      "nextStep": "在隔离环境选一个可公开再分发的小型 Electron 应用做最小验证：让智能体定位一个功能并输出证据，再与人工逆向结论对照；不要接触无授权软件。",
+      "costAndRisks": "依赖 Node/npm、逆向工具和模型调用；可能涉及软件许可、版权、服务条款与模型误判；演示中的“几分钟”不是基准，仓库复杂且更新快。",
+      "projects": [
+        {
+          "url": "https://github.com/morluto/rea",
+          "name": "morluto/rea",
+          "relationship": "原来源提及的公开仓库；并不自动等于作者完整实现"
+        }
+      ],
+      "sources": [
+        {
+          "author": "The BlackBox Security",
+          "platform": "YouTube",
+          "url": "https://www.youtube.com/watch?v=S0TJ8Mg1t8g",
+          "publishedAt": "2026-11-04T13:00:38.000Z",
+          "evidence": "已读取公开视频标题/简介及精确发布时间；尚未读取字幕，未核验视频画面"
+        }
+      ]
+    },
+    {
+      "section": "案例与玩法",
+      "title": "蛋白语言模型与实验闭环用于免疫受体预测和生成设计",
+      "category": "模型与研究",
+      "summary": "ADIA Lab研讨会视频简介介绍芝加哥大学Aly Azeem Khan的预测免疫学工作：用跨自身免疫/炎症疾病的群体遗传数据联合训练，改善风险预测并指向共享免疫机制；结合蛋白语言模型与大规模实验预测T细胞受体-抗原识别、识别疾病相关靶点；进一步生成设计针对指定抗原的免疫受体；形成模型提议实验、实验结果更新模型的闭环。仅简介，未读字幕。",
+      "whyItMatters": "把免疫系统预测与受体生成设计接入“模型提议—实验反馈”闭环，若能复现，可能提升靶点发现和诊疗开发效率；但当前只是会议摘要披露，不能当已发表性能。",
+      "caveat": "未读字幕；未核验论文、代码、性能或临床价值；演讲者单位与会议信息来自简介。",
+      "howItWorks": "简介披露链路：群体遗传数据联合训练→疾病风险预测/共享机制；蛋白语言模型+大规模实验→TCR-抗原识别与靶点发现；生成模型设计抗指定抗原的免疫受体；实验结果回流更新模型，形成闭环。",
+      "evidenceBasis": "来源披露（公开视频简介/摘要），尚未读取字幕、未核验画面；不把摘要中的研究计划或结果当作已发表事实。",
+      "nextStep": "先选公开TCR-抗原数据集复现识别基线，再设计小规模湿实验验证少量生成受体候选；需伦理与生物安全审查。",
+      "costAndRisks": "湿实验与数据获取成本高、队列偏倚、模型泛化与可解释性、实验周期长、生物安全/伦理合规和知识产权风险；无代码/数据细节。",
+      "projects": [],
+      "sources": [
+        {
+          "author": "ADIA Lab",
+          "platform": "YouTube",
+          "url": "https://www.youtube.com/watch?v=W43irVHhsQg",
+          "publishedAt": "2026-11-04T08:57:55.000Z",
+          "evidence": "已读取公开视频标题/简介及精确发布时间；尚未读取字幕，未核验视频画面"
+        }
+      ]
+    },
+    {
+      "section": "商机观察",
+      "title": "船厂舱内焊接人形机器人进入试运行前的商机线索",
+      "category": "机器人与硬件",
+      "summary": "机器之心视频介绍视比特全尺寸双足人形焊接机器人：身高170厘米、27个关节，配激光雷达、ToF和3D线扫相机，采用任务规划、动作规划、运动控制的分层架构，面向船舱狭窄、坑洼、工件杂乱等非结构化环境，视频称无需提前标定即可识别焊缝并规划路径。当前为研发样机，即将进入国内头部船厂试运行。厂商口播提到船厂舱内焊接招工难、高危、质量一致性痛点，但未见合同、付费或验收数据。",
+      "whyItMatters": "如果双足人形能在船舱等轮式难通行场景稳定焊接，可补足固定工业机器人的盲区；但目前只是试运行前样机，商业价值取决于可靠性、工艺认证和船厂接受度。",
+      "caveat": "AI字幕未校对，未逐帧核验画面；参数、“真机实操”和试运行计划均为视频宣称；无性能、成本、合同数据。",
+      "howItWorks": "客户痛点/需求证据：厂商视频称船厂舱内焊接招工难、作业安全与质量一致性发愁；技术链路为双足移动跨越障碍→多传感器感知环境与工件→3D视觉识别焊缝并规划路径→“大小脑”分层完成任务/动作/运动控制执行焊接；需求证据仅为厂商宣传，试运行计划是待核验线索。",
+      "evidenceBasis": "来源披露（完整AI字幕，未经人工校对；厂商宣传口播）；无独立需求调研、合同、付费或验收数据。",
+      "nextStep": "选一个典型舱段做限时小范围试点，与人工和固定基座焊接对照，记录焊缝合格率、节拍、人工干预次数、安全事件和维护时间；先验证再谈采购。",
+      "costAndRisks": "双足在船厂地面、烟尘、电磁、防爆等环境可靠性；焊接工艺认证、操作培训、维护停机；与固定机器人/专机竞争；试运行不等于量产、创收或成本优势。",
+      "projects": [],
+      "sources": [
+        {
+          "author": "机器之心官方",
+          "platform": "B站",
+          "url": "https://www.bilibili.com/video/BV1KrxQ64EHq",
+          "publishedAt": "2026-11-04T08:30:00.000Z",
+          "evidence": "平台AI字幕 ai-zh（未经人工校对；未核验画面）；完整字幕轨"
+        }
+      ]
+    }
+  ]
+}
