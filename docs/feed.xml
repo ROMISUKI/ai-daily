@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-05 · 8个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-05/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-05/</guid><pubDate>Wed, 04 Nov 2026 21:57:30 GMT</pubDate><description>TAS案例显示，长期纪录仍可能通过局部路线重构和模拟器迁移取得帧级改进；必须区分TAS、实时人类纪录以及原版与改版。
+<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-06 · 12个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-06/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-06/</guid><pubDate>Thu, 05 Nov 2026 22:38:36 GMT</pubDate><description>教程与访谈类候选提供了智能体编排和语音创业的讨论素材，但核心事实主要来自视频标题/简介，缺少字幕、仓库或独立数据交叉验证，只能作为线索归纳。
+含课程推广、下载包引流和夸张标题的条目不宜作为已核实事件；日报应把官方宣传、演示效果与独立实测明确分开。
+一个值得注意的案例是把点云分析拆成代理可调用的 CloudCompare/Python 工具链，但成本与效果仍只有演讲者口径。
+收入承诺型 n8n 教程、仅标题级的历史科普和缺少细节的内存优化帖，证据或新闻性不足，未纳入。
+可核验的技术细节仍有限：图像模型未披露架构与独立基准，Mozilla 案例未给出 CVE、漏洞数量与修复时间线，ALwrity 仅有短视频推广和仓库自述。
+其余候选多为课程导流、直播信息或推广材料，缺少可展开的技术与证据，未纳入日报。
+其余候选或为评论/科普，或仅标题简介且来源层级不足；未读取完整正文者，相关性能与上线范围只能作为待核验说法。</description></item><item><title>2026-11-05 · 8个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-05/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-05/</guid><pubDate>Wed, 04 Nov 2026 21:57:30 GMT</pubDate><description>TAS案例显示，长期纪录仍可能通过局部路线重构和模拟器迁移取得帧级改进；必须区分TAS、实时人类纪录以及原版与改版。
 其余候选多为课程导览、旧论文的AI讲解、非AI的TAS/开发日志或信息不足，未达到案例链路或商机证据要求，故不凑数收录。
 人形焊接机器人提供了船厂非结构化焊接的商机线索，但仍是厂商宣传和试运行前样机，不能视为量产或付费验证。
 两条高标题党或证据不足的候选未纳入；非AI播客与商机观察无关，也未纳入。</description></item><item><title>2026-11-04 · 10个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-04/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-04/</guid><pubDate>Tue, 03 Nov 2026 22:19:02 GMT</pubDate><description>浏览器自动化横评给出了较完整的落地链路：登录态复用、验证码风控、沙箱隔离和积分成本，比单次演示速度更决定可用性。
