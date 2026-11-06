@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-06 · 12个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-06/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-06/</guid><pubDate>Thu, 05 Nov 2026 22:38:36 GMT</pubDate><description>教程与访谈类候选提供了智能体编排和语音创业的讨论素材，但核心事实主要来自视频标题/简介，缺少字幕、仓库或独立数据交叉验证，只能作为线索归纳。
+<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-07 · 32个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-07/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-07/</guid><pubDate>Fri, 06 Nov 2026 21:55:40 GMT</pubDate><description>其余候选多为财报read-through、工具清单或免费课程推广，缺少可验证实现链路、客户需求证据或一手技术细节，未纳入日报。
+铺砖机器人视频热度高，但厂商、型号和具体技术链路未确认，适合作为能力边界案例，不能当作可部署结论。
+LongCat-2.5 的 harness 分发与 Cardano PFMS 的政府付费说法分别来自二手聚合和倡导性帖文，只能作为待核验线索，不能当开源、订单或收入事实。
+OpenAI与FMF把网络越狱从“能否绕过”推进到“严重性如何比较”，但公开帖文未给出评分细节。
+创作者Agent案例显示，多模型分工之外，支付失败降级和回复前复核才是可上线的关键工程点。
+Cloudflare财报帖显示Agent云需求强，但用量型收入同时推高服务成本，增长质量需看毛利、backlog和续费。
+编码代理工作流开始强调worktree、TDD、CI与失败熔断，交付链路比单纯生成代码更具体，但证据仍薄。
+商机侧，NerdWallet案例显示搜索流量下滑正在推动金融比价平台探索AI助手内持牌代理，但该模式尚无收入验证。
+Hugging Face仅一句“直播训练”和IBM长文综述因信息不足或旧闻属性未收入。</description></item><item><title>2026-11-06 · 12个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-06/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-06/</guid><pubDate>Thu, 05 Nov 2026 22:38:36 GMT</pubDate><description>教程与访谈类候选提供了智能体编排和语音创业的讨论素材，但核心事实主要来自视频标题/简介，缺少字幕、仓库或独立数据交叉验证，只能作为线索归纳。
 含课程推广、下载包引流和夸张标题的条目不宜作为已核实事件；日报应把官方宣传、演示效果与独立实测明确分开。
 一个值得注意的案例是把点云分析拆成代理可调用的 CloudCompare/Python 工具链，但成本与效果仍只有演讲者口径。
 收入承诺型 n8n 教程、仅标题级的历史科普和缺少细节的内存优化帖，证据或新闻性不足，未纳入。
