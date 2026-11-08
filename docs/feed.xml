@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-08 · 25个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-08/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-08/</guid><pubDate>Sat, 07 Nov 2026 21:59:15 GMT</pubDate><description>其余高互动内容多为学习路线或工具清单，缺少可核验的新事件与实现效果，未作为案例收录；工业气体需求线索仅以二手商机观察保留并标注待核验。
+<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-09 · 28个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-09/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-09/</guid><pubDate>Sun, 08 Nov 2026 22:01:01 GMT</pubDate><description>智能体技能目录降低检索成本，但依赖外部仓库质量；Waitly 案例展示了垂直 SaaS 的低价切口，其收入与客户数据均为单方声称。
+高热度帖中的“10 万星”“月入数千到数万美元”等宣传未获独立证据，已按标题党和收入声称谨慎处理。
+本窗口可保留两条不同事件：一个把社区投票、受限 AI 智能体构建与链上公开回执串起来的自动化案例；一个用 C/SDL3 从零重写《星际争霸》的粉丝移植项目。
+其余候选多为泛化的 AI 使用建议、课程式标题党或信息不足的本地演示，按“不凑数”原则未纳入。
+两案例的技术、成本和兼容性说法均来自发布者披露；视频、代码、链上回执和实际运行未独立核验。
+融资汇总、政策投票和商业推广帖缺少一手来源或可验证细节，未作为独立事件纳入。
+政策类两条均为单句转述，缺官方来源与适用范围，未升格为权威前沿；聚合清单类缺实现链路和可核验项目页，未作为案例收录。
+投资观点和游戏试玩不满足商机观察对真实痛点、需求证据与低成本验证的要求，未纳入。
+三个案例分别覆盖AI短剧制片流程、游戏3D资产代理扩产、LinkedIn内容草稿工作流，共同点是强调人工审批而非全自动发布。</description></item><item><title>2026-11-08 · 25个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-08/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-08/</guid><pubDate>Sat, 07 Nov 2026 21:59:15 GMT</pubDate><description>其余高互动内容多为学习路线或工具清单，缺少可核验的新事件与实现效果，未作为案例收录；工业气体需求线索仅以二手商机观察保留并标注待核验。
 Agent-Desktop展示桌面自动化从截图坐标转向OS可访问性树和结构化JSON，可绕开部分像素漂移，但可访问性覆盖和真实成功率仍是限制；视频简介不等于实测。
 TristanTube说明coding agent可快速把视频清单变成聚合观看界面，但“3分钟一次成型”是作者自述；MKS电话会解读仅作为AI基建向耗材/高多层PCB传导的待核验产业线索，不构成投资建议。
 两条均存在证据边界：Axiom仅有媒体标题/简介，SETTLE为项目方自述测试网流程，均未独立核验。
