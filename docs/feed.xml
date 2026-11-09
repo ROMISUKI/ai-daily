@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-09 · 28个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-09/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-09/</guid><pubDate>Sun, 08 Nov 2026 22:01:01 GMT</pubDate><description>智能体技能目录降低检索成本，但依赖外部仓库质量；Waitly 案例展示了垂直 SaaS 的低价切口，其收入与客户数据均为单方声称。
+<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-10 · 41个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-10/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-10/</guid><pubDate>Mon, 09 Nov 2026 22:00:37 GMT</pubDate><description>案例区的 vork 与 iPhone Use 都依赖作者演示视频，渲染数字、跨应用控制效果和开源状态均未独立核验，应把“来源披露”与“已验证”严格分开。
+唯一一手官方来源是 Mistral 的实时转写场景披露，亮点是把人名与术语表作为 context biasing 注入，而非跑分；但未给准确率、延迟与价格，随帖音轨内容与“会议主舞台”叙述不一致，需谨慎。
+其余候选证据强度偏低：UE 条目为聚合账号二手转述且含匿名报道说法，插件条目为作者自述且代码未审计，生成艺术条目仅描述训练数据来源。
+本地优先的 AI 知识管理出现可复用的文件夹蓝图，强调 AI 权限边界与人工保留关键判断。
+另一条较有信息量的是编码代理做视频的开源工具清单，但仓库、星数、示例视频和实际可用性均未核验，只能作为待验证线索。
+Qwen 4“偷跑”只有标题/简介且字幕不符，AI安全大规模泄露帖含未核验数字，均未收入。
+IRS客服法案仅是倡导组织线索，官方立法状态、适用范围和付费需求都待核验。
+可保留内容集中在开发工具/创作链路与商机线索：MotionClone 的本地链路较完整，但视频、网站与仓库未核验；SBA 政策线索缺官方链接，只能作为待核验商机。
+对低互动自述产品（OpenField、Claude SEO、Lintelark）应明确未核验，不把宣传当作实测、开源确认或收入证据。</description></item><item><title>2026-11-09 · 28个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-09/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-09/</guid><pubDate>Sun, 08 Nov 2026 22:01:01 GMT</pubDate><description>智能体技能目录降低检索成本，但依赖外部仓库质量；Waitly 案例展示了垂直 SaaS 的低价切口，其收入与客户数据均为单方声称。
 高热度帖中的“10 万星”“月入数千到数万美元”等宣传未获独立证据，已按标题党和收入声称谨慎处理。
 本窗口可保留两条不同事件：一个把社区投票、受限 AI 智能体构建与链上公开回执串起来的自动化案例；一个用 C/SDL3 从零重写《星际争霸》的粉丝移植项目。
 其余候选多为泛化的 AI 使用建议、课程式标题党或信息不足的本地演示，按“不凑数”原则未纳入。
