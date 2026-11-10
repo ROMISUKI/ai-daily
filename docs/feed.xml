@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-10 · 41个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-10/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-10/</guid><pubDate>Mon, 09 Nov 2026 22:00:37 GMT</pubDate><description>案例区的 vork 与 iPhone Use 都依赖作者演示视频，渲染数字、跨应用控制效果和开源状态均未独立核验，应把“来源披露”与“已验证”严格分开。
+<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-11 · 11个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-11/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-11/</guid><pubDate>Tue, 10 Nov 2026 21:51:12 GMT</pubDate><description>开发者侧 Rex 与机器人侧 HALO 提供了可关注的实现线索，但分别依赖作者评价和二手论文转述，演示画面、论文与数字均未核验，应作为待验证案例而非确定结论。
+OpenAI把商家资料与可配置Business Agent带入ChatGPT beta，显示平台正从问答入口向商家发现与客服延伸，但资格、定价和效果仍待官方细则。
+音频AI案例呈现两条路径：Neural Analog用GPU流水线做修复、母带与分离，IEEE SPS讨论手机实时助听；前者是厂商演示，后者是技术访谈，均非独立实测。
+预测市场视频把费用、做市与跨境监管作为核心，提示合规信息工具有需求，但相关数据未独立核验，且交易本身有高监管与亏损风险。
+OpenAI 的网络安全内容仍处于活动预告阶段，能确认的是官方披露自身修复漏洞并计划工具化，不能视为工具已发布或已经验证。
+案例侧出现两条不同线索：代码代理的提示词技巧，以及承包商自建项目管理平台并尝试服务化；前者缺复现，后者缺完整访谈与商业数据。</description></item><item><title>2026-11-10 · 41个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-10/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-10/</guid><pubDate>Mon, 09 Nov 2026 22:00:37 GMT</pubDate><description>案例区的 vork 与 iPhone Use 都依赖作者演示视频，渲染数字、跨应用控制效果和开源状态均未独立核验，应把“来源披露”与“已验证”严格分开。
 唯一一手官方来源是 Mistral 的实时转写场景披露，亮点是把人名与术语表作为 context biasing 注入，而非跑分；但未给准确率、延迟与价格，随帖音轨内容与“会议主舞台”叙述不一致，需谨慎。
 其余候选证据强度偏低：UE 条目为聚合账号二手转述且含匿名报道说法，插件条目为作者自述且代码未审计，生成艺术条目仅描述训练数据来源。
 本地优先的 AI 知识管理出现可复用的文件夹蓝图，强调 AI 权限边界与人工保留关键判断。
