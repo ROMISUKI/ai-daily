@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-11 · 11个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-11/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-11/</guid><pubDate>Tue, 10 Nov 2026 21:51:12 GMT</pubDate><description>开发者侧 Rex 与机器人侧 HALO 提供了可关注的实现线索，但分别依赖作者评价和二手论文转述，演示画面、论文与数字均未核验，应作为待验证案例而非确定结论。
+<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-12 · 49个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-12/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-12/</guid><pubDate>Wed, 11 Nov 2026 22:03:37 GMT</pubDate><description>工程实践侧，Nix、一次性沙箱、overlay补丁和确定性检查提供了约束智能体的具体链路，但来自个人演讲自述，未独立复现。
+开源工具商业化讨论的核心不是仓库热度，而是垂直客户、分发和可验证结果；节目中的营收数字均为转述，不能当核实收入。
+Meta Astryx与Hermes AutoRAG提供了有实现链条的开发者案例，但均只有单条X帖披露，仓库、许可证、代码与演示未核验；销售型代发指南和无关社会新闻已排除。
+商机线索要用官方接口、实际采用和单位经济性验证，不能把发布、部署数量、收入指引或排行榜名次当成已实现收益或独立实测结果。
+案例侧值得关注的是“可审批、可复用”的代理与创作链路：Nod 强调本地凭据和付款前人工复核，录屏工具强调步骤级重录与系统级触发。
+小作者案例缺少可运行版本或源码，相关能力应按来源披露处理，不能把演示宣传当作真实部署结果。
+Anthropic J-lens提供了观察LLM中间层预激活词的新演示，但现有证据是二手转述，不能当作已验证的“读心”能力。
+实体产品广告重构建流程有可操作链路，适合小团队做低成本创意验证；开源声明和生成效果均未核验。
+本窗口可用的高置信信息主要来自OpenAI官方渠道：安全代码审计与语音智能体开发指引都在把模型能力嵌入具体工作流。</description></item><item><title>2026-11-11 · 11个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-11/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-11/</guid><pubDate>Tue, 10 Nov 2026 21:51:12 GMT</pubDate><description>开发者侧 Rex 与机器人侧 HALO 提供了可关注的实现线索，但分别依赖作者评价和二手论文转述，演示画面、论文与数字均未核验，应作为待验证案例而非确定结论。
 OpenAI把商家资料与可配置Business Agent带入ChatGPT beta，显示平台正从问答入口向商家发现与客服延伸，但资格、定价和效果仍待官方细则。
 音频AI案例呈现两条路径：Neural Analog用GPU流水线做修复、母带与分离，IEEE SPS讨论手机实时助听；前者是厂商演示，后者是技术访谈，均非独立实测。
 预测市场视频把费用、做市与跨境监管作为核心，提示合规信息工具有需求，但相关数据未独立核验，且交易本身有高监管与亏损风险。
