@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-15 · 34个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-15/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-15/</guid><pubDate>Sat, 14 Nov 2026 21:58:43 GMT</pubDate><description>NVIDIA 智慧城市帖属于活动回顾，Final Fantasy 漏洞视频属于娱乐盘点，分发讨论与地缘观点缺少可核验证据，均未收入。
+<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-16 · 30个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-16/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-16/</guid><pubDate>Sun, 15 Nov 2026 21:58:39 GMT</pubDate><description>对教程和社媒汇总应区分“原帖声称”与“已核验发布/实测”，不把未读全文或未看视频的内容当独立结论。
+案例侧共同指向“AI代理接入既有工具链”：LoopForge把多种编码CLI放进Docker沙箱并加人工审批；动画与Obsidian帖子则提供开源组件或模板清单，但均未在候选内完成代码运行或成片核验。
+商机侧仅见X Premium用户对关注限额的单一反馈，属于弱需求信号；需补充平台规则与多样本证据，不能据此推导收入或普遍付费意愿。
+值得关注的是AI代理向动画工具链和WordPress执行层延伸，但两者均缺少代码、权限或复现证据，安全与可用性待核验。
+本窗口候选里，较有信息密度的是“用行为对比闭环让编码代理复刻应用”和“435KB 微型语言模型”两个演示；它们都只来自单一 X 帖，参数、星标和可运行性均未独立核验。
+其余候选多为二手快讯汇编、旧文转载或营销文案，缺少可核验的一手来源与实现细节，未纳入日报。
+上述证据均来自单一X帖，成本数字、功能可用性和成片效果未独立核验，需保留“原帖称/待验证”的边界。
+Wayve的多车型端到端驾驶演示信息量最高：同一模型适配轿车与厢式货车，但仍是带安全员的路测，不能等同无人驾驶落地。
+本地AI视频给出隐私敏感场景清单和成本反思，但仅有标题/简介信息，未读字幕，不能视为实测结论；其余候选缺少可复现方法或属互动/无信息内容。</description></item><item><title>2026-11-15 · 34个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-15/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-15/</guid><pubDate>Sat, 14 Nov 2026 21:58:43 GMT</pubDate><description>NVIDIA 智慧城市帖属于活动回顾，Final Fantasy 漏洞视频属于娱乐盘点，分发讨论与地缘观点缺少可核验证据，均未收入。
 可保留的实质内容集中在创作自动化与垂直采购智能体：Kutuhal 3D展示脚本到3D短片的代理编排链，Lotvale把报价解析接入小企业采购决策。
 另有一条本地模型钱包与惩罚身份图实验，概念有探索性，但证据仅来自原帖及其转述，技术细节、流动性和采用情况均未核验，只能作为早期观察。
 可收的实质内容集中在三类“可审查链路”：智能眼镜+现成视觉模型的DIY实时识别、保留人工决策的脚本到剪辑工作流，以及把智能体循环/工具/会话做成插件的运行时架构。
