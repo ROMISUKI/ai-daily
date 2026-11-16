@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-16 · 30个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-16/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-16/</guid><pubDate>Sun, 15 Nov 2026 21:58:39 GMT</pubDate><description>对教程和社媒汇总应区分“原帖声称”与“已核验发布/实测”，不把未读全文或未看视频的内容当独立结论。
+<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-17 · 30个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-17/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-17/</guid><pubDate>Mon, 16 Nov 2026 22:09:58 GMT</pubDate><description>OpenAI公布逾1800名学术研究者样本的生产力研究，“接近翻倍”属于参与者报告，需查看方法附录与独立复现。
+机器人学习框架Eden的功能清单较具体，却来自带代币宣传的账号且无可核验项目链接，只能作为待核验案例线索。
+其余候选多为订阅抱怨、工作坊推介或概念方案，缺少可核验事件与实质证据，未单列。
+Claude SEO 展示了多代理 SEO 审计的可操作链路，适合作为案例观察；其开源、免费和效果均仅有作者原帖证据，需核验项目页与实测。其余候选未达收录标准。
+两条权威前沿均只能作为方向信号：官方称AI参与科研多步问题或理论物理推导，但候选文本未提供方法、误差与同行评审。
+案例侧更值得关注的是代理技能发现/安全治理，以及证据优先、本地只读的日志分析思路，而非泛泛的“AI替代应用”讨论。
+更值得跟踪的是 AI 工具链向“操作真实文档、复用历史会话、嵌入垂直插件”下沉；相关候选多来自作者帖文，需把开源边界、实测效果和合规风险分开看。
+两条商机候选分别为提示词清单和新闻稿营销，缺少真实付费需求与可验证案例，未纳入商机观察。
+MIT FLEX提供了较完整的“自然语言→常识泛化→视觉掩码→运动规划”仿真链路；Liquid决策模型的结构化多模态输出仅见第三方转述。</description></item><item><title>2026-11-16 · 30个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-16/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-16/</guid><pubDate>Sun, 15 Nov 2026 21:58:39 GMT</pubDate><description>对教程和社媒汇总应区分“原帖声称”与“已核验发布/实测”，不把未读全文或未看视频的内容当独立结论。
 案例侧共同指向“AI代理接入既有工具链”：LoopForge把多种编码CLI放进Docker沙箱并加人工审批；动画与Obsidian帖子则提供开源组件或模板清单，但均未在候选内完成代码运行或成片核验。
 商机侧仅见X Premium用户对关注限额的单一反馈，属于弱需求信号；需补充平台规则与多样本证据，不能据此推导收入或普遍付费意愿。
 值得关注的是AI代理向动画工具链和WordPress执行层延伸，但两者均缺少代码、权限或复现证据，安全与可用性待核验。
