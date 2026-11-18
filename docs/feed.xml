@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-17 · 30个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-17/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-17/</guid><pubDate>Mon, 16 Nov 2026 22:09:58 GMT</pubDate><description>OpenAI公布逾1800名学术研究者样本的生产力研究，“接近翻倍”属于参与者报告，需查看方法附录与独立复现。
+<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-18 · 16个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-18/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-18/</guid><pubDate>Wed, 18 Nov 2026 02:42:53 GMT</pubDate><description>两条权威前沿均来自官方账号，但只有发布口径，缺少论文、基准和独立复现，需把“官方称”与已验证事实分开。
+音乐生成接入MCP体现了智能体调用创作工具的趋势，但接口能力、价格、版权和音质都未在帖文中核验。
+其余候选多为活动推广、产品促销或仅含论文标题的聚合信息，证据不足以单列。
+NVIDIA与奔驰的产线智能体只有厂商陈述，按“官方称”处理；重型机械特技与玛雅遗址筛查均来自转述或视频口播，论文、画面和机构回函未核验。
+B站玛雅案例的完整字幕为AI生成且未经人工校对，字幕还提到专业团队2025年已测绘该地，不能把“未登记”直接等同于首次发现。
+GPT-6.2、AI 军事目标误识别和 Economist 预测仅有简短帖文或预告，未提供可核验的一手材料，未纳入。
+商机类信息应把融资额与真实付费需求分开；药物发现仍需临床与监管验证，不能把融资当技术成功或收入。</description></item><item><title>2026-11-17 · 30个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-17/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-17/</guid><pubDate>Mon, 16 Nov 2026 22:09:58 GMT</pubDate><description>OpenAI公布逾1800名学术研究者样本的生产力研究，“接近翻倍”属于参与者报告，需查看方法附录与独立复现。
 机器人学习框架Eden的功能清单较具体，却来自带代币宣传的账号且无可核验项目链接，只能作为待核验案例线索。
 其余候选多为订阅抱怨、工作坊推介或概念方案，缺少可核验事件与实质证据，未单列。
 Claude SEO 展示了多代理 SEO 审计的可操作链路，适合作为案例观察；其开源、免费和效果均仅有作者原帖证据，需核验项目页与实测。其余候选未达收录标准。
