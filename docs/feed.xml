@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-19 · 35个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-19/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-19/</guid><pubDate>Wed, 18 Nov 2026 22:01:15 GMT</pubDate><description>两条均为发布方自述，附件视频未核验，缺少独立实测与可复现细节；其余候选多为转述、产品预热或宏观评论，未达到收录门槛。
+<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-20 · 33个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-20/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-20/</guid><pubDate>Thu, 19 Nov 2026 21:59:16 GMT</pubDate><description>案例区两条都指向“长内容/知识库→结构化再利用”的工具链，但分别只是帖子描述和工具清单，缺少独立实测。
+候选中的Anthropic IPO表态、AfrICANDO投资推介和概念科普未作为独立技术事件纳入；对清单类内容需继续核验项目可用性。
+Cursor 插件生态开源与旧金山审批部门合并均只有单一帖文，分别只能作为开发者工具线索和待核验政策信号；其余候选宣传或碎片化明显，未纳入。
+GitHub Copilot运行时Rust迁移的二手复盘信息密度最高，核心是快照/契约测试与编译器约束形成自动验证闭环；但原始博客、PR、费用和性能数字未在候选内核验。
+企业服务侧出现ADP收购ZenBusiness的待核验线索，显示公司设立/合规可能成为小企业服务入口；因无官方公告，不能把交易和客户数字当作确定事实。
+具身智能的竞争点正从单一基座模型转向数据采集、视觉预处理、真机补偿和快速迭代的系统工程。
+VLM进入工地安全等合规场景时，关键限制是误报/漏报、法规依据和人工复核责任，而非单点识别演示。
+两条“暴富/窗口期”与“据称稳定币接入”类帖子缺乏可核验一手依据，未纳入。
+两条商业线索分别来自独立开发者分发困境和旧金山创业活动组织者招募联合主办，均为个人自述，缺付费与转化证据，只能作为低成本验证方向。</description></item><item><title>2026-11-19 · 35个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-19/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-19/</guid><pubDate>Wed, 18 Nov 2026 22:01:15 GMT</pubDate><description>两条均为发布方自述，附件视频未核验，缺少独立实测与可复现细节；其余候选多为转述、产品预热或宏观评论，未达到收录门槛。
 GummySearch 的复盘提供了平台数据授权风险的实例：作者称其峰值约4万美元MRR、13.5万用户，但仍受 Reddit API 与官方竞品挤压；相关收入与用户数未核实。
 其余候选多为推广清单、政策倡议、无链接的高热度说法或泛化宣传，未达到可核验的事件门槛，未纳入。
 案例区有两个值得记录的社区工具：vLLM 的昇腾 NPU 适配插件，以及拦截 Claude Code 读取密钥的 Privacy Guard；两者均来自作者自述，需以代码仓库和实测核验。
@@ -190,6 +198,4 @@ Mistral与NVIDIA把物理AI、开放基准和CAE/EDA代理评测列为合作重�
 Palantir披露的“主权AI”案例表明企业关注点已从通用聊天转向数据、模型和部署控制；现有节省工时、性能与延迟数据均来自公司或客户口径。
 Genex 0.1.14把AI接入Unity、跨平台发布和MIT许可组合成较完整的游戏原型链路，但兼容性、许可和跨平台稳定性仍需核验。
 关于AI代理失误责任，作者的创业复盘认为泛化保证难以成立，较可行的方向是边界明确、可审批、可计损的垂直任务，并需要承保方和真实客户数据共同验证。
-本批证据层级差异明显：DeepMind是一手官方演示，DSH有作者口播与公开仓库，Airscope仍属论文转述，保险线索只能视为待核验商业信号。</description></item><item><title>2026-10-21 · 10个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-21/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-21/</guid><pubDate>Wed, 21 Oct 2026 04:43:10 GMT</pubDate><description>本窗口的技术主线不只是模型榜单变化，更偏向系统工程化：推理框架开源、代理支持故障后自动续跑、端侧代理把执行闭环移回本机。
-AI科研开始接入真实实验与硬件流水线：蛋白设计进入合作实验室验证，机器人视频被规模化转换为监督与奖励信号；但前者尚未证明治疗有效，后者仍缺独立复现。
-基础设施竞争继续外溢到RISC-V服务器CPU与MicroLED光互连；与此同时，官方自报和演示较多，跨项目性能比较必须保留评测口径差异。</description></item></channel></rss>
+本批证据层级差异明显：DeepMind是一手官方演示，DSH有作者口播与公开仓库，Airscope仍属论文转述，保险线索只能视为待核验商业信号。</description></item></channel></rss>
