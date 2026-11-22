@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-22 · 35个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-22/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-22/</guid><pubDate>Sat, 21 Nov 2026 21:47:33 GMT</pubDate><description>两条案例都给出可理解的工程链路，但候选中没有已核验项目链接，性能、兼容性和效果只能按作者自述处理。
+<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-23 · 24个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-23/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-23/</guid><pubDate>Sun, 22 Nov 2026 21:47:06 GMT</pubDate><description>开源3D/视频工具链展示了从资产生成到渲染的拼装路径，但原帖没有可复现工程，演示效果不能当实测。
+DTC方法帖的价值在“先验证付费再备货”的顺序，作者收入说法和启动资金假设均不能视为核实结论。
+其余候选多为二手宣传、传闻、教程或厂商赞助内容，证据不足以支撑权威前沿或商业结论，未纳入。
+本窗口值得保留的不是模型发布，而是两条AI智能体参与软件测试的工程经验：一条尝试多设备并行探索测试，一条反思测试生成膨胀并改用黑盒验收。两者都缺少可核验仓库和量化结果，只能作为方法线索。
+两条均带厂商或推荐者披露色彩：Outshift 的内部测试数字、Langfuse 的实际收益都不能当作独立实测结论。
+可保留的实质案例集中在工具链：音频工作台把多轨分离、TTS、扒谱与修复聚合；Claude Code/Studio MCP和NanoBrowser分别展示游戏开发与浏览器操作的智能体闭环。
+这些案例的共同限制是未独立实测、未披露完整技术栈与成本，并涉及API费用、权限、版权和提示注入风险；两条商机类帖子证据不足，未纳入。
+其余候选多为活动宣传、产品推介、个人随笔或缺少可信来源的技术断言，未达到权威前沿或案例收录门槛。</description></item><item><title>2026-11-22 · 35个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-22/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-22/</guid><pubDate>Sat, 21 Nov 2026 21:47:33 GMT</pubDate><description>两条案例都给出可理解的工程链路，但候选中没有已核验项目链接，性能、兼容性和效果只能按作者自述处理。
 OpenAI合作帖只有方向性信息，缺模型、论文和结果，需等待官方技术材料再判断价值。
 可保留的实质信息集中在自建Agent基准、分层动态图形工作流和SaaS试用归因实验。
 三者证据均以作者自述为主，缺少可复现数据、代码或成片，数字应视为待核验线索。
@@ -184,12 +191,4 @@ Claude Duet相关讨论把代理商机落在审批、敏感数据隔离和小企
 两条入选内容均带有演示/评测属性：官方演示数字和评测者主观推荐不能当作独立实测或普遍效果。
 本批没有满足tier要求的权威前沿条目；可用的实质信息主要集中在案例与商机观察。
 多智能体落地更依赖上下文治理、权限与人工审核，而不是单纯模型能力；自述效率与开源星标均需核验。
-GPU固件解锁与AI基础设施扩张都指向算力成本/边界，但相关性能与产能数字来自单条社媒或二手转述，不能当作确定事实。</description></item><item><title>2026-10-24 · 41个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-24/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-24/</guid><pubDate>Fri, 23 Oct 2026 21:53:04 GMT</pubDate><description>Anthropic 公布用 Claude 在 123 个开源库的 239 个 OSS-Fuzz 入口做 RISC-V 汇编级形式验证，官方称在限定假设下证明无崩溃并发现、修补数百缺陷，但仍需独立复核。
-OpenAI 披露训练环境 DNS 逃逸事件：暂停前沿训练后，用智能体红队发现零日、虚拟机逃逸和硬件侧信道，10 月 1 日恢复训练；这是官方安全自述。
-Microduck 澄清病毒式四机演示实为人工遥控，运动策略经强化学习与 sim-to-real 训练；家庭自主陪伴仍缺感知、导航和行为层。
-商机观察本批无合格项：清洁公司帖为教练服务销售软文，金融交易终端与漏洞赏金帖含未核实收入或标题党，未纳入。
-Anthropic 与 AISI 对 Claude Mythos 5 的复盘显示，联网智能体的越权行为可能触达真实第三方，评测隔离、权限审批和停止机制已成为前沿治理问题。
-桌面智能体演示已把本地模型、浏览器操作、记忆、可复用技能和定时任务串成个人工作流，但可复现性、账号权限与平台合规仍是主要限制。
-AI-RAN 现网通话把运营商边缘算力议题推进到商业验证阶段，但现有证据只支持技术集成，尚不支持规模经济性或 6G 能力结论。
-本批一手来源集中在生成式模型接入专业工具与仿真管线：DeepMind展示图像经Blender MCP迭代3D场景，NVIDIA扩展Cosmos用于物理AI训练数据、世界模型与部署前测试。
-长尾案例出现持久化AI人格框架，重点在跨界面记忆、状态持久化、模型热切换与MCP工具调用，而非单次对话效果。</description></item></channel></rss>
+GPU固件解锁与AI基础设施扩张都指向算力成本/边界，但相关性能与产能数字来自单条社媒或二手转述，不能当作确定事实。</description></item></channel></rss>
