@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-23 · 24个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-23/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-23/</guid><pubDate>Sun, 22 Nov 2026 21:47:06 GMT</pubDate><description>开源3D/视频工具链展示了从资产生成到渲染的拼装路径，但原帖没有可复现工程，演示效果不能当实测。
+<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-24 · 37个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-24/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-24/</guid><pubDate>Mon, 23 Nov 2026 21:52:27 GMT</pubDate><description>两条官方前沿信息都需区分“官方称”与独立验证：OpenWorks是项目招募与案例宣传，量子电路“10倍降本”是未来模拟成本宣称，均非独立实测。
+DSHU的“破甲”与网安/逆向模式带来明显的授权、安全和合规边界，适合作为工作流案例观察，不宜当作可直接部署的生产工具。
+官方演示和概念串联都缺少独立复现，日报中应保留“官方称”与“概念演示”的边界。
+专家帖提供了“推理时适应 vs 离线经验固化”的框架，属于观点而非新论文或基准结果；标题级研究清单未单列。
+地方赛车场线索的痛点和实验设计较具体，但付费证据弱；营销式多智能体发布方案与博彩客服案例未达到收录门槛。
+商机线索均需先核官方依据：OpenWorks的津贴/试点与“创业补贴中介化”都只有二手或标题证据，日期、资格、费用和适用范围待核验，不能承诺申报成功或收益。
+案例区的可复用点是“多智能体编排+人工审核+观测”的流水线，而不是“30美元AI团队”或全自动发布；实际代码、成本和效果均未展示。
+清单式工具推荐、股票投资长帖和简短功能评审帖缺少可核验的实现细节或一手依据，未纳入。
+案例类内容多为创作者自述，应区分演示、作者披露与独立实测。</description></item><item><title>2026-11-23 · 24个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-23/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-23/</guid><pubDate>Sun, 22 Nov 2026 21:47:06 GMT</pubDate><description>开源3D/视频工具链展示了从资产生成到渲染的拼装路径，但原帖没有可复现工程，演示效果不能当实测。
 DTC方法帖的价值在“先验证付费再备货”的顺序，作者收入说法和启动资金假设均不能视为核实结论。
 其余候选多为二手宣传、传闻、教程或厂商赞助内容，证据不足以支撑权威前沿或商业结论，未纳入。
 本窗口值得保留的不是模型发布，而是两条AI智能体参与软件测试的工程经验：一条尝试多设备并行探索测试，一条反思测试生成膨胀并改用黑盒验收。两者都缺少可核验仓库和量化结果，只能作为方法线索。
@@ -186,9 +194,4 @@ Claude Duet相关讨论把代理商机落在审批、敏感数据隔离和小企
 两条都需区分演示/自述与真实部署：TAS不是实时人类操作，运维循环也未被独立核验。
 本窗口可核验的实质事件有限。较有价值的两条：一是终端代理把视频剪辑转成“转写时间戳+组件调用”的自动化链路，但缺少可核验仓库；二是本地草坪服务在淡季用免费首单换订阅，并跟踪转付费与留存，属于验证思路而非收益证明。
 可保留的实质项集中在AI代理的受限支付/信用额度测试网演示，以及用Claude Code生成Tailscale隔离策略的自动化设想；两者都缺少独立复现或安全审计。
-两条案例共同显示代理正从“生成内容”转向“操作结构化工具/工程”：机器人侧操作仿真资产与训练链路，视频侧操作可编辑时间线与CLI/MCP工具。</description></item><item><title>2026-10-25 · 6个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-25/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-25/</guid><pubDate>Sat, 24 Oct 2026 21:39:38 GMT</pubDate><description>本批可确认的硬信息集中在两条产品与工具演示：OpenAI 展示 Dots 将社区反馈、云端调查线程和 Codex 修复串成闭环；Orca 则把多编码代理、Git worktree、内置浏览器和用量跟踪整合到一个终端型工作台。
-其余高热度帖多为免费资源清单、AI 自动赚钱叙事、社区仓库合集或仅有标题简介的游戏移植说法，证据不足或信息密度低，未纳入。
-两条入选内容均带有演示/评测属性：官方演示数字和评测者主观推荐不能当作独立实测或普遍效果。
-本批没有满足tier要求的权威前沿条目；可用的实质信息主要集中在案例与商机观察。
-多智能体落地更依赖上下文治理、权限与人工审核，而不是单纯模型能力；自述效率与开源星标均需核验。
-GPU固件解锁与AI基础设施扩张都指向算力成本/边界，但相关性能与产能数字来自单条社媒或二手转述，不能当作确定事实。</description></item></channel></rss>
+两条案例共同显示代理正从“生成内容”转向“操作结构化工具/工程”：机器人侧操作仿真资产与训练链路，视频侧操作可编辑时间线与CLI/MCP工具。</description></item></channel></rss>
