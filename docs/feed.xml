@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-25 · 36个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-25/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-25/</guid><pubDate>Tue, 24 Nov 2026 21:48:12 GMT</pubDate><description>两条内容都强调人工审批与边界：Shirudo不替代补丁，软件工厂清单不替代产品、架构、QA和最终合并责任；“代理能生成”不等于“可无人值守上生产”。
+<rss version="2.0"><channel><title>AI 科技日报</title><link>https://romisuki.github.io/ai-daily/</link><description>权威AI前沿、有趣案例与实现拆解、AI及非AI商机观察。每天梳理公开来源，保留证据，区分事实、推测与收益宣传。</description><language>zh-CN</language><item><title>2026-11-26 · 35个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-26/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-26/</guid><pubDate>Wed, 25 Nov 2026 21:46:45 GMT</pubDate><description>案例侧的价值集中在把生成或测试流程拆成可验证链路：视频分镜与角色一致性、跨时区浏览器测试。
+汉麻监管帖是待核验的政策信号而非已确认商机，需先查法案文本、官方截止日与适用范围。
+案例区出现两类技术链路：CliffordNet声称用几何积替代模块堆叠，但只有单帖指标；Bits Maintenance把补丁发现、PR、审批、发布和遥测验证串成Agent工作流，也仍是产品自述。
+Anthropic案例显示，在线系统迁移的瓶颈正从“写代码”转向“可验证性”：用生产系统做判定基准、记录差异形状并让代理修复，是一条比单纯测试更贴近真实流量的路径。
+小团队案例集中在单文件游戏、求职材料半自动填充和MCP支付工具，创意密度高，但多数只有作者自述，缺少可复现代码、真实交易或第三方验证。
+本窗口内可纳入的实质候选很少：唯一较完整的是 Google DeepMind 的官方演示，其他多为课程推广、活动宣传、无细节建站帖或未获一手来源的风险传闻。
+该演示只能作为官方能力展示，不能当作独立实测、性能基准或可复现工程。
+商机侧最值得注意的是平台治理信号：Tidal拟清理完全AI生成曲目，但候选只有个人转述，政策与统计须先核验。
+其余候选为招聘、营销或泛化观点，缺少可核验项目、需求证据或实现链路，未纳入日报。</description></item><item><title>2026-11-25 · 36个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-11-25/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-11-25/</guid><pubDate>Tue, 24 Nov 2026 21:48:12 GMT</pubDate><description>两条内容都强调人工审批与边界：Shirudo不替代补丁，软件工厂清单不替代产品、架构、QA和最终合并责任；“代理能生成”不等于“可无人值守上生产”。
 OpenAI内核漏洞研究页标注11月4日，虽X帖在窗口内，但按首发日属窗口前内容，未作为新事件纳入；其余候选多为工具合集、概念科普或宏观评论，缺少可复现证据。
 案例侧的重点是：多智能体游戏制作工作流仍属蓝图；UBC气垫球机器人有较完整的仿真—视觉—控制链路，但零样本迁移与对局成绩未核验。
 商机侧仅有尼日利亚东北部EV、光伏与MSME基金的新闻稿转述，属于待核验政策线索，不能当作可申报或可盈利结论。
@@ -186,12 +194,4 @@ DeerFlow 2.0展示了可本地运行的Manus式代理链路，也暴露默认沙
 AI代理落地案例集中在两类：借现有聊天入口分发知识型代理，以及用MCP/CLI、知识库和人工复核改造运营流程；收入、注册量和效率数字多为官方或作者自述。
 视频创作方向出现“生成+独立审查”组合，但测试数据、仓库链接与源码细节缺失，应按未验证线索处理。
 案例区两条都强调工作流：代理任务分派与量化研究回测，但需要权限隔离、人工复核和防过拟合。
-商机线索仅有Seagate财报解读，财务数字待官方核验，存储需求与周期风险需分开看。</description></item><item><title>2026-10-27 · 34个AI科技主题</title><link>https://romisuki.github.io/ai-daily/reports/2026-10-27/</link><guid isPermaLink="true">https://romisuki.github.io/ai-daily/reports/2026-10-27/</guid><pubDate>Mon, 26 Oct 2026 21:52:19 GMT</pubDate><description>案例区较有信息量的是智能眼镜实时象棋提示链路，但仅见转述帖，未提供可核验代码或项目页，且涉及作弊与平台合规风险。
-带明显推广 CTA 的增长数据帖和课程式工具清单不宜当作已验证案例，未纳入。 Anthropic 的 S-1 属资本事件，未混入技术条目。
-Nebius与NVIDIA的机器人工作流提供了较具体的仿真—训练—评估链路，但仓库、视频、40%提效和客户部署均未核验。
-商机侧可保留AI数据中心硬件需求信号：Celestica增长与扩产计划强，但库存、资本开支和客户集中度同时抬升风险；其余互关帖、币圈教程和弱相关财报未收。
-本窗口可保留的实质发布集中在两件：OpenAI 官方推出 GPT-6.1 Terra，官方称其强化计算机使用并降低 API 价格；以及作者公开的 WebPerf Snippets 网页性能调试片段工具。
-GPT-6.1 Terra 目前只有官方标题与简介，缺少字幕、独立基准与画面核验；其能力、价格和可用范围应视为官方声明。
-WebPerf Snippets 展示了“测量片段 + Playwright CLI + MCP 交给 agent 解释”的轻量性能审计链路，但仓库与运行效果未在候选证据中核验。
-两个案例都把最终决定留给人工：法律工具输出备忘录和修订痕迹待律师确认，浏览器代理把回复和帖子保留为草稿；材料均未提供独立准确率、成本或安全审计。
-ego lite 教程含赞助披露，OpenAI 视频为官方介绍；两者都不能当作生产实测。</description></item></channel></rss>
+商机线索仅有Seagate财报解读，财务数字待官方核验，存储需求与周期风险需分开看。</description></item></channel></rss>
